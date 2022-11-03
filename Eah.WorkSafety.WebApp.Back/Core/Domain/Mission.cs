@@ -2,5 +2,27 @@
 {
     public class Mission
     {
+        public int Id { get; set; }
+
+        public string? Name { get; set; }
+
+        public string? Department { get; set; }
+
+        public AppUser Identifier { get; set; }
+
+        public int AssignerUserId { get; set; }
+
+        public int AssignedUserId { get; set; }
+
+        public DateTime Date { get; set; }
+
+        public DateTime Deadline { get; set; }
+
+        public bool Status { get; set; }
+
+        public Mission()
+        {
+            Identifier = new AppUser();
+        }
     }
 }
