@@ -8,7 +8,7 @@
 
         public string? Diagnosis { get; set; }
 
-        public int OwnerUserId { get; set; }
+        public int PersonId { get; set; }
 
         public DateTime DiagnosisDate { get; set; }
 

@@ -6,11 +6,11 @@
 
         public string? Definition { get; set; }
 
-        public List<AccidentNearMiss> AccidentNearMisses { get; set; }
+        public List<AccidentAndNearMiss> AccidentNearMisses { get; set; }
 
         public AccidentAndNearMissType()
         {
-            AccidentNearMisses = new List<AccidentNearMiss>();
+            AccidentNearMisses = new List<AccidentAndNearMiss>();
         }
     }
 }

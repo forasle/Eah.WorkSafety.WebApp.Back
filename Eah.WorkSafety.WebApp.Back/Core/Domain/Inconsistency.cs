@@ -8,7 +8,7 @@
 
         public string? Information { get; set; }
 
-        public AppUser Identifier { get; set; }
+        public User Identifier { get; set; }
 
         public int IdentifiedUserId { get; set; }
 
@@ -25,7 +25,7 @@
 
         public Inconsistency()
         {
-            Identifier = new AppUser();
+            Identifier = new User();
         }
     }
 }

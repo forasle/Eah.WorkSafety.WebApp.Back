@@ -1,6 +1,6 @@
 ﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
 {
-    public class AccidentNearMiss
+    public class AccidentAndNearMiss
     {
         public int Id { get; set; }
 
@@ -10,14 +10,13 @@
 
         public string? AccidentNearMissInfo { get; set; }
 
-
         public DateTime Date { get; set; }
 
         public bool RootCauseAnalysis { get; set; }
 
         public int LostDays { get; set; }
 
-        public AppUser? Identifier { get; set; }
+        public User Identifier { get; set; }
 
 
         public int IdentifiedUserId { get; set; }
@@ -26,9 +25,14 @@
 
         public AccidentAndNearMissType AccidentAndNearMissType { get; set; }
 
-        public AccidentNearMiss()
+
+        public List<PersonAccidentAndNearMiss> PersonAccidentAndNearMisses { get; set; }
+
+        public AccidentAndNearMiss()
         {
             AccidentAndNearMissType = new AccidentAndNearMissType();
+            PersonAccidentAndNearMisses = new List<PersonAccidentAndNearMiss>();
+            Identifier = new User();
         }
 
 

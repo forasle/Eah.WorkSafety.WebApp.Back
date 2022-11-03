@@ -25,9 +25,12 @@
 
         public List<PersonOccupationAndChronicDisease> PersonOccupationAndChronicDiseases { get; set; }
 
+        public List<PersonAccidentAndNearMiss> PersonAccidentAndNearMisses { get; set; }
+
         public Person()
         {
             PersonOccupationAndChronicDiseases = new List<PersonOccupationAndChronicDisease>();
+            PersonAccidentAndNearMisses = new List<PersonAccidentAndNearMiss>();
         }
     }
 }

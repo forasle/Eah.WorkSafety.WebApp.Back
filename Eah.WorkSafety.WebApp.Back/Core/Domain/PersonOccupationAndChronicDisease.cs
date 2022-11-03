@@ -11,6 +11,8 @@
 
         public PersonOccupationAndChronicDisease()
         {
+            OccupationAndChronicDisease = new OccupationAndChronicDisease();
+            Person = new Person();
         }
     }
 }

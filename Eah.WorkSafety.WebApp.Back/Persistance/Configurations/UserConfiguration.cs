@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
 {
-    public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
+    public class UserConfiguration : IEntityTypeConfiguration<User>
     {
-        public void Configure(EntityTypeBuilder<AppUser> builder)
+        public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasOne(x => x.AppRole).WithMany(x => x.AppUsers).HasForeignKey(x => x.AppRoleId);
+            builder.HasOne(x => x.UserRole).WithMany(x => x.AppUsers).HasForeignKey(x => x.UserRoleId);
         }
     }
 }

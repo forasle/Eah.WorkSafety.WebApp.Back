@@ -1,16 +1,16 @@
 ﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
 {
-    public class AppRole
+    public class UserRole
     {
         public int Id { get; set; }
 
         public string? Definition { get; set; }
 
-        public List<AppUser> AppUsers { get; set; }
+        public List<User> AppUsers { get; set; }
 
-        public AppRole()
+        public UserRole()
         {
-            AppUsers = new List<AppUser>();
+            AppUsers = new List<User>();
         }
     }
 }

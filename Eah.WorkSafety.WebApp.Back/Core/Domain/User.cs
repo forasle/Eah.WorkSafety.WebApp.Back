@@ -1,6 +1,6 @@
 ﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
 {
-    public class AppUser
+    public class User
     {
         public int Id { get; set; }
 
@@ -8,28 +8,28 @@
 
         public string? Password { get; set; }
 
-        public int AppRoleId { get; set; }
+        public int UserRoleId { get; set; }
 
-        public AppRole AppRole { get; set; }
+        public UserRole UserRole { get; set; }
 
-        public List<AccidentNearMiss> AccidentNearMisses { get; set; }
+        public List<AccidentAndNearMiss> AccidentNearMisses { get; set; }
 
         public List<RiskAssessment> RiskAssessments { get; set; }
 
         public List<Inconsistency> Inconsistencies { get; set; }
 
-        public List<Mission> Missions { get; set; }
-
         public List<ContingencyPlan> ContingencyPlans { get; set; }
 
-        public AppUser()
+        public List<UserMission> UserMissions { get; set; }
+
+        public User()
         {
-            AppRole = new AppRole();
-            AccidentNearMisses = new List<AccidentNearMiss>();
+            UserRole = new UserRole();
+            AccidentNearMisses = new List<AccidentAndNearMiss>();
             RiskAssessments = new List<RiskAssessment>();
             Inconsistencies = new List<Inconsistency>();
-            Missions = new List<Mission>();
             ContingencyPlans = new List<ContingencyPlan>();
+            UserMissions = new List<UserMission>();
         }
     }
 }

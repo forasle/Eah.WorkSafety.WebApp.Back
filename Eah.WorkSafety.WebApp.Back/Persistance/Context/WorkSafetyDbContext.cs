@@ -10,33 +10,37 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         {
 
         }
+        public DbSet<User> Users => this.Set<User>();
 
-        public DbSet<AppUser> Users { get; set; }
+        public DbSet<UserRole> UserRoles => this.Set<UserRole>();
 
-        public DbSet<AppRole> AppRoles { get; set; }
+        public DbSet<AccidentAndNearMiss> AccidentAndNearMisses => this.Set<AccidentAndNearMiss>();
 
-        public DbSet<RiskAssessment> AccidentAndNearMisses { get; set; }
+        public DbSet<Inconsistency> Inconsistencies => this.Set<Inconsistency>();
 
-        public DbSet<Inconsistency> Inconsistencies { get; set; }
+        public DbSet<ContingencyPlan> ContingencyPlans => this.Set<ContingencyPlan>();
 
-        public DbSet<ContingencyPlan> ContingencyPlans { get; set; }
+        public DbSet<RiskAssessment> RiskAssessments => this.Set<RiskAssessment>();
 
-        public DbSet<RiskAssessment> RiskAssessments { get; set; }
+       public DbSet<Mission> Missions => this.Set<Mission>();
 
-        public DbSet<Mission> Missions { get; set; }
+        public DbSet<PersonOccupationAndChronicDisease> PersonOccupationAndDiseases => this.Set<PersonOccupationAndChronicDisease>();
 
-        public DbSet<PersonOccupationAndChronicDisease> PersonOccupationAndDiseases { get; set; }
+        public DbSet<PersonAccidentAndNearMiss> PersonAccidentAndNearMisses => this.Set<PersonAccidentAndNearMiss>();
 
 
+        public DbSet<UserMission> UserMissions => this.Set<UserMission>();
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new AccidentAndNearMissConfiguration());
             modelBuilder.ApplyConfiguration(new RiskAssesmentConfiguration());
             modelBuilder.ApplyConfiguration(new InconsistencyConfiguration());
-            modelBuilder.ApplyConfiguration(new MissionConfiguration());
+            //modelBuilder.ApplyConfiguration(new MissionConfiguration());
             modelBuilder.ApplyConfiguration(new ContingencyPlanConfiguration());
             modelBuilder.ApplyConfiguration(new PersonOccupationAndChronicDiseaseConfiguration());
+            modelBuilder.ApplyConfiguration(new PersonAccidentAndNearMissConfiguration());
+            modelBuilder.ApplyConfiguration(new UserMissionConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
