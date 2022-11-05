@@ -14,9 +14,14 @@
 
         public List<PersonOccupationAndChronicDisease> PersonOccupationAndChronicDiseases { get; set; }
 
+        public int OccupationAndChronicDiseaseTypeId { get; set; }
+
+        public OccupationAndChronicDiseaseTypes OccupationAndChronicDiseaseType { get; set; }
+
         public OccupationAndChronicDisease()
         {
             PersonOccupationAndChronicDiseases = new List<PersonOccupationAndChronicDisease>();
+            OccupationAndChronicDiseaseType = new OccupationAndChronicDiseaseTypes();
         }
     }
 }

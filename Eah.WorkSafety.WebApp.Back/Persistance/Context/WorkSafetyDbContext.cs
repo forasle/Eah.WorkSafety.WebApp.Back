@@ -24,7 +24,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
 
        public DbSet<Mission> Missions => this.Set<Mission>();
 
-        public DbSet<PersonOccupationAndChronicDisease> PersonOccupationAndDiseases => this.Set<PersonOccupationAndChronicDisease>();
+        public DbSet<PersonOccupationAndChronicDisease> PersonOccupationAndChronicDiseases => this.Set<PersonOccupationAndChronicDisease>();
 
         public DbSet<PersonAccidentAndNearMiss> PersonAccidentAndNearMisses => this.Set<PersonAccidentAndNearMiss>();
 
@@ -36,7 +36,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
             modelBuilder.ApplyConfiguration(new AccidentAndNearMissConfiguration());
             modelBuilder.ApplyConfiguration(new RiskAssesmentConfiguration());
             modelBuilder.ApplyConfiguration(new InconsistencyConfiguration());
-            //modelBuilder.ApplyConfiguration(new MissionConfiguration());
             modelBuilder.ApplyConfiguration(new ContingencyPlanConfiguration());
             modelBuilder.ApplyConfiguration(new PersonOccupationAndChronicDiseaseConfiguration());
             modelBuilder.ApplyConfiguration(new PersonAccidentAndNearMissConfiguration());

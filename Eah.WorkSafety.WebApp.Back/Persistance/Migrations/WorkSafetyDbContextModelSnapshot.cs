@@ -63,7 +63,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.ToTable("AccidentAndNearMisses");
                 });
 
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissType", b =>
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissTypes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -76,7 +76,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("AccidentAndNearMissType");
+                    b.ToTable("AccidentAndNearMissTypes");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ContingencyPlan", b =>
@@ -202,6 +202,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime>("DiagnosisDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OccupationAndChronicDiseaseTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("PersonId")
                         .HasColumnType("int");
 
@@ -210,7 +213,25 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OccupationAndChronicDiseaseTypeId");
+
                     b.ToTable("OccupationAndChronicDisease");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDiseaseTypes", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Definition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OccupationAndChronicDiseaseTypes");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Person", b =>
@@ -255,32 +276,48 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonAccidentAndNearMiss", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("AccidentAndNearMissId")
                         .HasColumnType("int");
 
-                    b.HasKey("PersonId", "AccidentAndNearMissId");
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("AccidentAndNearMissId");
+
+                    b.HasIndex("PersonId");
 
                     b.ToTable("PersonAccidentAndNearMisses");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonOccupationAndChronicDisease", b =>
                 {
-                    b.Property<int>("PersonId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("OccupationAndChronicDiseaseId")
                         .HasColumnType("int");
 
-                    b.HasKey("PersonId", "OccupationAndChronicDiseaseId");
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("OccupationAndChronicDiseaseId");
 
-                    b.ToTable("PersonOccupationAndDiseases");
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("PersonOccupationAndChronicDiseases");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.RiskAssessment", b =>
@@ -348,15 +385,23 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserMission", b =>
                 {
-                    b.Property<int>("UserId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("MissionId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "MissionId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("MissionId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserMissions");
                 });
@@ -379,7 +424,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMiss", b =>
                 {
-                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissType", "AccidentAndNearMissType")
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissTypes", "AccidentAndNearMissType")
                         .WithMany("AccidentNearMisses")
                         .HasForeignKey("AccidentOrNearMissTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -416,6 +461,17 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("Identifier");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDisease", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDiseaseTypes", "OccupationAndChronicDiseaseType")
+                        .WithMany("OccupationAndChronicDisease")
+                        .HasForeignKey("OccupationAndChronicDiseaseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OccupationAndChronicDiseaseType");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonAccidentAndNearMiss", b =>
@@ -502,7 +558,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("PersonAccidentAndNearMisses");
                 });
 
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissType", b =>
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissTypes", b =>
                 {
                     b.Navigation("AccidentNearMisses");
                 });
@@ -515,6 +571,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDisease", b =>
                 {
                     b.Navigation("PersonOccupationAndChronicDiseases");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDiseaseTypes", b =>
+                {
+                    b.Navigation("OccupationAndChronicDisease");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Person", b =>

@@ -23,14 +23,14 @@
 
         public int AccidentOrNearMissTypeId { get; set; }
 
-        public AccidentAndNearMissType AccidentAndNearMissType { get; set; }
+        public AccidentAndNearMissTypes AccidentAndNearMissType { get; set; }
 
 
         public List<PersonAccidentAndNearMiss> PersonAccidentAndNearMisses { get; set; }
 
         public AccidentAndNearMiss()
         {
-            AccidentAndNearMissType = new AccidentAndNearMissType();
+            AccidentAndNearMissType = new AccidentAndNearMissTypes();
             PersonAccidentAndNearMisses = new List<PersonAccidentAndNearMiss>();
             Identifier = new User();
         }

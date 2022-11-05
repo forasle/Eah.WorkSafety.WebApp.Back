@@ -1,6 +1,6 @@
 ﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
 {
-    public class AccidentAndNearMissType
+    public class AccidentAndNearMissTypes
     {
         public int Id { get; set; }
 
@@ -8,7 +8,7 @@
 
         public List<AccidentAndNearMiss> AccidentNearMisses { get; set; }
 
-        public AccidentAndNearMissType()
+        public AccidentAndNearMissTypes()
         {
             AccidentNearMisses = new List<AccidentAndNearMiss>();
         }
