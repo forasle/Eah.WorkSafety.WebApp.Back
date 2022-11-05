@@ -13,7 +13,7 @@
         public int IdentifiedUserId { get; set; }
 
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public bool RootCauseAnalysisRequirement { get; set; }
 

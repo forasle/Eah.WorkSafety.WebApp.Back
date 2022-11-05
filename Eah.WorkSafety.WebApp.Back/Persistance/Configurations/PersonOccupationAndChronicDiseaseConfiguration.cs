@@ -9,7 +9,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<PersonOccupationAndChronicDisease> builder)
         {
-            builder.HasKey(x => x.Id);
+            //builder.HasKey(x => x.Id);
             builder.HasOne(x => x.OccupationAndChronicDisease).WithMany(x => x.PersonOccupationAndChronicDiseases).HasForeignKey(x => x.OccupationAndChronicDiseaseId);
             builder.HasOne(x => x.Person).WithMany(x => x.PersonOccupationAndChronicDiseases).HasForeignKey(x => x.PersonId);
         }

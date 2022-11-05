@@ -4,11 +4,9 @@
     {
         public int Id { get; set; }
 
-        public int IdentificationNumber { get; set; }
+        public string? IdentificationNumber { get; set; }
 
         public string? RegistrationNumber { get; set; }
-
-        public int MyProperty { get; set; }
 
         public string? Name { get; set; }
 
@@ -18,7 +16,7 @@
 
         public string? Department { get; set; }
 
-        public DateTime StartDateOfEmployment { get; set; }
+        public DateTime? StartDateOfEmployment { get; set; }
 
         public string? Address { get; set; }
 

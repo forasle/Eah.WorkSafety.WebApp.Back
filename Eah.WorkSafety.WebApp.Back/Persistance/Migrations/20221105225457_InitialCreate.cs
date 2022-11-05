@@ -32,8 +32,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AssignerUserId = table.Column<int>(type: "int", nullable: false),
                     AssignedUserId = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Deadline = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -60,14 +60,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdentificationNumber = table.Column<int>(type: "int", nullable: false),
+                    IdentificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MyProperty = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StartDateOfEmployment = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartDateOfEmployment = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -97,7 +96,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PersonId = table.Column<int>(type: "int", nullable: false),
-                    DiagnosisDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DiagnosisDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     OccupationAndChronicDiseaseTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -167,7 +166,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     AccidentNearMissNumber = table.Column<int>(type: "int", nullable: false),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccidentNearMissInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
                     LostDays = table.Column<int>(type: "int", nullable: false),
                     IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
@@ -201,8 +200,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -224,7 +223,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RootCauseAnalysisRequirement = table.Column<bool>(type: "bit", nullable: false),
                     Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false),
@@ -251,9 +250,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
-                    RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Method = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

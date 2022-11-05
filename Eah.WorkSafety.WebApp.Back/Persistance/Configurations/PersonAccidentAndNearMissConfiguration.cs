@@ -8,7 +8,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<PersonAccidentAndNearMiss> builder)
         {
-            builder.HasKey(x => x.Id);
+            //builder.HasKey(x => x.Id);
             builder.HasOne(x => x.AccidentAndNearMiss).WithMany(x => x.PersonAccidentAndNearMisses).HasForeignKey(x => x.AccidentAndNearMissId);
             builder.HasOne(x => x.Person).WithMany(x => x.PersonAccidentAndNearMisses).HasForeignKey(x => x.PersonId);
 

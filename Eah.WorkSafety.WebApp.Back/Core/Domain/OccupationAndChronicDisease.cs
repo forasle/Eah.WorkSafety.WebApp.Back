@@ -10,7 +10,7 @@
 
         public int PersonId { get; set; }
 
-        public DateTime DiagnosisDate { get; set; }
+        public DateTime? DiagnosisDate { get; set; }
 
         public List<PersonOccupationAndChronicDisease> PersonOccupationAndChronicDiseases { get; set; }
 

@@ -10,7 +10,7 @@
 
         public string? AccidentNearMissInfo { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         public bool RootCauseAnalysis { get; set; }
 

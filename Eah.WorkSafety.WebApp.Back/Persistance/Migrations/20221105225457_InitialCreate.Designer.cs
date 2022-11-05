@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221105211616_InitialCreate")]
+    [Migration("20221105225457_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,7 +41,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("AccidentOrNearMissTypeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdentifiedUserId")
@@ -89,10 +89,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreationTime")
+                    b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdentifiedUserId")
@@ -125,7 +125,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
@@ -170,10 +170,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("AssignerUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
@@ -201,7 +201,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Diagnosis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DiagnosisDate")
+                    b.Property<DateTime?>("DiagnosisDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("OccupationAndChronicDiseaseTypeId")
@@ -250,11 +250,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Department")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdentificationNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MyProperty")
-                        .HasColumnType("int");
+                    b.Property<string>("IdentificationNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -265,7 +262,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("StartDateOfEmployment")
+                    b.Property<DateTime?>("StartDateOfEmployment")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Surname")
@@ -330,10 +327,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime>("CreationTime")
+                    b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("IdentifiedUserId")
@@ -351,7 +348,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("ReferenceNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("RevisionDate")
+                    b.Property<DateTime?>("RevisionDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");

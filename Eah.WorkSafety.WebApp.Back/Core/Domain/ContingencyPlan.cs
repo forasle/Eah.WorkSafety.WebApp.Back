@@ -16,9 +16,9 @@
 
         public int IdentifiedUserId { get; set; }
 
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
-        public DateTime CreationTime { get; set; }
+        public DateTime? CreationTime { get; set; }
 
         public ContingencyPlan()
         {

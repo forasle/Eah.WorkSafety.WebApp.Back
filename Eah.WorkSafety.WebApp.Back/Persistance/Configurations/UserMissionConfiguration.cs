@@ -8,7 +8,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<UserMission> builder)
         {
-            builder.HasKey(x => x.Id);
+            //builder.HasKey(x => x.Id);
             builder.HasOne(x => x.Mission).WithMany(x => x.UserMissions).HasForeignKey(x => x.MissionId);
             builder.HasOne(x => x.User).WithMany(x => x.UserMissions).HasForeignKey(x => x.UserId);
 
