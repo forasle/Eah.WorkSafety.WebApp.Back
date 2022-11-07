@@ -12,7 +12,7 @@
 
         public User Identifier { get; set; }
 
-        public int IdentifiedUserId { get; set; }
+        public int IdentifierUserId { get; set; }
 
         public DateTime? RevisionDate { get; set; }
 

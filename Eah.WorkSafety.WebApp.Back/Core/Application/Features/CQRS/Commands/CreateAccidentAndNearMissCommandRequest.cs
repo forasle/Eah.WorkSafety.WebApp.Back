@@ -1,6 +1,8 @@
-﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
+﻿using MediatR;
+
+namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class AccidentAndNearMiss
+    public class CreateAccidentAndNearMissCommandRequest:IRequest
     {
         public int Id { get; set; }
 
@@ -20,19 +22,5 @@
         public int IdentifierUserId { get; set; }
 
         public int AccidentOrNearMissTypeId { get; set; }
-
-        public AccidentAndNearMissTypes? AccidentAndNearMissType { get; set; }
-
-
-        public User? Identifier { get; set; }
-
-
-        public List<PersonAccidentAndNearMiss>? PersonAccidentAndNearMisses { get; set; }
-
-        public AccidentAndNearMiss()
-        {
-        }
-
-
     }
 }

@@ -4,18 +4,16 @@ using Eah.WorkSafety.WebApp.Back.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
-    [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221105225457_InitialCreate")]
-    partial class InitialCreate
+    [DbContext(typeof(WorkSafetyContext))]
+    partial class WorkSafetyContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +42,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdentifiedUserId")
+                    b.Property<int>("IdentifierUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("LostDays")
@@ -60,7 +58,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasIndex("AccidentOrNearMissTypeId");
 
-                    b.HasIndex("IdentifiedUserId");
+                    b.HasIndex("IdentifierUserId");
 
                     b.ToTable("AccidentAndNearMisses");
                 });
@@ -95,7 +93,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdentifiedUserId")
+                    b.Property<int>("IdentifierUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Information")
@@ -112,7 +110,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdentifiedUserId");
+                    b.HasIndex("IdentifierUserId");
 
                     b.ToTable("ContingencyPlans");
                 });
@@ -131,7 +129,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Department")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdentifiedUserId")
+                    b.Property<int>("IdentifierUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Information")
@@ -151,7 +149,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdentifiedUserId");
+                    b.HasIndex("IdentifierUserId");
 
                     b.ToTable("Inconsistencies");
                 });
@@ -201,13 +199,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Diagnosis")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("DiagnosisDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("OccupationAndChronicDiseaseTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PersonId")
                         .HasColumnType("int");
 
                     b.Property<string>("ReferenceNumber")
@@ -304,6 +296,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<DateTime?>("DiagnosisDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("OccupationAndChronicDiseaseId")
                         .HasColumnType("int");
 
@@ -333,7 +328,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdentifiedUserId")
+                    b.Property<int>("IdentifierUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Information")
@@ -353,7 +348,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdentifiedUserId");
+                    b.HasIndex("IdentifierUserId");
 
                     b.ToTable("RiskAssessments");
                 });
@@ -431,7 +426,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
                         .WithMany("AccidentNearMisses")
-                        .HasForeignKey("IdentifiedUserId")
+                        .HasForeignKey("IdentifierUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -444,7 +439,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
                         .WithMany("ContingencyPlans")
-                        .HasForeignKey("IdentifiedUserId")
+                        .HasForeignKey("IdentifierUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -455,7 +450,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
                         .WithMany("Inconsistencies")
-                        .HasForeignKey("IdentifiedUserId")
+                        .HasForeignKey("IdentifierUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -515,7 +510,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
                         .WithMany("RiskAssessments")
-                        .HasForeignKey("IdentifiedUserId")
+                        .HasForeignKey("IdentifierUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

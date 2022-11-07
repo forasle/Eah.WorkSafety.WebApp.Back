@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
 {
-    public class WorkSafetyDbContext: DbContext
+    public class WorkSafetyContext: DbContext
     {
-        public WorkSafetyDbContext(DbContextOptions<WorkSafetyDbContext> options) : base(options)
+        public WorkSafetyContext(DbContextOptions<WorkSafetyContext> options) : base(options)
         {
 
         }

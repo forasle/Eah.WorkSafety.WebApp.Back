@@ -27,8 +27,8 @@
 
         public Person()
         {
-            PersonOccupationAndChronicDiseases = new List<PersonOccupationAndChronicDisease>();
-            PersonAccidentAndNearMisses = new List<PersonAccidentAndNearMiss>();
+           PersonOccupationAndChronicDiseases = new List<PersonOccupationAndChronicDisease>();
+           PersonAccidentAndNearMisses = new List<PersonAccidentAndNearMiss>();
         }
     }
 }

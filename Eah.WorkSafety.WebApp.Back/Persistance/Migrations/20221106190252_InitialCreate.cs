@@ -95,8 +95,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PersonId = table.Column<int>(type: "int", nullable: false),
-                    DiagnosisDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     OccupationAndChronicDiseaseTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -138,7 +136,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PersonId = table.Column<int>(type: "int", nullable: false),
-                    OccupationAndChronicDiseaseId = table.Column<int>(type: "int", nullable: false)
+                    OccupationAndChronicDiseaseId = table.Column<int>(type: "int", nullable: false),
+                    DiagnosisDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -169,7 +168,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
                     LostDays = table.Column<int>(type: "int", nullable: false),
-                    IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
+                    IdentifierUserId = table.Column<int>(type: "int", nullable: false),
                     AccidentOrNearMissTypeId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -182,8 +181,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AccidentAndNearMisses_Users_IdentifiedUserId",
-                        column: x => x.IdentifiedUserId,
+                        name: "FK_AccidentAndNearMisses_Users_IdentifierUserId",
+                        column: x => x.IdentifierUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -199,7 +198,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     PlanNumber = table.Column<int>(type: "int", nullable: false),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
+                    IdentifierUserId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -207,8 +206,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_ContingencyPlans", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ContingencyPlans_Users_IdentifiedUserId",
-                        column: x => x.IdentifiedUserId,
+                        name: "FK_ContingencyPlans_Users_IdentifierUserId",
+                        column: x => x.IdentifierUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -222,7 +221,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
+                    IdentifierUserId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RootCauseAnalysisRequirement = table.Column<bool>(type: "bit", nullable: false),
                     Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -233,8 +232,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_Inconsistencies", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Inconsistencies_Users_IdentifiedUserId",
-                        column: x => x.IdentifiedUserId,
+                        name: "FK_Inconsistencies_Users_IdentifierUserId",
+                        column: x => x.IdentifierUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -249,7 +248,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdentifiedUserId = table.Column<int>(type: "int", nullable: false),
+                    IdentifierUserId = table.Column<int>(type: "int", nullable: false),
                     RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -259,8 +258,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_RiskAssessments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RiskAssessments_Users_IdentifiedUserId",
-                        column: x => x.IdentifiedUserId,
+                        name: "FK_RiskAssessments_Users_IdentifierUserId",
+                        column: x => x.IdentifierUserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -324,19 +323,19 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 column: "AccidentOrNearMissTypeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AccidentAndNearMisses_IdentifiedUserId",
+                name: "IX_AccidentAndNearMisses_IdentifierUserId",
                 table: "AccidentAndNearMisses",
-                column: "IdentifiedUserId");
+                column: "IdentifierUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ContingencyPlans_IdentifiedUserId",
+                name: "IX_ContingencyPlans_IdentifierUserId",
                 table: "ContingencyPlans",
-                column: "IdentifiedUserId");
+                column: "IdentifierUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Inconsistencies_IdentifiedUserId",
+                name: "IX_Inconsistencies_IdentifierUserId",
                 table: "Inconsistencies",
-                column: "IdentifiedUserId");
+                column: "IdentifierUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_OccupationAndChronicDisease_OccupationAndChronicDiseaseTypeId",
@@ -364,9 +363,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 column: "PersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RiskAssessments_IdentifiedUserId",
+                name: "IX_RiskAssessments_IdentifierUserId",
                 table: "RiskAssessments",
-                column: "IdentifiedUserId");
+                column: "IdentifierUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserMissions_MissionId",

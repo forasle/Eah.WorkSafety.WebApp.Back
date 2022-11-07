@@ -1,6 +1,6 @@
-﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
+﻿namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 {
-    public class AccidentAndNearMiss
+    public class AccidentAndNearMissDto
     {
         public int Id { get; set; }
 
@@ -20,19 +20,5 @@
         public int IdentifierUserId { get; set; }
 
         public int AccidentOrNearMissTypeId { get; set; }
-
-        public AccidentAndNearMissTypes? AccidentAndNearMissType { get; set; }
-
-
-        public User? Identifier { get; set; }
-
-
-        public List<PersonAccidentAndNearMiss>? PersonAccidentAndNearMisses { get; set; }
-
-        public AccidentAndNearMiss()
-        {
-        }
-
-
     }
 }

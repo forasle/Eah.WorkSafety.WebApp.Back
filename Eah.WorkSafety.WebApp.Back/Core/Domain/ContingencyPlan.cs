@@ -12,9 +12,9 @@
 
         public string? Information { get; set; }
 
-        public User Identifier { get; set; }
+        public User? Identifier { get; set; }
 
-        public int IdentifiedUserId { get; set; }
+        public int IdentifierUserId { get; set; }
 
         public DateTime? Date { get; set; }
 
@@ -22,7 +22,6 @@
 
         public ContingencyPlan()
         {
-            Identifier = new User();
         }
     }
 }

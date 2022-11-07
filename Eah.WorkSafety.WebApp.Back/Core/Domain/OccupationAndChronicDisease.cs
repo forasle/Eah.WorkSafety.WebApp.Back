@@ -8,10 +8,6 @@
 
         public string? Diagnosis { get; set; }
 
-        public int PersonId { get; set; }
-
-        public DateTime? DiagnosisDate { get; set; }
-
         public List<PersonOccupationAndChronicDisease> PersonOccupationAndChronicDiseases { get; set; }
 
         public int OccupationAndChronicDiseaseTypeId { get; set; }

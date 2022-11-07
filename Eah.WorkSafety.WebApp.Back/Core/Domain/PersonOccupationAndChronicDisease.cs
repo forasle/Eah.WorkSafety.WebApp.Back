@@ -8,6 +8,8 @@
 
         public int OccupationAndChronicDiseaseId { get; set; }
 
+        public DateTime? DiagnosisDate { get; set; }
+
         public OccupationAndChronicDisease OccupationAndChronicDisease { get; set; }
 
         public PersonOccupationAndChronicDisease()

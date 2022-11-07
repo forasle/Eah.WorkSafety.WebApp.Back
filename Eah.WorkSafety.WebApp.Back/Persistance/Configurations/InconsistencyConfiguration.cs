@@ -8,7 +8,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
     {
         public void Configure(EntityTypeBuilder<Inconsistency> builder)
         {
-            builder.HasOne(x => x.Identifier).WithMany(x => x.Inconsistencies).HasForeignKey(x => x.IdentifiedUserId);
+            builder.HasOne(x => x.Identifier).WithMany(x => x.Inconsistencies).HasForeignKey(x => x.IdentifierUserId);
         }
     }
 }
