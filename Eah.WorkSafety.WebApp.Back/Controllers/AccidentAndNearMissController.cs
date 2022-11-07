@@ -39,5 +39,19 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             await this.mediator.Send(request);
             return Created("", request);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateAccidentAndNearmissCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.mediator.Send(new DeleteAccidentAndNearMissCommandRequest(id));
+            return NoContent();
+        }
     }
 }
