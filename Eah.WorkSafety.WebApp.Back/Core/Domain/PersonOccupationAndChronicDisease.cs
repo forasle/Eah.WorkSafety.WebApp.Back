@@ -4,18 +4,16 @@
     {
         public int Id { get; set; }
         public int PersonId { get; set; }
-        public Person Person { get; set; }
+        public Person? Person { get; set; }
 
         public int OccupationAndChronicDiseaseId { get; set; }
 
         public DateTime? DiagnosisDate { get; set; }
 
-        public OccupationAndChronicDisease OccupationAndChronicDisease { get; set; }
+        public OccupationAndChronicDisease? OccupationAndChronicDisease { get; set; }
 
         public PersonOccupationAndChronicDisease()
         {
-            OccupationAndChronicDisease = new OccupationAndChronicDisease();
-            Person = new Person();
         }
     }
 }

@@ -1,13 +1,17 @@
 ﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Eah.WorkSafety.WebApp.Back.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles ="Admin,Member")]
     public class AccidentAndNearMissController : ControllerBase
     {
         private readonly IMediator mediator;

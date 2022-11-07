@@ -6,11 +6,10 @@
 
         public string? Definition { get; set; }
 
-        public List<OccupationAndChronicDisease> OccupationAndChronicDisease { get; set; }
+        public List<OccupationAndChronicDisease>? OccupationAndChronicDisease { get; set; }
 
         public OccupationAndChronicDiseaseTypes()
         {
-            OccupationAndChronicDisease = new List<OccupationAndChronicDisease>();
         }
     }
 }

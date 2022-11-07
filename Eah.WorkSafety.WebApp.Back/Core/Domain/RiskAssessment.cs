@@ -10,7 +10,7 @@
 
         public string? ReferenceNumber { get; set; }
 
-        public User Identifier { get; set; }
+        public User? Identifier { get; set; }
 
         public int IdentifierUserId { get; set; }
 
@@ -24,7 +24,6 @@
 
         public RiskAssessment()
         {
-            Identifier = new User();
         }
 
 

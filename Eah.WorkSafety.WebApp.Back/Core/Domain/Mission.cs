@@ -18,11 +18,10 @@
 
         public bool Status { get; set; }
 
-        public List<UserMission> UserMissions { get; set; }
+        public List<UserMission>? UserMissions { get; set; }
 
         public Mission()
         {
-            UserMissions = new List<UserMission>();
         }
     }
 }

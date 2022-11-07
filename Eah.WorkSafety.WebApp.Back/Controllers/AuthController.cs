@@ -2,11 +2,17 @@
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using Eah.WorkSafety.WebApp.Back.Infrastructure.Tools;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 
 namespace Eah.WorkSafety.WebApp.Back.Controllers
 {
+    [EnableCors]
+    [Route("api/[controller]")]
+    [ApiController]
     public class AuthController:ControllerBase
     {
         private readonly IMediator mediator;
