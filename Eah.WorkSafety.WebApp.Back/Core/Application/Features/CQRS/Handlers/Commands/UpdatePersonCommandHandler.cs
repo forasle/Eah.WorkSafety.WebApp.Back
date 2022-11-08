@@ -16,19 +16,19 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         }
         public async Task<Unit> Handle(UpdatePersonCommandRequest request, CancellationToken cancellationToken)
         {
-            var updatedProduct = await this.repository.GetByIdAsync(request.Id);
-            if (updatedProduct != null)
+            var updatedEntity = await this.repository.GetByIdAsync(request.Id);
+            if (updatedEntity != null)
             {
-                updatedProduct.IdentificationNumber = request.IdentificationNumber;
-                updatedProduct.RegistrationNumber = request.RegistrationNumber;
-                updatedProduct.Name = request.Name;
-                updatedProduct.Surname = request.Surname;
-                updatedProduct.Position = request.Position;
-                updatedProduct.Department = request.Department;
-                updatedProduct.StartDateOfEmployment = request.StartDateOfEmployment;
-                updatedProduct.Address = request.Address;
+                updatedEntity.IdentificationNumber = request.IdentificationNumber;
+                updatedEntity.RegistrationNumber = request.RegistrationNumber;
+                updatedEntity.Name = request.Name;
+                updatedEntity.Surname = request.Surname;
+                updatedEntity.Position = request.Position;
+                updatedEntity.Department = request.Department;
+                updatedEntity.StartDateOfEmployment = request.StartDateOfEmployment;
+                updatedEntity.Address = request.Address;
 
-                await this.repository.UpdateAsync(updatedProduct);
+                await this.repository.UpdateAsync(updatedEntity);
             }
             return Unit.Value;
            

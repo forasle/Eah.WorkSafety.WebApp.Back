@@ -35,6 +35,7 @@ builder.Services.AddAutoMapper(opt =>
     {
         new PersonProfile(),
         new AccidentAndNearMissProfile(),
+        new ContingencyPlanProfile(),
     });
 });
 
