@@ -23,6 +23,15 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             this.mediator = mediator;
         }
 
+        [HttpPost]
+
+        public async Task<IActionResult> Create(CreatePersonCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return Created("", request);
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> List()
         {
@@ -38,26 +47,18 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return result == null ? NotFound() : Ok(result);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            var result = await this.mediator.Send(new DeletePersonCommandRequest(id));
-            return NoContent();
-        }
-
-        [HttpPost]
-
-        public async Task<IActionResult> Create(CreatePersonCommandRequest request)
-        {
-            await this.mediator.Send(request);
-            return Created("",request);
-        }
-
         [HttpPut]
 
         public async Task<IActionResult> Update(UpdatePersonCommandRequest request)
         {
             await this.mediator.Send(request);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.mediator.Send(new DeletePersonCommandRequest(id));
             return NoContent();
         }
     }

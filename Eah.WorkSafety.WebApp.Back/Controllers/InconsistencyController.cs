@@ -38,5 +38,20 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             var result = await this.mediator.Send(new GetInconsistencyQueryRequest(id));
             return result == null ? NotFound() : Ok(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateInconsistencyCommandRequest request)
+        {
+            var result = await this.mediator.Send(request);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.mediator.Send(new DeleteInconsistencyCommandRequest(id));
+            return NoContent();
+        }
     }
 }
