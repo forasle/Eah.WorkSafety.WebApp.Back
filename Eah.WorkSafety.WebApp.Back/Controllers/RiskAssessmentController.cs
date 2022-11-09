@@ -22,7 +22,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         public async Task<IActionResult> Create(CreateRiskAssessmentCommandRequest request)
         {
             await this.meditor.Send(request);
-            return Created("",request);
+            return Created("", request);
         }
 
         [HttpGet]
@@ -31,6 +31,28 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         {
             var result = await this.meditor.Send(new GetAllRiskAssessmentQueryRequest());
             return Ok(result);
+        }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await this.meditor.Send(new GetRiskAssessmentQueryRequest(id));
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateRiskAssessmentCommandRequest request)
+        {
+            await this.meditor.Send(request);
+            return NoContent();
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.meditor.Send(new DeleteRiskAssessmentCommandRequest(id));
+            return NoContent();
         }
     }
 }
