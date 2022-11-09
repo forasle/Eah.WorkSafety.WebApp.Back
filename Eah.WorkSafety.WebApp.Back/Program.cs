@@ -37,6 +37,8 @@ builder.Services.AddAutoMapper(opt =>
         new AccidentAndNearMissProfile(),
         new ContingencyPlanProfile(),
         new InconsistencyProfile(),
+        new MissionProfile(),
+        new RiskAssesmentProfile(),
     });
 });
 
