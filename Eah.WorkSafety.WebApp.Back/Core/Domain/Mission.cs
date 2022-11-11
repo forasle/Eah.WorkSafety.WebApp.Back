@@ -8,11 +8,7 @@
 
         public string? Department { get; set; }
 
-        public AppUser Identifier { get; set; }
-
         public int AssignerUserId { get; set; }
-
-        public int AssignedUserId { get; set; }
 
         public DateTime Date { get; set; }
 
@@ -20,9 +16,10 @@
 
         public bool Status { get; set; }
 
+        public List<User> Users { get; set; }
         public Mission()
         {
-            Identifier = new AppUser();
+            Users = new List<User>();
         }
     }
 }
