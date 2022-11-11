@@ -1,6 +1,8 @@
-﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
+﻿using Eah.WorkSafety.WebApp.Back.Core.Domain;
+
+namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 {
-    public class Mission
+    public class MissionDto
     {
         public int Id { get; set; }
 
@@ -17,7 +19,7 @@
         public bool Status { get; set; }
 
         public List<UserMission> Users { get; set; }
-        public Mission()
+        public MissionDto()
         {
             Users = new List<UserMission>();
         }

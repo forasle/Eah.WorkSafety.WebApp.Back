@@ -8,14 +8,13 @@
 
         public string? Password { get; set; }
 
-        public UserRole Role { get; set; }
+        public UserRole? Role { get; set; }
 
-        public List<Mission> Missions { get; set; }
+        public List<UserMission>? Missions { get; set; }
 
         public User()
         {
-            Role = new UserRole();
-            Missions= new List<Mission>();
+
         }
     }
 }

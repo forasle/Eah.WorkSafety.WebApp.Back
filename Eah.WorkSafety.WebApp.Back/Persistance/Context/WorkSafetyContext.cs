@@ -4,22 +4,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
 {
-    public class WorkSafetyDbContext: DbContext
+    public class WorkSafetyContext: DbContext
     {
-        public WorkSafetyDbContext(DbContextOptions<WorkSafetyDbContext> options) : base(options)
+        public WorkSafetyContext(DbContextOptions<WorkSafetyContext> options) : base(options)
         {
 
         }
-
-        public DbSet<User> User { get; set; }
-
-        public DbSet<UserRole> Role { get; set; }
-
-        
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new UserMissionConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }

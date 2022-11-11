@@ -6,11 +6,11 @@
 
         public string? Definition { get; set; }
 
-        public List<User> Users { get; set; }
+        public List<User>? Users { get; set; }
 
         public UserRole()
         {
-            Users = new List<User>();
+
         }
     }
 }
