@@ -12,10 +12,5 @@
         public UserMission()
         {
         }
-        public UserMission(int userId, int missionId)
-        {
-            this.UserId = userId;
-            this.MissionId = missionId;
-        }
     }
 }

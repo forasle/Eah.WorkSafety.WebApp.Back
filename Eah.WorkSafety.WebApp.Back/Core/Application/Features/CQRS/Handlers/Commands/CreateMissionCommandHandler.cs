@@ -16,7 +16,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(CreateMissionCommandRequest request, CancellationToken cancellationToken)
         {
-            var mission = new Mission()
+            await this.repository.CreateAsync(new Mission()
             {
                 Name = request.Name,
                 Department = request.Department,
@@ -24,29 +24,17 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 Date = request.Date,
                 Deadline = request.Deadline,
                 Status = request.Status,
-            };
-            mission.Users.Add(new UserMission(1,mission.Id));
-            await this.repository.CreateAsync(mission);
-
-            //await this.repository.CreateAsync(new Mission()
-            //{
-            //    Name = request.Name,
-            //    Department = request.Department,
-            //    AssignerUserId = request.AssignerUserId,
-            //    Date = request.Date,
-            //    Deadline = request.Deadline,
-            //    Status = request.Status,
-            //    Users = new List<UserMission>() {
-            //        new()
-            //        {
-            //           UserId=1
-            //        },
-            //        new()
-            //        {
-            //           UserId=2
-            //        }
-            //    }
-            //});
+                Users = new List<UserMission>() {
+                    new()
+                    {
+                       UserId=1
+                    },
+                    new()
+                    {
+                       UserId=2
+                    }
+                }
+            });
             return Unit.Value;
         }
     }

@@ -17,8 +17,20 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public bool Status { get; set; }
 
+        public List<UserMission> Users { get; set; }
+
         public CreateMissionCommandRequest()
         {
+            new List<UserMission>() {
+                    new()
+                    {
+                       UserId=1
+                    },
+                    new()
+                    {
+                       UserId=2
+                    } };
+
         }
     }
 }

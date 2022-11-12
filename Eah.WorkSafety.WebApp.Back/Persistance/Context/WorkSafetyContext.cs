@@ -8,7 +8,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
     {
         public WorkSafetyContext(DbContextOptions<WorkSafetyContext> options) : base(options)
         {
-
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
