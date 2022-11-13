@@ -7,9 +7,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class, new()
     {
-        private readonly WorkSafetyContext workSafetyContext;
+        private readonly WorkSafetyDbContext workSafetyContext;
 
-        public Repository(WorkSafetyContext workSafetyContext)
+        public Repository(WorkSafetyDbContext workSafetyContext)
         {
             this.workSafetyContext = workSafetyContext;
         }
