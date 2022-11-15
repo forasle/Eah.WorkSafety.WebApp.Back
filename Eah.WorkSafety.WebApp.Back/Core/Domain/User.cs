@@ -12,6 +12,8 @@
 
         public List<UserMission>? Missions { get; set; }
 
+        public List<RiskAssessment>? RiskAssessments { get; set; }
+
         public User()
         {
 

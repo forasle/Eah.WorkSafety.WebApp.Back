@@ -4,6 +4,7 @@ using Eah.WorkSafety.WebApp.Back.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyContext))]
-    partial class WorkSafetyContextModelSnapshot : ModelSnapshot
+    [Migration("20221115111320_mig_1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,6 +70,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdentifierUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
@@ -82,7 +88,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("RevisionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -151,9 +157,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
                         .WithMany("RiskAssessments")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

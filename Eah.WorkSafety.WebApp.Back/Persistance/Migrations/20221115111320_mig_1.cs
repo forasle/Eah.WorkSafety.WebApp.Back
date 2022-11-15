@@ -63,6 +63,32 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RiskAssessment",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    IdentifierUserId = table.Column<int>(type: "int", nullable: false),
+                    RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Method = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RiskAssessment", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RiskAssessment_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserMission",
                 columns: table => new
                 {
@@ -87,6 +113,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_RiskAssessment_UserId",
+                table: "RiskAssessment",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserMission_MissionId",
                 table: "UserMission",
                 column: "MissionId");
@@ -100,6 +131,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "RiskAssessment");
+
             migrationBuilder.DropTable(
                 name: "UserMission");
 

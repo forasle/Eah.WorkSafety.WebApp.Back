@@ -9,6 +9,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.HasOne(x => x.Role).WithMany(x => x.Users);
+            builder.HasMany(x => x.RiskAssessments).WithOne(x => x.User).HasForeignKey(x => x.UserId);
         }
     }
 }
