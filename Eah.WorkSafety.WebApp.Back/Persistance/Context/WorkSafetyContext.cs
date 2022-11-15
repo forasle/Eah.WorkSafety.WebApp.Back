@@ -8,8 +8,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
     {
         public WorkSafetyContext(DbContextOptions<WorkSafetyContext> options) : base(options)
         {
-
         }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Mission> Missons { get; set; }
+        public DbSet<UserRole> Roles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());

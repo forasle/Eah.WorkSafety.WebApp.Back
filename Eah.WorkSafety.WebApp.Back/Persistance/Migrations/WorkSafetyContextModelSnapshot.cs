@@ -50,7 +50,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Mission");
+                    b.ToTable("Missons");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
@@ -74,7 +74,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserMission", b =>
@@ -105,7 +105,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserRole");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>

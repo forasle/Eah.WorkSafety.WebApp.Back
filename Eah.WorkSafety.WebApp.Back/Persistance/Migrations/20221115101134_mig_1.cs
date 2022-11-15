@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Mission",
+                name: "Missons",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -26,11 +26,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Mission", x => x.Id);
+                    table.PrimaryKey("PK_Missons", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRole",
+                name: "Roles",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -39,11 +39,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRole", x => x.Id);
+                    table.PrimaryKey("PK_Roles", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -54,11 +54,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_User_UserRole_RoleId",
+                        name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
-                        principalTable: "UserRole",
+                        principalTable: "Roles",
                         principalColumn: "Id");
                 });
 
@@ -73,28 +73,28 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_UserMission", x => new { x.UserId, x.MissionId });
                     table.ForeignKey(
-                        name: "FK_UserMission_Mission_MissionId",
+                        name: "FK_UserMission_Missons_MissionId",
                         column: x => x.MissionId,
-                        principalTable: "Mission",
+                        principalTable: "Missons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserMission_User_UserId",
+                        name: "FK_UserMission_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_RoleId",
-                table: "User",
-                column: "RoleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_UserMission_MissionId",
                 table: "UserMission",
                 column: "MissionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_RoleId",
+                table: "Users",
+                column: "RoleId");
         }
 
         /// <inheritdoc />
@@ -104,13 +104,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 name: "UserMission");
 
             migrationBuilder.DropTable(
-                name: "Mission");
+                name: "Missons");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "UserRole");
+                name: "Roles");
         }
     }
 }
