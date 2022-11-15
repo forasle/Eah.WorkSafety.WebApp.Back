@@ -12,11 +12,46 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
+                name: "Accidents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AccidentNumber = table.Column<int>(type: "int", nullable: false),
+                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccidentInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
+                    LostDays = table.Column<int>(type: "int", nullable: false),
+                    CreatorUserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Accidents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdentificationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RegistrationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StartDateOfEmployment = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Missions",
-========
-                name: "Missons",
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -30,19 +65,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
                     table.PrimaryKey("PK_Missions", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRoles",
-========
-                    table.PrimaryKey("PK_Missons", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Roles",
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -51,11 +78,31 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 },
                 constraints: table =>
                 {
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
-                    table.PrimaryKey("PK_UserRoles", x => x.Id);
-========
                     table.PrimaryKey("PK_Roles", x => x.Id);
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeAccident",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    AccidentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeAccident", x => new { x.EmployeeId, x.AccidentId });
+                    table.ForeignKey(
+                        name: "FK_EmployeeAccident_Accidents_AccidentId",
+                        column: x => x.AccidentId,
+                        principalTable: "Accidents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeAccident_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -72,11 +119,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
-                        name: "FK_Users_UserRoles_RoleId",
-                        column: x => x.RoleId,
-                        principalTable: "UserRoles",
-========
                         name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
@@ -92,8 +134,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    IdentifierUserId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -106,8 +147,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         name: "FK_RiskAssessment_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -121,15 +162,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     table.PrimaryKey("PK_UserMission", x => new { x.UserId, x.MissionId });
                     table.ForeignKey(
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
                         name: "FK_UserMission_Missions_MissionId",
                         column: x => x.MissionId,
                         principalTable: "Missions",
-========
-                        name: "FK_UserMission_Missons_MissionId",
-                        column: x => x.MissionId,
-                        principalTable: "Missons",
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -141,14 +176,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
-========
+                name: "IX_EmployeeAccident_AccidentId",
+                table: "EmployeeAccident",
+                column: "AccidentId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RiskAssessment_UserId",
                 table: "RiskAssessment",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
                 name: "IX_UserMission_MissionId",
                 table: "UserMission",
                 column: "MissionId");
@@ -163,27 +200,28 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "EmployeeAccident");
+
+            migrationBuilder.DropTable(
                 name: "RiskAssessment");
 
             migrationBuilder.DropTable(
                 name: "UserMission");
 
             migrationBuilder.DropTable(
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
+                name: "Accidents");
+
+            migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "Missions");
-========
-                name: "Missons");
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221113082103_InitialCreate.cs
-                name: "UserRoles");
-========
                 name: "Roles");
->>>>>>>> d3279d78fb7c7b68341c71870beb1360619811e3:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221115111320_mig_1.cs
         }
     }
 }

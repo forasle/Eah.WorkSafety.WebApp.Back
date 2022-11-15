@@ -1,6 +1,8 @@
-﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
+﻿using MediatR;
+
+namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class Accident
+    public class CreateAccidentCommandRequest : IRequest
     {
         public int Id { get; set; }
 
@@ -18,13 +20,6 @@
 
         public int CreatorUserId { get; set; }
 
-        public List<EmployeeAccident> Employees { get; set; }
-
-        public Accident()
-        {
-            Employees = new List<EmployeeAccident>();
-        }
-
-
+        public List<int>? AffectedEmployeeIdList { get; set; }
     }
 }

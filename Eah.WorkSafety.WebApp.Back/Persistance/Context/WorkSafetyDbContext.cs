@@ -11,14 +11,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<UserRole> Roles { get; set; }
         public DbSet<Mission> Missions { get; set; }
+        public DbSet<Accident> Accidents { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserMissionConfiguration());
-
+            modelBuilder.ApplyConfiguration(new EmployeeAccidentConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
