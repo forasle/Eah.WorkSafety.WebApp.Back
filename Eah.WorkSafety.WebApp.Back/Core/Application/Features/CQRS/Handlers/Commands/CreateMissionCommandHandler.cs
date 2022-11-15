@@ -24,17 +24,16 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 Date = request.Date,
                 Deadline = request.Deadline,
                 Status = request.Status,
-                Users = new List<UserMission>() {
-                    new()
-                    {
-                       UserId=1
-                    },
-                    new()
-                    {
-                       UserId=2
-                    }
+            };
+            if (request.AssignedUserIdList != null)
+            {
+                foreach (var item in request.AssignedUserIdList)
+                {
+                    mission.Users.Add(new UserMission(item, mission.Id));
                 }
-            });
+            }
+            await this.repository.CreateAsync(mission);
+
             return Unit.Value;
         }
     }
