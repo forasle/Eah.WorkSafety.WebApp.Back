@@ -26,6 +26,8 @@
 
         public List<EmployeeOccupationDisease>? OccupationDiseases { get; set; }
 
+        public List<EmployeeChronicDisease>? ChronicDiseases { get; set; }
+
         public Employee()
         {
         }

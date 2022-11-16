@@ -18,6 +18,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         public DbSet<NearMiss> NearMisses { get; set; }
         public DbSet<Inconsistency> Inconsistencies { get; set; }
         public DbSet<OccupationDisease> OccupationDiseases { get; set; }
+        public DbSet<ChronicDisease> ChronicDisease { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,6 +27,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
             modelBuilder.ApplyConfiguration(new EmployeeAccidentConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeNearMissConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeOccupationDiseaseConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeChronicDiseaseConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
