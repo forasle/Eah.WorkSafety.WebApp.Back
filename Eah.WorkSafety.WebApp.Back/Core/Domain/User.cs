@@ -20,6 +20,8 @@
 
         public List<NearMiss>? NearMisses { get; set; }
 
+        public List<Inconsistency>? Inconsistencies { get; set; }
+
         public User()
         {
 

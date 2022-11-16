@@ -18,6 +18,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
 
         public DbSet<NearMiss> NearMisses { get; set; }
 
+        public DbSet<Inconsistency> Inconsistencies { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
