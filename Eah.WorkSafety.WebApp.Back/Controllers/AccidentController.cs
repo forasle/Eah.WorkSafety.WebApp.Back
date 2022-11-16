@@ -6,6 +6,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles ="Admin,Member")]
     public class AccidentController : ControllerBase
     {
         private readonly IMediator mediator;

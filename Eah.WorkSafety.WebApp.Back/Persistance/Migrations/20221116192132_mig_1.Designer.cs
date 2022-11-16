@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221116180717_mig_1")]
+    [Migration("20221116192132_mig_1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -404,7 +404,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("RoleId")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("Username")
@@ -567,7 +567,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Role");
                 });
