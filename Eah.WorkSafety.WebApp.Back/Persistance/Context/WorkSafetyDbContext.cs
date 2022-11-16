@@ -11,23 +11,25 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         }
 
         public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> Roles { get; set; }
+        public DbSet<Role> Roles { get; set; }
         public DbSet<Mission> Missions { get; set; }
         public DbSet<Accident> Accidents { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<NearMiss> NearMisses { get; set; }
+        public DbSet<ChronicDisease> ChronicDiseases { get; set; }
+        public DbSet<ContingencyPlan> ContingencyPlans { get; set; }
         public DbSet<Inconsistency> Inconsistencies { get; set; }
+        public DbSet<NearMiss> NearMisses { get; set; }
         public DbSet<OccupationDisease> OccupationDiseases { get; set; }
-        public DbSet<ChronicDisease> ChronicDisease { get; set; }
+        public DbSet<RiskAssessment> RiskAssessments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserMissionConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeAccidentConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeChronicDiseaseConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeNearMissConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeOccupationDiseaseConfiguration());
-            modelBuilder.ApplyConfiguration(new EmployeeChronicDiseaseConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

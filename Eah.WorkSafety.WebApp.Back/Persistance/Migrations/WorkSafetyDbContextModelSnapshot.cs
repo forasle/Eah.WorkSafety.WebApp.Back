@@ -74,7 +74,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ChronicDisease");
+                    b.ToTable("ChronicDiseases");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ContingencyPlan", b =>
@@ -94,9 +94,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdentifierId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
@@ -113,9 +110,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasIndex("CreatorUserId");
 
-                    b.HasIndex("IdentifierId");
-
-                    b.ToTable("ContingencyPlan");
+                    b.ToTable("ContingencyPlans");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Employee", b =>
@@ -376,7 +371,23 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasIndex("CreatorUserId");
 
-                    b.ToTable("RiskAssessment");
+                    b.ToTable("RiskAssessments");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Definition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
@@ -418,22 +429,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.ToTable("UserMission");
                 });
 
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Definition")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Roles");
-                });
-
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Accident", b =>
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
@@ -452,12 +447,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .HasForeignKey("CreatorUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
-                        .WithMany()
-                        .HasForeignKey("IdentifierId");
-
-                    b.Navigation("Identifier");
 
                     b.Navigation("User");
                 });
@@ -573,7 +562,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
                 {
-                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.UserRole", "Role")
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", "Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId");
 
@@ -635,6 +624,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("Employees");
                 });
 
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", b =>
+                {
+                    b.Navigation("Users");
+                });
+
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
                 {
                     b.Navigation("Accidents");
@@ -648,11 +642,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("NearMisses");
 
                     b.Navigation("RiskAssessments");
-                });
-
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserRole", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

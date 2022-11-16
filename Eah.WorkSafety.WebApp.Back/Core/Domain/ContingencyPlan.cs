@@ -12,8 +12,6 @@
 
         public string? Information { get; set; }
 
-        public User? Identifier { get; set; }
-
         public int CreatorUserId { get; set; }
 
         public User? User { get; set; }

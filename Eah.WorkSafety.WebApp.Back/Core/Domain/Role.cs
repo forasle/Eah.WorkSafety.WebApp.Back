@@ -1,6 +1,6 @@
 ﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
 {
-    public class UserRole
+    public class Role
     {
         public int Id { get; set; }
 
@@ -8,7 +8,7 @@
 
         public List<User>? Users { get; set; }
 
-        public UserRole()
+        public Role()
         {
 
         }

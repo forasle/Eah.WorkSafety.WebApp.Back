@@ -8,7 +8,7 @@
 
         public string? Password { get; set; }
 
-        public UserRole? Role { get; set; }
+        public Role? Role { get; set; }
 
         public List<UserMission>? Missions { get; set; }
 
