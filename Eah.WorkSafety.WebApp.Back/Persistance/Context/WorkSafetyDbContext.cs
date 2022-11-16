@@ -16,11 +16,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         public DbSet<Accident> Accidents { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
+        public DbSet<NearMiss> NearMisses { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new UserMissionConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeAccidentConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeNearMissConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }
