@@ -18,6 +18,8 @@
 
         public int CreatorUserId { get; set; }
 
+        public User? User { get; set; }
+
         public List<EmployeeAccident> Employees { get; set; }
 
         public Accident()

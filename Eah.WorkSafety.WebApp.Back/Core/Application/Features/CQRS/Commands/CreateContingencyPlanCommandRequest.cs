@@ -1,26 +1,23 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Domain;
-using MediatR;
+﻿using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class CreateRiskAssessmentCommandRequest : IRequest
+    public class CreateContingencyPlanCommandRequest:IRequest
     {
         public int Id { get; set; }
 
         public string? Name { get; set; }
 
-        public string? Information { get; set; }
+        public int PlanNumber { get; set; }
 
         public string? ReferenceNumber { get; set; }
 
-        public int CreatorUserId { get; set; }
+        public string? Information { get; set; }
 
-        public DateTime? RevisionDate { get; set; }
+        public int CreatorUserId { get; set; }
 
         public DateTime? Date { get; set; }
 
         public DateTime? CreationTime { get; set; }
-
-        public string? Method { get; set; }
     }
 }

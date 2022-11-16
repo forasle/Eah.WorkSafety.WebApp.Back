@@ -5,28 +5,27 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Commands
 {
-    public class CreateRiskAssessmentCommandHandler : IRequestHandler<CreateRiskAssessmentCommandRequest>
+    public class CreateContingencyPlanCommandHandler : IRequestHandler<CreateContingencyPlanCommandRequest>
     {
-        private readonly IRepository<RiskAssessment> repository;
+        private readonly IRepository<ContingencyPlan> repository;
 
-        public CreateRiskAssessmentCommandHandler(IRepository<RiskAssessment> repository)
+        public CreateContingencyPlanCommandHandler(IRepository<ContingencyPlan> repository)
         {
             this.repository = repository;
         }
 
-        public async Task<Unit> Handle(CreateRiskAssessmentCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateContingencyPlanCommandRequest request, CancellationToken cancellationToken)
         {
             await this.repository.CreateAsync(
-                new RiskAssessment
+                new ContingencyPlan
                 {
                     Name = request.Name,
-                    Information = request.Information,
+                    PlanNumber = request.PlanNumber,
                     ReferenceNumber = request.ReferenceNumber,
+                    Information = request.Information,
                     CreatorUserId = request.CreatorUserId,
-                    RevisionDate = request.RevisionDate,
                     Date = request.Date,
                     CreationTime = request.CreationTime,
-                    Method = request.Method,
                 }
                 );
             return Unit.Value;

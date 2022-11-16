@@ -53,7 +53,50 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatorUserId");
+
                     b.ToTable("Accidents");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ContingencyPlan", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdentifierId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Information")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlanNumber")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReferenceNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("IdentifierId");
+
+                    b.ToTable("ContingencyPlan");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Employee", b =>
@@ -185,6 +228,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CreatorUserId");
+
                     b.ToTable("NearMisses");
                 });
 
@@ -198,6 +243,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatorUserId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
@@ -217,12 +265,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("RevisionDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CreatorUserId");
 
                     b.ToTable("RiskAssessment");
                 });
@@ -282,6 +327,34 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.ToTable("Roles");
                 });
 
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Accident", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
+                        .WithMany("Accidents")
+                        .HasForeignKey("CreatorUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ContingencyPlan", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
+                        .WithMany("ContingencyPlans")
+                        .HasForeignKey("CreatorUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
+                        .WithMany()
+                        .HasForeignKey("IdentifierId");
+
+                    b.Navigation("Identifier");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", b =>
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Accident", "Accident")
@@ -320,11 +393,22 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("NearMiss");
                 });
 
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.NearMiss", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
+                        .WithMany("NearMisses")
+                        .HasForeignKey("CreatorUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.RiskAssessment", b =>
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
                         .WithMany("RiskAssessments")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("CreatorUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -383,7 +467,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
                 {
+                    b.Navigation("Accidents");
+
+                    b.Navigation("ContingencyPlans");
+
                     b.Navigation("Missions");
+
+                    b.Navigation("NearMisses");
 
                     b.Navigation("RiskAssessments");
                 });

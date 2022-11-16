@@ -14,6 +14,12 @@
 
         public List<RiskAssessment>? RiskAssessments { get; set; }
 
+        public List<Accident>? Accidents { get; set; }
+
+        public List<ContingencyPlan>? ContingencyPlans { get; set; }
+
+        public List<NearMiss>? NearMisses { get; set; }
+
         public User()
         {
 
