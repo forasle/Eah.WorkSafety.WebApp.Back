@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             {
                 Username = request.UserName,
                 Password = request.Password,
-                RoleId = 2,
+                RoleId = (int)UserRoleType.Member,
             });
             return Unit.Value;
         }

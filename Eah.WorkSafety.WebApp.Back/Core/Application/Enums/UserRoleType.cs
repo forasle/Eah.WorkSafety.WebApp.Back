@@ -1,8 +1,8 @@
 ﻿namespace Eah.WorkSafety.WebApp.Back.Core.Application.Enums
 {
-    public enum AccidentOrNearMissType
+    public enum UserRoleType
     {
-        Accident=1,
-        NearMiss=2
+        Admin = 1,
+        Member = 2
     }
 }
