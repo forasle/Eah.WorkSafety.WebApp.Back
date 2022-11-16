@@ -50,6 +50,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OccupationDiseases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Diagnosis = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OccupationDiseases", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -60,6 +74,30 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeeOccupationDisease",
+                columns: table => new
+                {
+                    EmployeeId = table.Column<int>(type: "int", nullable: false),
+                    OccupationDiseaseId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeeOccupationDisease", x => new { x.EmployeeId, x.OccupationDiseaseId });
+                    table.ForeignKey(
+                        name: "FK_EmployeeOccupationDisease_Employees_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeOccupationDisease_OccupationDiseases_OccupationDiseaseId",
+                        column: x => x.OccupationDiseaseId,
+                        principalTable: "OccupationDiseases",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -136,6 +174,32 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         column: x => x.IdentifierId,
                         principalTable: "Users",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Inconsistencies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RootCauseAnalysisRequirement = table.Column<bool>(type: "bit", nullable: false),
+                    Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<bool>(type: "bit", nullable: false),
+                    RiskScore = table.Column<int>(type: "int", nullable: false),
+                    CreatorUserId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Inconsistencies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Inconsistencies_Users_CreatorUserId",
+                        column: x => x.CreatorUserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -287,6 +351,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 column: "NearMissId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_EmployeeOccupationDisease_OccupationDiseaseId",
+                table: "EmployeeOccupationDisease",
+                column: "OccupationDiseaseId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Inconsistencies_CreatorUserId",
+                table: "Inconsistencies",
+                column: "CreatorUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_NearMisses_CreatorUserId",
                 table: "NearMisses",
                 column: "CreatorUserId");
@@ -320,6 +394,12 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 name: "EmployeeNearMiss");
 
             migrationBuilder.DropTable(
+                name: "EmployeeOccupationDisease");
+
+            migrationBuilder.DropTable(
+                name: "Inconsistencies");
+
+            migrationBuilder.DropTable(
                 name: "RiskAssessment");
 
             migrationBuilder.DropTable(
@@ -329,10 +409,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 name: "Accidents");
 
             migrationBuilder.DropTable(
+                name: "NearMisses");
+
+            migrationBuilder.DropTable(
                 name: "Employees");
 
             migrationBuilder.DropTable(
-                name: "NearMisses");
+                name: "OccupationDiseases");
 
             migrationBuilder.DropTable(
                 name: "Missions");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221116095143_mig_2")]
-    partial class mig2
+    [Migration("20221116121016_mig_1")]
+    partial class mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -169,6 +169,21 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.ToTable("EmployeeNearMiss");
                 });
 
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeOccupationDisease", b =>
+                {
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OccupationDiseaseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EmployeeId", "OccupationDiseaseId");
+
+                    b.HasIndex("OccupationDiseaseId");
+
+                    b.ToTable("EmployeeOccupationDisease");
+                });
+
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Inconsistency", b =>
                 {
                     b.Property<int>("Id")
@@ -273,6 +288,25 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.ToTable("NearMisses");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationDisease", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Diagnosis")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ReferenceNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OccupationDiseases");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.RiskAssessment", b =>
@@ -435,6 +469,25 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("NearMiss");
                 });
 
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeOccupationDisease", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Employee", "Employee")
+                        .WithMany("OccupationDiseases")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationDisease", "OccupationDisease")
+                        .WithMany("Employees")
+                        .HasForeignKey("OccupationDiseaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Employee");
+
+                    b.Navigation("OccupationDisease");
+                });
+
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Inconsistency", b =>
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
@@ -506,6 +559,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("Accidents");
 
                     b.Navigation("NearMisses");
+
+                    b.Navigation("OccupationDiseases");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Mission", b =>
@@ -514,6 +569,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.NearMiss", b =>
+                {
+                    b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationDisease", b =>
                 {
                     b.Navigation("Employees");
                 });

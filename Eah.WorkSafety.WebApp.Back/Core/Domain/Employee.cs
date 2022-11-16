@@ -24,6 +24,8 @@
 
         public List<EmployeeNearMiss>? NearMisses { get; set; }
 
+        public List<EmployeeOccupationDisease>? OccupationDiseases { get; set; }
+
         public Employee()
         {
         }
