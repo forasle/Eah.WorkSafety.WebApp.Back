@@ -31,7 +31,16 @@ builder.Services.AddAutoMapper(opt =>
 {
     opt.AddProfiles(new List<Profile>()
     {
-        new MissionProfile()
+        new MissionProfile(),
+        new AccidentProfile(),
+        new ChronicDiseaseProfile(),
+        new ContingencyPlanProfile(),
+        new EmployeeProfile(),
+        new InconsistencyProfile(),
+        new MissionProfile(),
+        new NearMissProfile(),
+        new OccupationDiseaseProfile(),
+        new RiskAssesmentProfile()
     });
 });
 
