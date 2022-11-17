@@ -1,4 +1,5 @@
 ﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,19 +23,19 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Created("", request);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> List()
-        //{
-        //    var result = await this.mediator.Send(new GetAllContingencyPlansQueryRequest());
-        //    return Ok(result);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var result = await this.mediator.Send(new GetAllContingencyPlansQueryRequest());
+            return Ok(result);
+        }
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Get(int id)
-        //{
-        //    var result = await this.mediator.Send(new GetContingencyPlanQueryRequest(id));
-        //    return Ok(result);
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await this.mediator.Send(new GetContingencyPlanQueryRequest(id));
+            return Ok(result);
+        }
 
         //[HttpPut]
 

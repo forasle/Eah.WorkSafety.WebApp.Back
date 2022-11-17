@@ -1,4 +1,5 @@
 ﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -22,20 +23,20 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Created("", request);
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> List()
-        //{
-        //    var result = await this.mediator.Send(new GetAllInconsistencyQueryRequest());
-        //    return Ok(result);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> List()
+        {
+            var result = await this.mediator.Send(new GetAllInconsistencyQueryRequest());
+            return Ok(result);
+        }
 
-        //[HttpGet("{id}")]
+        [HttpGet("{id}")]
 
-        //public async Task<IActionResult> Get(int id)
-        //{
-        //    var result = await this.mediator.Send(new GetInconsistencyQueryRequest(id));
-        //    return result == null ? NotFound() : Ok(result);
-        //}
+        public async Task<IActionResult> Get(int id)
+        {
+            var result = await this.mediator.Send(new GetInconsistencyQueryRequest(id));
+            return result == null ? NotFound() : Ok(result);
+        }
 
         //[HttpPut]
         //public async Task<IActionResult> Update(UpdateInconsistencyCommandRequest request)

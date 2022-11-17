@@ -18,10 +18,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public bool Status { get; set; }
 
-        public List<UserMission> Users { get; set; }
+        public List<UserMission>? Users { get; set; }
         public MissionDto()
         {
-            Users = new List<UserMission>();
         }
     }
 }
