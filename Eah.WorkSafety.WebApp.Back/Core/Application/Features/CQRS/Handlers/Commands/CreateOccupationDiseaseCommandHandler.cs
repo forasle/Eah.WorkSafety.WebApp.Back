@@ -16,13 +16,23 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(CreateOccupationDiseaseCommandRequest request, CancellationToken cancellationToken)
         {
-            await this.repository.CreateAsync(
-                new OccupationDisease
+            var occupationDisease = new OccupationDisease
+            {
+                Diagnosis = request.Diagnosis,
+                ReferenceNumber = request.ReferenceNumber,
+
+            };
+            if (request.OwnerEmployeeIdList != null)
+            {
+                foreach (var item in request.OwnerEmployeeIdList)
                 {
-                        Diagnosis = request.Diagnosis,
-                        ReferenceNumber = request.ReferenceNumber,
+                    occupationDisease.Employees.Add(new EmployeeOccupationDisease()
+                    {
+                        EmployeeId = item
+                    });
                 }
-                );
+            }
+            await this.repository.CreateAsync(occupationDisease);
             return Unit.Value;
         }
     }

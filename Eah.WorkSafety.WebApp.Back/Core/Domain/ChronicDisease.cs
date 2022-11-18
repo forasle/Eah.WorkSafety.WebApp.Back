@@ -8,10 +8,11 @@
 
         public string? Diagnosis { get; set; }
 
-        public List<EmployeeChronicDisease>? Employees  { get; set; }
+        public List<EmployeeChronicDisease> Employees  { get; set; }
 
         public ChronicDisease()
         {
+            Employees = new List<EmployeeChronicDisease>();
         }
     }
 }
