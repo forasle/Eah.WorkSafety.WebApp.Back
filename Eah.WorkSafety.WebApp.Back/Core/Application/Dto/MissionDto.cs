@@ -12,13 +12,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public int AssignerUserId { get; set; }
 
+        public List<int>? AssignedUserIdList { get; set; }
+
         public DateTime Date { get; set; }
 
         public DateTime Deadline { get; set; }
 
         public bool Status { get; set; }
-
-        public List<UserMission>? Users { get; set; }
         public MissionDto()
         {
         }
