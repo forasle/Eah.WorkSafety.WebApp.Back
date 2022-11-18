@@ -24,7 +24,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 AssignerUserId = request.AssignerUserId,
                 Date = request.Date,
                 Deadline = request.Deadline,
-                Status = request.Status,
+                Status = request.Status, 
+                
             };
             if (request.AssignedUserIdList != null)
             {
@@ -32,8 +33,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 {
                     mission.Users.Add(new UserMission()
                     {
-                        UserId=item
-                    }) ;
+                        UserId = item
+                    });
+
                 }
             }
             await this.repository.CreateAsync(mission);

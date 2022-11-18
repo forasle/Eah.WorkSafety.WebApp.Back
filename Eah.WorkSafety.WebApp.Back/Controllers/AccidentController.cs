@@ -41,12 +41,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         }
 
 
-        //    [HttpPut]
-        //    public async Task<IActionResult> Update(UpdateAccidentAndNearmissCommandRequest request)
-        //    {
-        //        await this.mediator.Send(request);
-        //        return NoContent();
-        //    }
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateAccidentCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
 
         //    [HttpDelete("{id}")]
         //    public async Task<IActionResult> Delete(int id)
