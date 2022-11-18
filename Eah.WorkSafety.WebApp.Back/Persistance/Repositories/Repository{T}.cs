@@ -1,6 +1,8 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
+﻿using Azure.Core;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
 using Eah.WorkSafety.WebApp.Back.Persistance.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using System.Linq.Expressions;
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
@@ -46,5 +48,18 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             this.workSafetyContext.Set<T>().Remove(deletedEntity);
             await this.workSafetyContext.SaveChangesAsync();
         }
+
+        public async Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter)
+        {
+            return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().ToListAsync();
+        }
+
+
+
+        //public async Task<T?> GetByFilterAsync<TProperty>(Expression<Func<T,TProperty>> include, Expression<Func<TProperty,TProperty>> thenInclude, Expression<Func<T, bool>> filter)
+        //{
+        //    await this.workSafetyContext.Set<T>().Include(include).ThenInclude(thenInclude).FirstAsync(filter);
+        //    throw new NotImplementedException();
+        //}
     }
 }

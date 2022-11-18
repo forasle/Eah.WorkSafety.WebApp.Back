@@ -8,11 +8,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
         Task CreateAsync(T entity);
         Task<List<T>> GetAllAsync();
         Task<T?> GetByIdAsync(object id);
+
+        Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter);
         Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter);
         Task UpdateAsync(T updatedEntity);
         Task DeleteAsync(T deletedEntity);
-
-
-
     }
 }
