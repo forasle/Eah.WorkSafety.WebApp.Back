@@ -20,5 +20,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int CreatorUserId { get; set; }
 
+        public List<int>? AffectedEmployeeIdList { get; set; }
+
     }
 }
