@@ -37,5 +37,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             var result = await this.mediator.Send(new GetEmployeeQueryRequest(id));
             return Ok(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateEmployeeCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
     }
 }

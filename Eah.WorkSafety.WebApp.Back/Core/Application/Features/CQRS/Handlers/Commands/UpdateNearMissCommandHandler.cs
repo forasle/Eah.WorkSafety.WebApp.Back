@@ -26,6 +26,15 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.RootCauseAnalysis = request.RootCauseAnalysis;
                 updatedEntity.LostDays = request.LostDays;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
+                var employees = new List<EmployeeNearMiss>();
+                if (request.AffectedEmployeeIdList != null)
+                {
+                    foreach (var id in request.AffectedEmployeeIdList)
+                    {
+                        employees.Add(new EmployeeNearMiss() { EmployeeId = id });
+                    }
+                }
+                updatedEntity.Employees = employees;
 
                 await this.repository.UpdateAsync(updatedEntity);
             }

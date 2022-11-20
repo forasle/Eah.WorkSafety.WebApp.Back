@@ -38,5 +38,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             var result = await this.mediator.Send(new GetMissionQueryRequest(id));
             return result == null ? NotFound() : Ok(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateMissionCommandRequest request)
+        {
+            var result = await this.mediator.Send(request);
+            return NoContent();
+        }
     }
 }

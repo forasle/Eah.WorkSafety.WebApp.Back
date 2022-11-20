@@ -20,16 +20,20 @@
 
         public string? Address { get; set; }
 
-        public List<EmployeeAccident>? Accidents { get; set; }
+        public List<EmployeeAccident> Accidents { get; set; }
 
-        public List<EmployeeNearMiss>? NearMisses { get; set; }
+        public List<EmployeeNearMiss> NearMisses { get; set; }
 
-        public List<EmployeeOccupationDisease>? OccupationDiseases { get; set; }
+        public List<EmployeeOccupationDisease> OccupationDiseases { get; set; }
 
-        public List<EmployeeChronicDisease>? ChronicDiseases { get; set; }
+        public List<EmployeeChronicDisease> ChronicDiseases { get; set; }
 
         public Employee()
         {
+            Accidents= new List<EmployeeAccident>();
+            NearMisses = new List<EmployeeNearMiss>();
+            OccupationDiseases = new List<EmployeeOccupationDisease>();
+            ChronicDiseases = new List<EmployeeChronicDisease>();
         }
     }
 }

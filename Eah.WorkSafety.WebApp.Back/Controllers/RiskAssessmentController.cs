@@ -41,12 +41,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Ok(result);
         }
 
-        //    [HttpPut]
-        //    public async Task<IActionResult> Update(UpdateRiskAssessmentCommandRequest request)
-        //    {
-        //        await this.mediator.Send(request);
-        //        return NoContent();
-        //    }
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateRiskAssessmentCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
 
         //    [HttpDelete]
         //    public async Task<IActionResult> Delete(int id)

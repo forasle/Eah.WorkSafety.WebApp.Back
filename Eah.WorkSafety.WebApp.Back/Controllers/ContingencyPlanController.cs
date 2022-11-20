@@ -37,13 +37,13 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Ok(result);
         }
 
-        //[HttpPut]
+        [HttpPut]
 
-        //public async Task<IActionResult> Update(UpdateContingencyPlanCommandRequest request)
-        //{
-        //    await this.mediator.Send(request);
-        //    return NoContent();
-        //}
+        public async Task<IActionResult> Update(UpdateContingencyPlanCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
 
         //[HttpDelete("{id}")]
 

@@ -16,19 +16,76 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(CreateEmployeeCommandRequest request, CancellationToken cancellationToken)
         {
-            await this.repository.CreateAsync(
-                new Employee
+            var employee = new Employee
+            {
+                IdentificationNumber = request.IdentificationNumber,
+                RegistrationNumber = request.RegistrationNumber,
+                Name = request.Name,
+                Surname = request.Surname,
+                Position = request.Position,
+                Department = request.Department,
+                
+                StartDateOfEmployment = request.StartDateOfEmployment,
+                Address = request.Address
+                
+            };
+            var accidents = new List<EmployeeAccident>();
+            if (request.Accidents != null)
+            {
+                foreach (var item in request.Accidents)
                 {
-                    IdentificationNumber = request.IdentificationNumber,
-                    RegistrationNumber = request.RegistrationNumber,
-                    Name = request.Name,
-                    Surname = request.Surname,
-                    Position = request.Position,
-                    Department = request.Department,
-                    StartDateOfEmployment = request.StartDateOfEmployment,
-                    Address = request.Address
+                    accidents.Add(new EmployeeAccident()
+                    {
+                        AccidentId = item
+                    });
+
                 }
-                );
+                employee.Accidents = accidents;
+            }
+            
+            var nearMisses = new List<EmployeeNearMiss>();
+            if (request.NearMisses != null)
+            {
+                foreach (var item in request.NearMisses)
+                {
+                    nearMisses.Add(new EmployeeNearMiss()
+                    {
+                        NearMissId = item
+                    });
+
+                }
+                employee.NearMisses = nearMisses;
+            }
+
+            var chronicDisease = new List<EmployeeChronicDisease>();
+            if (request.ChronicDiseases != null)
+            {
+                foreach (var item in request.ChronicDiseases)
+                {
+                    chronicDisease.Add(new EmployeeChronicDisease()
+                    {
+                        ChronicDiseaseId = item
+                    });
+
+                }
+                employee.ChronicDiseases = chronicDisease;
+            }
+
+            var occupationDisease = new List<EmployeeOccupationDisease>();
+            if (request.OccupationDiseases != null)
+            {
+                foreach (var item in request.OccupationDiseases)
+                {
+                    occupationDisease.Add(new EmployeeOccupationDisease()
+                    {
+                        OccupationDiseaseId = item
+                    });
+
+                }
+                employee.OccupationDiseases = occupationDisease;
+            }
+
+            await this.repository.CreateAsync(employee);
             return Unit.Value;
         }
     }

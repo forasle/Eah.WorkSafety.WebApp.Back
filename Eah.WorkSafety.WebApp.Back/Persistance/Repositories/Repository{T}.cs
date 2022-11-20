@@ -26,6 +26,15 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         {
             return await this.workSafetyContext.Set<T>().AsNoTracking().ToListAsync();
         }
+        public async Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter)
+        {
+            return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().ToListAsync();
+        }
+
+        public async Task<List<T>> GetAllByPropertyAsync<TProperty>(Expression<Func<T, TProperty>> include)
+        {
+            return await this.workSafetyContext.Set<T>().Include(include).ToListAsync();
+        }
 
         public async Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter)
         {
@@ -35,6 +44,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         public async Task<T?> GetByIdAsync(object id)
         {
             return await this.workSafetyContext.Set<T>().FindAsync(id);
+        }
+        public async Task<T?> GetByIdAsync<TProperty>(Expression<Func<T, TProperty>> include, Expression<Func<T, bool>> filter)
+        {
+            return await this.workSafetyContext.Set<T>().Include(include).SingleOrDefaultAsync(filter);
+        }
+        public Task<T?> GetByIdAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
+        {
+            IQueryable<T> set = this.workSafetyContext.Set<T>();
+            foreach (var includeProperty in includeProperties)
+            {
+                set = set.Include(includeProperty);
+            }
+
+            return set.SingleOrDefaultAsync(filter);
         }
 
         public async Task UpdateAsync(T updatedEntity)
@@ -49,19 +72,5 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             await this.workSafetyContext.SaveChangesAsync();
         }
 
-        public async Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter)
-        {
-            return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().ToListAsync();
-        }
-
-        public async Task<List<T>> GetAllByFilterAsync<TProperty>(Expression<Func<T, TProperty>> include)
-        {
-            return await this.workSafetyContext.Set<T>().Include(include).ToListAsync();
-        }
-
-        public async Task<T?> GetByIdAsync<TProperty>(Expression<Func<T, TProperty>> include, Expression<Func<T, bool>> filter)
-        {
-            return await this.workSafetyContext.Set<T>().AsNoTracking().Include(include).SingleOrDefaultAsync(filter);
-        }
     }
 }

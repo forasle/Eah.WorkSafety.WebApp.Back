@@ -38,12 +38,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return result == null ? NotFound() : Ok(result);
         }
 
-        //[HttpPut]
-        //public async Task<IActionResult> Update(UpdateInconsistencyCommandRequest request)
-        //{
-        //    var result = await this.mediator.Send(request);
-        //    return NoContent();
-        //}
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateInconsistencyCommandRequest request)
+        {
+            var result = await this.mediator.Send(request);
+            return NoContent();
+        }
 
         //[HttpDelete("{id}")]
 

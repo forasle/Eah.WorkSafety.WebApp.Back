@@ -39,5 +39,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             var result = await this.mediator.Send(new GetOccupationDiseaseQueryRequest(id));
             return result == null ? NotFound() : Ok(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(UpdateOccupationDiseaseCommandRequest request)
+        {
+            await this.mediator.Send(request);
+            return NoContent();
+        }
     }
 }

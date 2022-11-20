@@ -7,16 +7,16 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 {
     public class UpdateAccidentCommandHandler : IRequestHandler<UpdateAccidentCommandRequest>
     {
-        private readonly IRepository<Accident> accidentRepository;
+        private readonly IRepository<Accident> repository;
 
         public UpdateAccidentCommandHandler(IRepository<Accident> repository)
         {
-            this.accidentRepository = repository;
+            this.repository = repository;
         }
 
         public async Task<Unit> Handle(UpdateAccidentCommandRequest request, CancellationToken cancellationToken)
         {
-            var updatedEntity = await this.accidentRepository.GetByIdAsync(x=>x.Employees,x=>x.Id == request.Id);
+            var updatedEntity = await this.repository.GetByIdAsync(x=>x.Employees,x=>x.Id == request.Id);
             if (updatedEntity != null)
             {
                 updatedEntity.AccidentNumber = request.AccidentNumber;
@@ -26,21 +26,16 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.RootCauseAnalysis = request.RootCauseAnalysis;
                 updatedEntity.LostDays = request.LostDays;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
+                var employees = new List<EmployeeAccident>();
                 if (request.AffectedEmployeeIdList != null)
                 {
-                    foreach (var item in updatedEntity.Employees)
+                    foreach (var id in request.AffectedEmployeeIdList)
                     {
-                        if (!request.AffectedEmployeeIdList.Contains(item.EmployeeId)){
-                            updatedEntity.Employees.Remove(item);
-                        }
-                        else
-                        {
-                            updatedEntity.Employees.Add(item);
-                        }
+                        employees.Add(new EmployeeAccident() { EmployeeId=id});
                     }
                 }
-
-                await this.accidentRepository.UpdateAsync(updatedEntity);
+                updatedEntity.Employees = employees;
+                await this.repository.UpdateAsync(updatedEntity);
             }
             return Unit.Value;
 
