@@ -47,11 +47,11 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return NoContent();
         }
 
-        //    [HttpDelete("{id}")]
-        //    public async Task<IActionResult> Delete(int id)
-        //    {
-        //        var result = await this.mediator.Send(new DeleteAccidentAndNearMissCommandRequest(id));
-        //        return NoContent();
-        //    }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.mediator.Send(new DeleteNearMissCommandRequest(id));
+            return NoContent();
+        }
     }
 }

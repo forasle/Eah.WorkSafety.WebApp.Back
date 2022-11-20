@@ -48,11 +48,11 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return NoContent();
         }
 
-        //    [HttpDelete]
-        //    public async Task<IActionResult> Delete(int id)
-        //    {
-        //        await this.mediator.Send(new DeleteRiskAssessmentCommandRequest(id));
-        //        return NoContent();
-        //    }
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.mediator.Send(new DeleteRiskAssessmentCommandRequest(id));
+            return NoContent();
+        }
     }
 }

@@ -46,5 +46,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             await this.mediator.Send(request);
             return NoContent();
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await this.mediator.Send(new DeleteOccupationDiseaseCommandRequest(id));
+            return NoContent();
+        }
     }
 }
