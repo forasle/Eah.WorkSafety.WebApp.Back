@@ -2,6 +2,7 @@
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
 using Eah.WorkSafety.WebApp.Back.Core.Domain;
+using Eah.WorkSafety.WebApp.Back.Infrastructure.Tools;
 using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Commands
@@ -17,12 +18,15 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(RegisterUserCommandRequest request, CancellationToken cancellationToken)
         {
-            await this.repository.CreateAsync(new User
+            if(request.UserName !=null && request.Password != null)
             {
-                Username = request.UserName,
-                Password = request.Password,
-                RoleId = (int)UserRoleType.Member,
-            });
+                await this.repository.CreateAsync(new User
+                {
+                    Username = request.UserName,
+                    Password = Encryption.ConvertToEncrypt(request.Password),
+                    RoleId = (int)UserRoleType.Member,
+                });
+            }
             return Unit.Value;
         }
     }
