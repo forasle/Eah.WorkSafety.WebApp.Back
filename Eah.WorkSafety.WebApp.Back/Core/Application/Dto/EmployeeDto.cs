@@ -19,5 +19,12 @@
         public DateTime? StartDateOfEmployment { get; set; }
 
         public string? Address { get; set; }
+
+        public List<int>? Accidents { get; set; }
+        public List<int>? NearMisses { get; set; }
+        public List<int>? ChronicDisease { get; set; }
+        public List<int>? OccupationDisease { get; set; }
+
+
     }
 }

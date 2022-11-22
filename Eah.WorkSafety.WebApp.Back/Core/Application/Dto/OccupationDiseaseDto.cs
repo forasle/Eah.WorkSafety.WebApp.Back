@@ -9,5 +9,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
         public string? ReferenceNumber { get; set; }
 
         public string? Diagnosis { get; set; }
+
+        public List<int>? Employees { get; set; }
     }
 }

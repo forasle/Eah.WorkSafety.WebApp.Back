@@ -18,5 +18,7 @@
 
         public int CreatorUserId { get; set; }
 
+        public List<int>? Employees { get; set; }
+
     }
 }

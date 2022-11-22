@@ -8,7 +8,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public OccupationDiseaseProfile()
         {
-            this.CreateMap<OccupationDisease, OccupationDiseaseDto>().ReverseMap();
+            this.CreateMap<OccupationDisease, OccupationDiseaseDto>().ForMember(x=>x.Employees,opts=>opts
+            .MapFrom(x=>x.Employees
+            .Select(x=>x.EmployeeId)
+            .ToList()));
         }
     }
 }

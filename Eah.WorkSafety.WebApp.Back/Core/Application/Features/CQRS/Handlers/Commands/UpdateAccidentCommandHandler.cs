@@ -16,7 +16,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(UpdateAccidentCommandRequest request, CancellationToken cancellationToken)
         {
-            var updatedEntity = await this.repository.GetByIdAsync(x=>x.Employees,x=>x.Id == request.Id);
+            var updatedEntity = await this.repository.GetByIdAsync(x=>x.Id == request.Id, x=>x.Employees);
             if (updatedEntity != null)
             {
                 updatedEntity.AccidentNumber = request.AccidentNumber;

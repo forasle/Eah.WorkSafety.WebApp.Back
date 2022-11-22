@@ -8,7 +8,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public NearMissProfile()
         {
-            this.CreateMap<NearMiss, NearMissDto>().ReverseMap();
+            this.CreateMap<NearMiss, NearMissDto>().ForMember(x => x.Employees, opts => opts
+            .MapFrom(x => x.Employees
+            .Select(x => x.EmployeeId)
+            .ToList()));
         }
     }
 }

@@ -21,8 +21,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<EmployeeDto> Handle(GetEmployeeQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await this.repository.GetByFilterAsync(x => x.Id == request.Id);
+            var data = await this.repository.GetByIdAsync(x=>x.Id==request.Id,x=>x.Accidents,x =>x.NearMisses,x=>x.OccupationDiseases,x=>x.ChronicDiseases);
             return this.mapper.Map<EmployeeDto>(data);
+
         }
     }
 }

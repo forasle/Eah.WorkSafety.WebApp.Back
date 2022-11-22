@@ -17,7 +17,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(UpdateMissionCommandRequest request, CancellationToken cancellationToken)
         {
-            Mission? mission = await this.repository.GetByIdAsync(x=>x.Users,x=>x.Id==request.Id);
+            Mission? mission = await this.repository.GetByIdAsync(x => x.Id == request.Id, x=>x.Users);
             if (mission != null)
             {
                 mission.Name = request.Name;

@@ -28,18 +28,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<MissionDto> Handle(GetMissionQueryRequest request, CancellationToken cancellationToken)
         {
-            //var missionUserData = await this.userMissionRepository.GetAllByFilterAsync(x => x.MissionId == request.Id);
-            //var missionData = await this.repository.GetByFilterAsync(x => x.Id == request.Id);
-            //var missionDto = this.mapper.Map<MissionDto>(missionData);
-            //var userList =new List<int>();
-            //foreach (var item in missionUserData)
-            //{
-            //    userList.Add(item.UserId);
-            //}
-            //var test = await this.work.Missions.Include(x=>x.Users).ThenInclude(x=>x.User).FirstAsync(x=>x.Id==request.Id);
-            ////var test2= await this.repository.GetByFilterAsync2(x => x.Users);
-            //missionDto.AssignedUserIdList = userList;
-            var data = await this.repository.GetByIdAsync(x=>x.Users,x=>x.Id==request.Id);
+            var data = await this.repository.GetByIdAsync(x=>x.Id==request.Id, x=>x.Users);
             return this.mapper.Map<MissionDto>(data);
             
         }
