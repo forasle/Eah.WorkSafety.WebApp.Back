@@ -4,8 +4,6 @@
     {
         public int Id { get; set; }
 
-        public int AccidentNumber { get; set; }
-
         public string? ReferenceNumber { get; set; }
 
         public string? AccidentInfo { get; set; }

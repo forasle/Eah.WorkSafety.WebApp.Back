@@ -20,7 +20,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         {
             var accident = new Accident
             {
-                AccidentNumber = request.AccidentNumber,
                 ReferenceNumber = request.ReferenceNumber,
                 AccidentInfo = request.AccidentInfo,
                 Date = request.Date,

@@ -40,7 +40,8 @@ builder.Services.AddAutoMapper(opt =>
         new MissionProfile(),
         new NearMissProfile(),
         new OccupationDiseaseProfile(),
-        new RiskAssesmentProfile()
+        new RiskAssesmentProfile(),
+        new UserProfile()
     });
 });
 

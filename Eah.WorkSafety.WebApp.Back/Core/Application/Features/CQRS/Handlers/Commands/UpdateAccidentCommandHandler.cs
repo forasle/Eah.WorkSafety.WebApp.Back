@@ -19,7 +19,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             var updatedEntity = await this.repository.GetByIdAsync(x=>x.Id == request.Id, x=>x.Employees);
             if (updatedEntity != null)
             {
-                updatedEntity.AccidentNumber = request.AccidentNumber;
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
                 updatedEntity.AccidentInfo = request.AccidentInfo;
                 updatedEntity.Date = request.Date;
