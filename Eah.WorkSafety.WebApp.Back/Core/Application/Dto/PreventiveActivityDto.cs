@@ -1,6 +1,8 @@
-﻿namespace Eah.WorkSafety.WebApp.Back.Core.Domain
+﻿using Eah.WorkSafety.WebApp.Back.Core.Domain;
+
+namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 {
-    public class RiskAssessment
+    public class PreventiveActivityDto
     {
         public int Id { get; set; }
 
@@ -12,16 +14,17 @@
 
         public int CreatorUserId { get; set; }
 
-        public DateTime? RevisionDate { get; set; }
-         
+        public bool Status { get; set; }
+
+        public bool RootCauseAnalysis { get; set; }
+
+        public DateTime? Deadline { get; set; }
+
         public DateTime? Date { get; set; }
 
         public DateTime? CreationTime { get; set; }
 
         public string? Method { get; set; }
-        public User? User { get; set; }
-        public RiskAssessment()
-        {
-        }
+
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221119113527_mig_1")]
+    [Migration("20221205111614_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -35,9 +35,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<string>("AccidentInfo")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("AccidentNumber")
-                        .HasColumnType("int");
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");

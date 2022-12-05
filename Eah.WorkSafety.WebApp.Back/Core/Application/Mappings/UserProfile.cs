@@ -29,6 +29,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
             .ToList())).ForMember(x => x.ContingencyPlans, opts => opts
             .MapFrom(x => x.ContingencyPlans
             .Select(x => x.Id)
+            .ToList())).ForMember(x => x.PreventiveActivities, opts => opts
+            .MapFrom(x => x.PreventiveActivities
+            .Select(x => x.Id)
             .ToList()));
         }
 

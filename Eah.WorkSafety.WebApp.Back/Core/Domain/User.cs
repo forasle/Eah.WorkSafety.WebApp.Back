@@ -24,6 +24,8 @@
 
         public List<Inconsistency> Inconsistencies { get; set; }
 
+        public List<PreventiveActivity> PreventiveActivities { get; set; }
+
 
         public User()
         {
@@ -33,6 +35,7 @@
             ContingencyPlans = new List<ContingencyPlan>();
             NearMisses = new List<NearMiss>();
             Inconsistencies = new List<Inconsistency>();
+            PreventiveActivities = new List<PreventiveActivity>();
 
         }
     }
