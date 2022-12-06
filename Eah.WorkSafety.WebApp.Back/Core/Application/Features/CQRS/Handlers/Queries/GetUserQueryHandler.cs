@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<UserDto> Handle(GetUserQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await this.repository.GetByIdAsync(x => x.Id == request.Id, x => x.Accidents, x => x.NearMisses, x => x.ContingencyPlans, x => x.RiskAssessments, x => x.Inconsistencies, x => x.Missions,x =>x.PreventiveActivities);
+            var data = await this.repository.GetByIdAsync(x => x.Id == request.Id, x => x.Accidents, x => x.NearMisses, x => x.ContingencyPlans, x => x.RiskAssessments, x => x.Inconsistencies, x => x.Missions);
             return this.mapper.Map<UserDto>(data);
 
         }

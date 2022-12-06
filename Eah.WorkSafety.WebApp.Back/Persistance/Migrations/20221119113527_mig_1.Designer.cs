@@ -11,9 +11,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+    [DbContext(typeof(WorkSafetyContext))]
+    [Migration("20221108213351_InitialCreate")]
+    partial class InitialCreate
+========
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221205180218_mig2")]
-    partial class mig2
+    [Migration("20221119113527_mig_1")]
+    partial class mig1
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,6 +31,31 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMiss", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AccidentNearMissInfo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AccidentNearMissNumber")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AccidentOrNearMissTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdentifierUserId")
+                        .HasColumnType("int");
+
+========
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Accident", b =>
                 {
                     b.Property<int>("Id")
@@ -36,12 +67,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("AccidentInfo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("AccidentNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                     b.Property<int>("LostDays")
                         .HasColumnType("int");
 
@@ -55,10 +90,19 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasIndex("CreatorUserId");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasIndex("IdentifierUserId");
+
+                    b.ToTable("AccidentAndNearMisses");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissTypes", b =>
+========
                     b.ToTable("Accidents");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ChronicDisease", b =>
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,7 +118,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.ToTable("AccidentAndNearMissTypes");
+========
                     b.ToTable("ChronicDiseases");
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ContingencyPlan", b =>
@@ -88,7 +136,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdentifierUserId")
+========
                     b.Property<int>("CreatorUserId")
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
@@ -108,7 +163,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasIndex("IdentifierUserId");
+========
                     b.HasIndex("CreatorUserId");
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
 
                     b.ToTable("ContingencyPlans");
                 });
@@ -218,15 +277,24 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+========
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.Property<int>("IdentifierUserId")
+                        .HasColumnType("int");
+
+========
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
@@ -244,7 +312,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasIndex("IdentifierUserId");
+========
                     b.HasIndex("CreatorUserId");
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
 
                     b.ToTable("Inconsistencies");
                 });
@@ -260,10 +332,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("AssignerUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("Deadline")
+                    b.Property<DateTime?>("Deadline")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
@@ -327,57 +399,126 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Diagnosis")
                         .HasColumnType("nvarchar(max)");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.Property<int>("OccupationAndChronicDiseaseTypeId")
+                        .HasColumnType("int");
+
+========
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                     b.Property<string>("ReferenceNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("OccupationDiseases");
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasIndex("OccupationAndChronicDiseaseTypeId");
+
+                    b.ToTable("OccupationAndChronicDisease");
                 });
 
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PreventiveActivity", b =>
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDiseaseTypes", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<DateTime?>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("CreatorUserId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Deadline")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Information")
+                    b.Property<string>("Definition")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Method")
+                    b.HasKey("Id");
+
+                    b.ToTable("OccupationAndChronicDiseaseTypes");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Person", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdentificationNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReferenceNumber")
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("RootCauseAnalysis")
-                        .HasColumnType("bit");
+                    b.Property<string>("RegistrationNumber")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<DateTime?>("StartDateOfEmployment")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CreatorUserId");
+                    b.ToTable("Person");
+                });
 
-                    b.ToTable("PreventiveActivities");
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonAccidentAndNearMiss", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AccidentAndNearMissId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccidentAndNearMissId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("PersonAccidentAndNearMisses");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonOccupationAndChronicDisease", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime?>("DiagnosisDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("OccupationAndChronicDiseaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PersonId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OccupationAndChronicDiseaseId");
+
+                    b.HasIndex("PersonId");
+
+                    b.ToTable("PersonOccupationAndChronicDiseases");
+========
+                    b.ToTable("OccupationDiseases");
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.RiskAssessment", b =>
@@ -391,7 +532,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("CreationTime")
                         .HasColumnType("datetime2");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("IdentifierUserId")
+========
                     b.Property<int>("CreatorUserId")
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
@@ -414,18 +562,100 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasIndex("IdentifierUserId");
+========
                     b.HasIndex("CreatorUserId");
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
 
                     b.ToTable("RiskAssessments");
                 });
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
+========
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", b =>
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserRoleId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserMission", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("MissionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MissionId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserMissions");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Definition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMiss", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissTypes", "AccidentAndNearMissType")
+                        .WithMany("AccidentNearMisses")
+                        .HasForeignKey("AccidentOrNearMissTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
+                        .WithMany("AccidentNearMisses")
+                        .HasForeignKey("IdentifierUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+========
+
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
 
                     b.Property<string>("Definition")
                         .HasColumnType("nvarchar(max)");
@@ -435,6 +665,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.ToTable("Roles");
                 });
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ContingencyPlan", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
+                        .WithMany("ContingencyPlans")
+                        .HasForeignKey("IdentifierUserId")
+========
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
                 {
                     b.Property<int>("Id")
@@ -490,6 +727,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
                         .WithMany("ContingencyPlans")
                         .HasForeignKey("CreatorUserId")
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -574,15 +812,70 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Inconsistency", b =>
                 {
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
+                        .WithMany("Inconsistencies")
+                        .HasForeignKey("IdentifierUserId")
+========
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
                         .WithMany("Inconsistencies")
                         .HasForeignKey("CreatorUserId")
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
                 });
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDisease", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDiseaseTypes", "OccupationAndChronicDiseaseType")
+                        .WithMany("OccupationAndChronicDisease")
+                        .HasForeignKey("OccupationAndChronicDiseaseTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OccupationAndChronicDiseaseType");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonAccidentAndNearMiss", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMiss", "AccidentAndNearMiss")
+                        .WithMany("PersonAccidentAndNearMisses")
+                        .HasForeignKey("AccidentAndNearMissId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Person", "Person")
+                        .WithMany("PersonAccidentAndNearMisses")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AccidentAndNearMiss");
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PersonOccupationAndChronicDisease", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDisease", "OccupationAndChronicDisease")
+                        .WithMany("PersonOccupationAndChronicDiseases")
+                        .HasForeignKey("OccupationAndChronicDiseaseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Person", "Person")
+                        .WithMany("PersonOccupationAndChronicDiseases")
+                        .HasForeignKey("PersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OccupationAndChronicDisease");
+
+                    b.Navigation("Person");
+========
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.NearMiss", b =>
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
@@ -592,24 +885,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.PreventiveActivity", b =>
-                {
-                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
-                        .WithMany("PreventiveActivities")
-                        .HasForeignKey("CreatorUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.RiskAssessment", b =>
                 {
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "Identifier")
+                        .WithMany("RiskAssessments")
+                        .HasForeignKey("IdentifierUserId")
+========
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
                         .WithMany("RiskAssessments")
                         .HasForeignKey("CreatorUserId")
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -617,6 +906,44 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.UserRole", "UserRole")
+                        .WithMany("AppUsers")
+                        .HasForeignKey("UserRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserRole");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserMission", b =>
+                {
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Mission", "Mission")
+                        .WithMany("UserMissions")
+                        .HasForeignKey("MissionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.User", "User")
+                        .WithMany("UserMissions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Mission");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMiss", b =>
+                {
+                    b.Navigation("PersonAccidentAndNearMisses");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.AccidentAndNearMissTypes", b =>
+========
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", "Role")
                         .WithMany("Users")
@@ -627,6 +954,47 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Navigation("Role");
                 });
 
+<<<<<<<< HEAD:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221108213351_InitialCreate.Designer.cs
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Mission", b =>
+                {
+                    b.Navigation("UserMissions");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDisease", b =>
+                {
+                    b.Navigation("PersonOccupationAndChronicDiseases");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.OccupationAndChronicDiseaseTypes", b =>
+                {
+                    b.Navigation("OccupationAndChronicDisease");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Person", b =>
+                {
+                    b.Navigation("PersonAccidentAndNearMisses");
+
+                    b.Navigation("PersonOccupationAndChronicDiseases");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
+                {
+                    b.Navigation("AccidentNearMisses");
+
+                    b.Navigation("ContingencyPlans");
+
+                    b.Navigation("Inconsistencies");
+
+                    b.Navigation("RiskAssessments");
+
+                    b.Navigation("UserMissions");
+                });
+
+            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserRole", b =>
+                {
+                    b.Navigation("AppUsers");
+                });
+========
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.UserMission", b =>
                 {
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.Mission", "Mission")
@@ -699,10 +1067,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Navigation("NearMisses");
 
-                    b.Navigation("PreventiveActivities");
-
                     b.Navigation("RiskAssessments");
                 });
+>>>>>>>> GoBackEntities:Eah.WorkSafety.WebApp.Back/Persistance/Migrations/20221205111614_mig1.Designer.cs
 #pragma warning restore 612, 618
         }
     }

@@ -41,7 +41,6 @@ builder.Services.AddAutoMapper(opt =>
         new NearMissProfile(),
         new OccupationDiseaseProfile(),
         new RiskAssesmentProfile(),
-        new PreventiveActivityProfile(),
         new UserProfile()
     });
 });

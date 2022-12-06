@@ -13,7 +13,7 @@
         public int CreatorUserId { get; set; }
 
         public DateTime? RevisionDate { get; set; }
-         
+
         public DateTime? Date { get; set; }
 
         public DateTime? CreationTime { get; set; }

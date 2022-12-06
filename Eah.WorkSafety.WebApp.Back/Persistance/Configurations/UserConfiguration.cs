@@ -14,7 +14,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
             builder.HasMany(x => x.NearMisses).WithOne(x => x.User).HasForeignKey(x => x.CreatorUserId);
             builder.HasMany(x => x.ContingencyPlans).WithOne(x => x.User).HasForeignKey(x => x.CreatorUserId);
             builder.HasMany(x => x.Inconsistencies).WithOne(x => x.User).HasForeignKey(x => x.CreatorUserId);
-            builder.HasMany(x => x.PreventiveActivities).WithOne(x => x.User).HasForeignKey(x => x.CreatorUserId);
         }
     }
 }

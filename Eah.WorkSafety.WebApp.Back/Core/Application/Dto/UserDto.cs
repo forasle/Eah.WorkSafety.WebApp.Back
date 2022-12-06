@@ -19,7 +19,5 @@
 
         public List<int>? ContingencyPlans { get; set; }
 
-        public List<int>? PreventiveActivities { get; set; }
-
     }
 }

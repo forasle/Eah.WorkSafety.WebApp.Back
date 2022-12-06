@@ -21,7 +21,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         public DbSet<NearMiss> NearMisses { get; set; }
         public DbSet<OccupationDisease> OccupationDiseases { get; set; }
         public DbSet<RiskAssessment> RiskAssessments { get; set; }
-        public DbSet<PreventiveActivity> PreventiveActivities { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
