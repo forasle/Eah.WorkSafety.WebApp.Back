@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Queries
 {
-    public class GetAllRiskAssessmentQueryHandler : IRequestHandler<GetAllRiskAssessmentQueryRequest,List<RiskAssessmentDto>>
+    public class GetAllRiskAssessmentQueryHandler : IRequestHandler<GetAllRiskAssessmentQueryRequest, List<RiskAssessmentDto>>
     {
         private readonly IRepository<RiskAssessment> repository;
         private readonly IMapper mapper;

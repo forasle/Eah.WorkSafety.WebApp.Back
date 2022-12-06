@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries
 {
-    public class CheckUserQueryRequest:IRequest<CheckUserResponseDto>
+    public class CheckUserQueryRequest : IRequest<CheckUserResponseDto>
     {
         public string? Username { get; set; }
 

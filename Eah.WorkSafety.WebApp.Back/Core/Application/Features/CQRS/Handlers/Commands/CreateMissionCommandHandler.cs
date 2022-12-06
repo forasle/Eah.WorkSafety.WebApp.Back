@@ -2,6 +2,7 @@
 using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
 using Eah.WorkSafety.WebApp.Back.Core.Domain;
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Commands
 {
@@ -16,16 +17,29 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(CreateMissionCommandRequest request, CancellationToken cancellationToken)
         {
-            await this.repository.CreateAsync(new Mission
+            var mission = new Mission()
             {
                 Name = request.Name,
                 Department = request.Department,
-                AssignedUserId = request.AssignedUserId,
                 AssignerUserId = request.AssignerUserId,
                 Date = request.Date,
                 Deadline = request.Deadline,
-                Status = request.Status
-            }) ;
+                Status = request.Status, 
+                
+            };
+            if (request.AssignedUserIdList != null)
+            {
+                foreach (var item in request.AssignedUserIdList)
+                {
+                    mission.Users.Add(new UserMission()
+                    {
+                        UserId = item
+                    });
+
+                }
+            }
+            await this.repository.CreateAsync(mission);
+
             return Unit.Value;
         }
     }

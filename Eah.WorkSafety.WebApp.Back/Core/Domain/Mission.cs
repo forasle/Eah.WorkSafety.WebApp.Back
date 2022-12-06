@@ -10,18 +10,16 @@
 
         public int AssignerUserId { get; set; }
 
-        public int AssignedUserId { get; set; }
+        public DateTime Date { get; set; }
 
-        public DateTime? Date { get; set; }
-
-        public DateTime? Deadline { get; set; }
+        public DateTime Deadline { get; set; }
 
         public bool Status { get; set; }
 
-        public List<UserMission>? UserMissions { get; set; }
-
+        public List<UserMission> Users { get; set; }
         public Mission()
         {
+            Users = new List<UserMission>();
         }
     }
 }

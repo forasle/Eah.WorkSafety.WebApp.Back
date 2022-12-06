@@ -2,7 +2,7 @@
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class UpdateInconsistencyCommandRequest:IRequest
+    public class UpdateInconsistencyCommandRequest : IRequest
     {
         public int Id { get; set; }
 
@@ -10,7 +10,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? Information { get; set; }
 
-        public int IdentifierUserId { get; set; }
+        public int CreatorUserId { get; set; }
 
         public DateTime? Date { get; set; }
 

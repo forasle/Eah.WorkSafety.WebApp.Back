@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries
 {
-    public class GetContingencyPlanQueryRequest:IRequest<ContingencyPlanDto>
+    public class GetContingencyPlanQueryRequest : IRequest<ContingencyPlanDto>
     {
         public int Id { get; set; }
 

@@ -17,7 +17,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         public async Task<Unit> Handle(DeleteMissionCommandRequest request, CancellationToken cancellationToken)
         {
             var deletedEntity = await this.repository.GetByIdAsync(request.Id);
-            if(deletedEntity!= null)
+            if (deletedEntity != null)
             {
                 await this.repository.DeleteAsync(deletedEntity);
             }

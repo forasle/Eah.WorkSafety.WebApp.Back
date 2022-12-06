@@ -12,7 +12,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public string? ReferenceNumber { get; set; }
 
-        public int IdentifierUserId { get; set; }
+        public int CreatorUserId { get; set; }
 
         public DateTime? RevisionDate { get; set; }
 

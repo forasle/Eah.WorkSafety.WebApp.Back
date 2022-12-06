@@ -20,33 +20,29 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<WorkSafetyContext>(opt =>
+builder.Services.AddDbContext<WorkSafetyDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
 });
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
-
 builder.Services.AddAutoMapper(opt =>
 {
     opt.AddProfiles(new List<Profile>()
     {
-        new PersonProfile(),
-        new AccidentAndNearMissProfile(),
+        new MissionProfile(),
+        new AccidentProfile(),
+        new ChronicDiseaseProfile(),
         new ContingencyPlanProfile(),
+        new EmployeeProfile(),
         new InconsistencyProfile(),
         new MissionProfile(),
+        new NearMissProfile(),
+        new OccupationDiseaseProfile(),
         new RiskAssesmentProfile(),
-    });
-});
-
-builder.Services.AddCors(opt =>
-{
-    opt.AddPolicy("GlobalCors", config =>
-    {
-        config.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        new PreventiveActivityProfile(),
+        new UserProfile()
     });
 });
 

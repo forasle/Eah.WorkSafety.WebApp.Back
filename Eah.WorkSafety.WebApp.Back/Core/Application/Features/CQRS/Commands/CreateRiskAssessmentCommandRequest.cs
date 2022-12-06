@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class CreateRiskAssessmentCommandRequest:IRequest
+    public class CreateRiskAssessmentCommandRequest : IRequest
     {
         public int Id { get; set; }
 
@@ -13,7 +13,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? ReferenceNumber { get; set; }
 
-        public int IdentifierUserId { get; set; }
+        public int CreatorUserId { get; set; }
 
         public DateTime? RevisionDate { get; set; }
 

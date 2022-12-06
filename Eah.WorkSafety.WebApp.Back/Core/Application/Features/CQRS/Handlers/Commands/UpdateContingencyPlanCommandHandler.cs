@@ -17,13 +17,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         public async Task<Unit> Handle(UpdateContingencyPlanCommandRequest request, CancellationToken cancellationToken)
         {
             var updatedEntity = await this.repository.GetByIdAsync(request.Id);
-            if (updatedEntity != null) 
-            { 
+            if (updatedEntity != null)
+            {
                 updatedEntity.Name = request.Name;
                 updatedEntity.PlanNumber = request.PlanNumber;
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
                 updatedEntity.Information = request.Information;
-                updatedEntity.IdentifierUserId = request.IdentifierUserId;
+                updatedEntity.CreatorUserId = request.CreatorUserId;
                 updatedEntity.Date = request.Date;
                 updatedEntity.CreationTime = request.CreationTime;
                 await this.repository.UpdateAsync(updatedEntity);

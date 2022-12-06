@@ -12,7 +12,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         private readonly IRepository<RiskAssessment> repository;
         private readonly IMapper mapper;
 
-        public GetRiskAssessmentQueryHandler(IRepository<RiskAssessment> repository,IMapper mapper)
+        public GetRiskAssessmentQueryHandler(IRepository<RiskAssessment> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

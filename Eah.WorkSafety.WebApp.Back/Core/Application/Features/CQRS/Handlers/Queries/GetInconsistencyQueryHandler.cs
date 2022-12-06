@@ -13,7 +13,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         private readonly IRepository<Inconsistency> repository;
         private readonly IMapper mapper;
 
-        public GetInconsistencyQueryHandler(IRepository<Inconsistency> repository,IMapper mapper)
+        public GetInconsistencyQueryHandler(IRepository<Inconsistency> repository, IMapper mapper)
         {
             this.repository = repository;
             this.mapper = mapper;

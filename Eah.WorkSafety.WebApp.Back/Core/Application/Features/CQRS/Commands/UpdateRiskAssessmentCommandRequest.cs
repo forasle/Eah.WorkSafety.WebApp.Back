@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Eah.WorkSafety.WebApp.Back.Core.Domain;
+using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class UpdateRiskAssessmentCommandRequest:IRequest
+    public class UpdateRiskAssessmentCommandRequest : IRequest
     {
         public int Id { get; set; }
 
@@ -12,7 +13,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? ReferenceNumber { get; set; }
 
-        public int IdentifierUserId { get; set; }
+        public int CreatorUserId { get; set; }
 
         public DateTime? RevisionDate { get; set; }
 

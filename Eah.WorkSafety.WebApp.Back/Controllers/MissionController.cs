@@ -25,10 +25,9 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         }
 
         [HttpGet]
-        
         public async Task<IActionResult> List()
         {
-            var result = await this.mediator.Send(new GetAllMissionsQueryRequest());
+            var result = await this.mediator.Send(new GetAllMissionQueryRequest());
             return Ok(result);
         }
 
@@ -41,18 +40,16 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         }
 
         [HttpPut]
-
         public async Task<IActionResult> Update(UpdateMissionCommandRequest request)
         {
-            await this.mediator.Send(request);
+            var result = await this.mediator.Send(request);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-
         public async Task<IActionResult> Delete(int id)
         {
-            await this.mediator.Send(new DeleteMissionCommandRequest(id));
+            var result = await this.mediator.Send(new DeleteMissionCommandRequest(id));
             return NoContent();
         }
     }

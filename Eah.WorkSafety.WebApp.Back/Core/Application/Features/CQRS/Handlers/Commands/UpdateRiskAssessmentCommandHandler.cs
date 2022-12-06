@@ -17,20 +17,20 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         public async Task<Unit> Handle(UpdateRiskAssessmentCommandRequest request, CancellationToken cancellationToken)
         {
             var updatedEntity = await this.repository.GetByIdAsync(request.Id);
-            if(updatedEntity != null)
+            if (updatedEntity != null)
             {
-                updatedEntity.Name = request.Name;
-                updatedEntity.Information = request.Information;
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
-                updatedEntity.IdentifierUserId = request.IdentifierUserId;
-                updatedEntity.RevisionDate = request.RevisionDate;
+                updatedEntity.Information = request.Information;
+                updatedEntity.CreatorUserId = request.CreatorUserId;
                 updatedEntity.Date = request.Date;
                 updatedEntity.CreationTime = request.CreationTime;
                 updatedEntity.Method = request.Method;
 
                 await this.repository.UpdateAsync(updatedEntity);
             }
+
             return Unit.Value;
+
         }
     }
 }

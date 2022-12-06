@@ -8,22 +8,35 @@
 
         public string? Password { get; set; }
 
-        public int UserRoleId { get; set; }
+        public int RoleId { get; set; }
 
-        public UserRole? UserRole { get; set; }
+        public Role? Role { get; set; }
 
-        public List<AccidentAndNearMiss>? AccidentNearMisses { get; set; }
+        public List<UserMission> Missions { get; set; }
 
-        public List<RiskAssessment>? RiskAssessments { get; set; }
+        public List<RiskAssessment> RiskAssessments { get; set; }
 
-        public List<Inconsistency>? Inconsistencies { get; set; }
+        public List<Accident> Accidents { get; set; }
 
-        public List<ContingencyPlan>? ContingencyPlans { get; set; }
+        public List<ContingencyPlan> ContingencyPlans { get; set; }
 
-        public List<UserMission>? UserMissions { get; set; }
+        public List<NearMiss> NearMisses { get; set; }
+
+        public List<Inconsistency> Inconsistencies { get; set; }
+
+        public List<PreventiveActivity> PreventiveActivities { get; set; }
+
 
         public User()
         {
+            Accidents = new List<Accident>();
+            RiskAssessments = new List<RiskAssessment>();
+            Missions = new List<UserMission>();
+            ContingencyPlans = new List<ContingencyPlan>();
+            NearMisses = new List<NearMiss>();
+            Inconsistencies = new List<Inconsistency>();
+            PreventiveActivities = new List<PreventiveActivity>();
+
         }
     }
 }

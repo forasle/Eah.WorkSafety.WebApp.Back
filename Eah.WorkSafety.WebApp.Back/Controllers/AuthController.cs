@@ -13,7 +13,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController:ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly IMediator mediator;
 
@@ -38,6 +38,14 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
                 return Created("", token);
             }
             return BadRequest("Username or password is incorrect");
+        }
+
+        [HttpDelete("{id}")]
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await this.mediator.Send(new DeleteUserCommandRequest(id));
+            return NoContent();
         }
     }
 }

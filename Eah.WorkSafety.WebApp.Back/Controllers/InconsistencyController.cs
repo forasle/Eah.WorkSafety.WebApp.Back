@@ -1,5 +1,4 @@
 ﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
-using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Commands;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;

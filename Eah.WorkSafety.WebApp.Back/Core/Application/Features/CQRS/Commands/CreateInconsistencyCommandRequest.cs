@@ -10,8 +10,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? Information { get; set; }
 
-        public int IdentifierUserId { get; set; }
-
         public DateTime? Date { get; set; }
 
         public bool RootCauseAnalysisRequirement { get; set; }
@@ -21,5 +19,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
         public bool Status { get; set; }
 
         public int RiskScore { get; set; }
+
+        public int CreatorUserId { get; set; }
     }
 }

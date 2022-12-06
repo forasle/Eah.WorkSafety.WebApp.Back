@@ -22,7 +22,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                     Name = request.Name,
                     Information = request.Information,
                     ReferenceNumber = request.ReferenceNumber,
-                    IdentifierUserId = request.IdentifierUserId,
+                    CreatorUserId = request.CreatorUserId,
                     RevisionDate = request.RevisionDate,
                     Date = request.Date,
                     CreationTime = request.CreationTime,

@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries
 {
-    public class GetAllInconsistencyQueryRequest:IRequest<List<InconsistencyDto>>
+    public class GetAllInconsistencyQueryRequest : IRequest<List<InconsistencyDto>>
     {
     }
 }

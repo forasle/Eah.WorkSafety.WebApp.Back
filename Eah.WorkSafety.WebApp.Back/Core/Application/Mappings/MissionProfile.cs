@@ -8,7 +8,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public MissionProfile()
         {
-            this.CreateMap<Mission, MissionDto>().ReverseMap();
+            this.CreateMap<Mission, MissionDto>().ForMember(x=>x.AssignedUserIdList,opts=>opts
+            .MapFrom(x=>x.Users
+            .Select(x=>x.UserId)
+            .ToList()));
         }
     }
 }

@@ -20,12 +20,12 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             {
                 ReferenceNumber = request.ReferenceNumber,
                 Information = request.Information,
-                IdentifierUserId = request.IdentifierUserId,
                 Date = request.Date,
                 RootCauseAnalysisRequirement = request.RootCauseAnalysisRequirement,
                 Department = request.Department,
                 Status = request.Status,
                 RiskScore = request.RiskScore,
+                CreatorUserId = request.CreatorUserId,
             });
             return Unit.Value;
         }

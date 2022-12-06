@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             {
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
                 updatedEntity.Information = request.Information;
-                updatedEntity.IdentifierUserId = request.IdentifierUserId;
+                updatedEntity.CreatorUserId = request.CreatorUserId;
                 updatedEntity.Date = request.Date;
                 updatedEntity.RootCauseAnalysisRequirement = request.RootCauseAnalysisRequirement;
                 updatedEntity.Department = request.Department;

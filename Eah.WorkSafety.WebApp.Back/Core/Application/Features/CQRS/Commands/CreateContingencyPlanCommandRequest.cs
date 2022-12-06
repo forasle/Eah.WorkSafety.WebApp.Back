@@ -1,5 +1,4 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Domain;
-using MediatR;
+﻿using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
@@ -15,7 +14,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? Information { get; set; }
 
-        public int IdentifierUserId { get; set; }
+        public int CreatorUserId { get; set; }
 
         public DateTime? Date { get; set; }
 
