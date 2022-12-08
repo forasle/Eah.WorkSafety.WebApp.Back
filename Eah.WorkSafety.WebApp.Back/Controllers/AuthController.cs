@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         {
             this.mediator = mediator;
         }
-
+        //[Authorize(Roles = "Developer,Admin")]
         [HttpPost("[action]")]
         public async Task<IActionResult> Register(RegisterUserCommandRequest request)
         {
@@ -39,9 +39,8 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             }
             return BadRequest("Username or password is incorrect");
         }
-
+        [Authorize(Roles = "Developer,Admin")]
         [HttpDelete("{id}")]
-
         public async Task<IActionResult> Delete(int id)
         {
             var result = await this.mediator.Send(new DeleteUserCommandRequest(id));
