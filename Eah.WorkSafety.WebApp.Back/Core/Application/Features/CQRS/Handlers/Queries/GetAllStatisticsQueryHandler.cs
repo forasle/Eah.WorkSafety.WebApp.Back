@@ -10,6 +10,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllStatisticsQueryHandler : IRequestHandler<GetAllStatisticsQueryRequest, StatisticsDto>
     {
         private readonly IRepository<Employee> employeeRepository;
+        private readonly IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository;
+        private readonly IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository;
         private readonly IRepository<Accident> accidentRepository;
         private readonly IRepository<NearMiss> nearMisstRepository;
         private readonly IRepository<RiskAssessment> riskAssesmentRepository;
@@ -17,9 +19,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         private readonly IRepository<ContingencyPlan> contingencyPlanRepository;
         private readonly IRepository<PreventiveActivity> preventiveActivityRepository;
 
-        public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMisstRepository, IRepository<RiskAssessment> riskAssesmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository)
+        public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository, IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMisstRepository, IRepository<RiskAssessment> riskAssesmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository)
         {
             this.employeeRepository = employeeRepository;
+            this.employeeChronicDiseaseRepository = employeeChronicDiseaseRepository;
+            this.employeeOccupationDiseaseRepository = employeeOccupationDiseaseRepository;
             this.accidentRepository = accidentRepository;
             this.nearMisstRepository = nearMisstRepository;
             this.riskAssesmentRepository = riskAssesmentRepository;
@@ -31,14 +35,20 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         public async Task<StatisticsDto> Handle(GetAllStatisticsQueryRequest request, CancellationToken cancellationToken)
         {
             var countOfEmployee = await this.employeeRepository.GetAllCount();
+            var countOfEmployeeChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCount();
+            var countOfemployeeOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCount();
             var countOfAccident = await this.accidentRepository.GetAllCount();
             Accident? lastAccident = await this.accidentRepository.GetByFilterAsync(x=>x.Date!);
             var countOfNearMisses = await this.nearMisstRepository.GetAllCount();
             var countOfRiskAssessments = await this.riskAssesmentRepository.GetAllCount();
-            var countOfInconsistencies = await this.nearMisstRepository.GetAllCount();
+            var countOfInconsistencies = await this.inconsistencyRepository.GetAllCount();
             var countOfContingencyPlans = await this.contingencyPlanRepository.GetAllCount();
             var countOfPreventiveActivities = await this.preventiveActivityRepository.GetAllCount();
-            var result = new StatisticsDto(countOfEmployee,countOfAccident, lastAccident.Date!, countOfNearMisses, countOfRiskAssessments, countOfInconsistencies, countOfContingencyPlans, countOfPreventiveActivities
+            if (lastAccident.Date == null)
+            {
+                lastAccident.Date = DateTime.Now;
+            }
+            var result = new StatisticsDto(countOfEmployee,countOfEmployeeChronicDisease,countOfemployeeOccupationDisease,countOfAccident, lastAccident.Date, countOfNearMisses, countOfRiskAssessments, countOfInconsistencies, countOfContingencyPlans, countOfPreventiveActivities
                 );
             return result;
         }
