@@ -16,6 +16,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         private readonly IRepository<Inconsistency> inconsistencyRepository;
         private readonly IRepository<ContingencyPlan> contingencyPlanRepository;
         private readonly IRepository<PreventiveActivity> preventiveActivityRepository;
+        private readonly IMapper mapper;
 
         public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMisstRepository, IRepository<RiskAssessment> riskAssesmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository)
         {
@@ -26,6 +27,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             this.inconsistencyRepository = inconsistencyRepository;
             this.contingencyPlanRepository = contingencyPlanRepository;
             this.preventiveActivityRepository = preventiveActivityRepository;
+            this.mapper = mapper;
         }
 
         public async Task<StatisticsDto> Handle(GetAllStatisticsQueryRequest request, CancellationToken cancellationToken)
