@@ -15,7 +15,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
         Task<List<T>> GetAllByPropertyAsync(params Expression<Func<T, object>>[] includeProperties);
         Task<T?> GetByIdAsync(object id);
         //Task<T?> GetByIdAsync<TProperty>(Expression<Func<T, TProperty>> include, Expression<Func<T, bool>> filter);
-        Task<int> GetAllCount();
+        Task<int> GetAllCountAsync();
+        Task<double?> GetAverageAsync(Expression<Func<T, bool>> filter, Expression<Func<T, int?>> selector);
         Task<T?> GetByIdAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
         Task<T?> GetByFilterAsync(Expression<Func<T, bool>> filter);
         Task UpdateAsync(T updatedEntity);

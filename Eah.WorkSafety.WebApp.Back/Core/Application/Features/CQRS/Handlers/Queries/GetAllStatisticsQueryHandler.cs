@@ -34,23 +34,24 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<StatisticsDto> Handle(GetAllStatisticsQueryRequest request, CancellationToken cancellationToken)
         {
-            var countOfEmployee = await this.employeeRepository.GetAllCount();
-            var countOfEmployeeChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCount();
-            var countOfemployeeOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCount();
-            var countOfAccident = await this.accidentRepository.GetAllCount();
-            Accident? lastAccident = await this.accidentRepository.GetByFilterAsync(x=>x.Date!);
-            var countOfNearMisses = await this.nearMisstRepository.GetAllCount();
-            var countOfRiskAssessments = await this.riskAssesmentRepository.GetAllCount();
-            var countOfInconsistencies = await this.inconsistencyRepository.GetAllCount();
-            var countOfContingencyPlans = await this.contingencyPlanRepository.GetAllCount();
-            var countOfPreventiveActivities = await this.preventiveActivityRepository.GetAllCount();
-            if (lastAccident.Date == null)
-            {
-                lastAccident.Date = DateTime.Now;
-            }
-            var result = new StatisticsDto(countOfEmployee,countOfEmployeeChronicDisease,countOfemployeeOccupationDisease,countOfAccident, lastAccident.Date, countOfNearMisses, countOfRiskAssessments, countOfInconsistencies, countOfContingencyPlans, countOfPreventiveActivities
-                );
-            return result;
+            int countOfEmployee = await this.employeeRepository.GetAllCountAsync();
+            double? avarageAgeOfEmployee = await this.employeeRepository.GetAverageAsync(x=>x.Age !=null,x=> x.Age);
+
+            int countOfEmployeeChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCountAsync();
+            int countOfemployeeOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCountAsync();
+            int countOfAccident = await this.accidentRepository.GetAllCountAsync();
+            Accident? lastAccident = await this.accidentRepository.GetByFilterAsync(x => x.Date!);
+            int countOfNearMisses = await this.nearMisstRepository.GetAllCountAsync();
+            int countOfRiskAssessments = await this.riskAssesmentRepository.GetAllCountAsync();
+            int countOfInconsistencies = await this.inconsistencyRepository.GetAllCountAsync();
+            int countOfContingencyPlans = await this.contingencyPlanRepository.GetAllCountAsync();
+            int countOfPreventiveActivities = await this.preventiveActivityRepository.GetAllCountAsync();
+
+
+
+            return new StatisticsDto(countOfEmployee, countOfEmployeeChronicDisease, countOfemployeeOccupationDisease, countOfAccident, lastAccident!.Date, countOfNearMisses, countOfRiskAssessments, countOfInconsistencies, countOfContingencyPlans, countOfPreventiveActivities);
+
         }
+
     }
 }

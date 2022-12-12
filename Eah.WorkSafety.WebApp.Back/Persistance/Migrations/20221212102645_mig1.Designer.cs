@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221205184352_mig1")]
+    [Migration("20221212102645_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -124,7 +124,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BirthPlace")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EducationStatus")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentificationNumber")
@@ -133,16 +142,25 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Nationality")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RegistrationNumber")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("RiskGroup")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("StartDateOfEmployment")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
