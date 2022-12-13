@@ -62,11 +62,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             return await this.workSafetyContext.Set<T>().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
-        public async Task<T?> GetByFilterAsync(Expression<Func<T, object>> filter)
-        {
-            return await this.workSafetyContext.Set<T>().AsNoTracking().OrderByDescending(filter).FirstOrDefaultAsync();
-
-        }
         public async Task<T?> GetByIdAsync(object id)
         {
             return await this.workSafetyContext.Set<T>().FindAsync(id);
@@ -98,14 +93,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             await this.workSafetyContext.SaveChangesAsync();
         }
 
-        public async Task<int> GetAllCountAsync()
+        public async Task<int> GetAllCount()
         {
-            return await this.workSafetyContext.Set<T>().AsNoTracking().CountAsync();
-        }
-
-        public async Task<double?> GetAverageAsync(Expression<Func<T, bool>> filter, Expression<Func<T, int?>> selector)
-        {
-           return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().AverageAsync(selector);
+            //return await this.workSafetyContext.Set<T>().AsNoTracking().ToListAsync();
+            return await this.workSafetyContext.Set<T>().AsNoTracking().Count().ToString();
         }
     }
 }
