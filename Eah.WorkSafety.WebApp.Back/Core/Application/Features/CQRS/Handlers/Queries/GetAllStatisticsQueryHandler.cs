@@ -4,6 +4,7 @@ using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
 using Eah.WorkSafety.WebApp.Back.Core.Domain;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Queries
 {
@@ -35,12 +36,12 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         public async Task<StatisticsDto> Handle(GetAllStatisticsQueryRequest request, CancellationToken cancellationToken)
         {
             int countOfEmployee = await this.employeeRepository.GetAllCountAsync();
-            double? avarageAgeOfEmployee = await this.employeeRepository.GetAverageAsync(x=>x.Age !=null,x=> x.Age);
-
+            var avarageAgeOfEmployee = await this.employeeRepository.GetAverageAsync(x=>x.Age !=null,x=> x.Age);
+            var averageDayOfWork = await this.employeeRepository.GetAverageAsync(x=>x.StartDateOfEmployment!=null,x=>EF.Functions.DateDiffDay(x.StartDateOfEmployment,DateTime.Now));
             int countOfEmployeeChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCountAsync();
             int countOfemployeeOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCountAsync();
             int countOfAccident = await this.accidentRepository.GetAllCountAsync();
-            Accident? lastAccident = await this.accidentRepository.GetByFilterAsync(x => x.Date!);
+            var lastAccident = await this.accidentRepository.GetByFilterAsync(x => x.Date!);
             int countOfNearMisses = await this.nearMisstRepository.GetAllCountAsync();
             int countOfRiskAssessments = await this.riskAssesmentRepository.GetAllCountAsync();
             int countOfInconsistencies = await this.inconsistencyRepository.GetAllCountAsync();

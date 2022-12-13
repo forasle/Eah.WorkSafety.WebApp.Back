@@ -107,5 +107,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         {
            return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().AverageAsync(selector);
         }
+
     }
 }
