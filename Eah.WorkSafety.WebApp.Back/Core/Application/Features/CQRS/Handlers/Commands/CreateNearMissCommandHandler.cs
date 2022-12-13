@@ -18,7 +18,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
         public async Task<Unit> Handle(CreateNearMissCommandRequest request, CancellationToken cancellationToken)
         {
-            var accident = new NearMiss
+            var nearMiss = new NearMiss
             {
                 NearMissNumber = request.NearMissNumber,
                 ReferenceNumber = request.ReferenceNumber,
@@ -32,14 +32,14 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             {
                 foreach (var item in request.AffectedEmployeeIdList)
                 {
-                    accident.Employees.Add(new EmployeeNearMiss()
+                    nearMiss.Employees.Add(new EmployeeNearMiss()
                     {
                         EmployeeId = item
                     });
                 }
             }
 
-            await this.repository.CreateAsync(accident);
+            await this.repository.CreateAsync(nearMiss);
 
             return Unit.Value;
         }

@@ -8,10 +8,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public AccidentProfile()
         {
-            this.CreateMap<Accident, AccidentDto>().ForMember(x=>x.Employees,opts=>opts
-            .MapFrom(x=>x.Employees
-            .Select(x=>x.EmployeeId)
-            .ToList()));
+            this.CreateMap<Accident, AccidentDto>().ForMember(x=>x.AffectedEmployeeIdWithLostDaysList, opts=>opts
+            .MapFrom(x=>x.Employees.ToDictionary(x=>x.EmployeeId,x=>x.LostDays))
+            );
         }
     }
 }

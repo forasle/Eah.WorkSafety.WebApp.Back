@@ -39,9 +39,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LostDays")
-                        .HasColumnType("int");
-
                     b.Property<string>("ReferenceNumber")
                         .HasColumnType("nvarchar(max)");
 
@@ -171,6 +168,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("AccidentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LostDays")
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeId", "AccidentId");

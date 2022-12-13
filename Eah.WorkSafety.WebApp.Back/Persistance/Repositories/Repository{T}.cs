@@ -31,6 +31,12 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().ToListAsync();
         }
 
+        public async Task<T?> GetByFilterAsync(Expression<Func<T, object>> filter)
+        {
+            return await this.workSafetyContext.Set<T>().AsNoTracking().OrderByDescending(filter).FirstOrDefaultAsync();
+
+        }
+
         //public async Task<List<T>> GetAllByPropertyAsync<TProperty>(Expression<Func<T, TProperty>> include)
         //{
         //    return await this.workSafetyContext.Set<T>().Include(include).ToListAsync();
@@ -93,10 +99,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             await this.workSafetyContext.SaveChangesAsync();
         }
 
-        public async Task<int> GetAllCount()
+
+        public async Task<int> GetAllCountAsync()
         {
-            //return await this.workSafetyContext.Set<T>().AsNoTracking().ToListAsync();
-            return await this.workSafetyContext.Set<T>().AsNoTracking().Count().ToString();
+            return await this.workSafetyContext.Set<T>().AsNoTracking().CountAsync();
         }
+
+        public async Task<double?> GetAverageAsync(Expression<Func<T, bool>> filter, Expression<Func<T, int?>> selector)
+        {
+            return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().AverageAsync(selector);
+        }
+
     }
 }

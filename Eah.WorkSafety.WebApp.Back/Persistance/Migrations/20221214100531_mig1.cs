@@ -175,7 +175,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     AccidentInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: true),
                     RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
-                    LostDays = table.Column<int>(type: "int", nullable: false),
                     CreatorUserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -348,7 +347,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 columns: table => new
                 {
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
-                    AccidentId = table.Column<int>(type: "int", nullable: false)
+                    AccidentId = table.Column<int>(type: "int", nullable: false),
+                    LostDays = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

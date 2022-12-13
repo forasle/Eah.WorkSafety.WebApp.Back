@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries
 {
-    public class GetAllStatisticsQueryRequest:IRequest<List<StatisticsDto>>
+    public class GetAllStatisticsQueryRequest:IRequest<StatisticsDto>
     {
     }
 }

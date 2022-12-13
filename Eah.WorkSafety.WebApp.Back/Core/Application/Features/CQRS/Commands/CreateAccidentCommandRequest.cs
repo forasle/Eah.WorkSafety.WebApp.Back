@@ -16,10 +16,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public bool RootCauseAnalysis { get; set; }
 
-        public int LostDays { get; set; }
 
         public int CreatorUserId { get; set; }
 
-        public List<int>? AffectedEmployeeIdList { get; set; }
+        public Dictionary<int,int>? AffectedEmployeeIdWithLostDaysList { get; set; }
     }
 }
