@@ -140,5 +140,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 y.LostDays
             }).Where(x=>x.MedicalIntervention==true).AsNoTracking().CountAsync(x=>x.LostDays==0);
         }
+
+        public async Task<int> GetAllCountAsync(Expression<Func<T, bool>> filter)
+        {
+            return await this.workSafetyContext.Set<T>().CountAsync(filter);
+        }
+
+        public async Task<int> GetCountByJoin()
+        {
+            var data = await this.workSafetyContext.Accidents.Join(workSafetyContext.EmployeeAccident, x => x.Id, y => y.AccidentId, (x, y) => new
+            {
+                x.MedicalIntervention,
+                y.LostDays
+            }).Where(x=>x.MedicalIntervention==true).CountAsync(x=>x.LostDays==0);
+            return data;
+        }
     }
 }
