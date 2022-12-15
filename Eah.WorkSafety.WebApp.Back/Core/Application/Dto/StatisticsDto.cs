@@ -9,6 +9,12 @@
 
         public double? AverageDayOfWork { get; set; }
 
+        public int? TotalLostDays { get; set; }
+        public int? TotalEmployeeAccident { get; set; }
+        public int? TotalLostDaysAccident { get; set; }
+        public int? TotalNeedFirstAidAccident { get; set; }
+        public int? TotalNeedFirstAidButNoLostDaysAccident { get; set; }
+
         public int? NumberOfChronicDisease { get; set; }
 
         public int? NumberOfOccupationDisease { get; set; }

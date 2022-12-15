@@ -13,14 +13,12 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 {
     public class GetMissionQueryHandler : IRequestHandler<GetMissionQueryRequest, MissionDto>
     {
-        private readonly WorkSafetyDbContext work;
         private readonly IRepository<Mission> repository;
         private readonly IRepository<UserMission> userMissionRepository;
         private readonly IMapper mapper;
 
         public GetMissionQueryHandler(WorkSafetyDbContext work, IRepository<Mission> repository, IRepository<UserMission> userMissionRepository, IMapper mapper)
         {
-            this.work = work;
             this.repository = repository;
             this.userMissionRepository = userMissionRepository;
             this.mapper = mapper;

@@ -51,7 +51,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new DeleteContingencyPlanCommandRequest(id));
+            await this.mediator.Send(new DeleteContingencyPlanCommandRequest(id));
             return NoContent();
         }
     }

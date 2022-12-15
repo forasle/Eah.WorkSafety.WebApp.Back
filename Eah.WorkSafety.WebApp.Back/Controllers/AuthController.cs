@@ -43,7 +43,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new DeleteUserCommandRequest(id));
+            await this.mediator.Send(new DeleteUserCommandRequest(id));
             return NoContent();
         }
     }

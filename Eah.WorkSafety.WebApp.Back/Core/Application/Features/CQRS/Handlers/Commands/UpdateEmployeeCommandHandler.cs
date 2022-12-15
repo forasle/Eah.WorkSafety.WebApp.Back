@@ -11,7 +11,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
     {
         private readonly IRepository<Employee> repository;
 
-        public UpdateEmployeeCommandHandler(IRepository<Employee> repository,WorkSafetyDbContext test)
+        public UpdateEmployeeCommandHandler(IRepository<Employee> repository)
         {
             this.repository = repository;
         }

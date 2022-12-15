@@ -44,14 +44,14 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         [HttpPut]
         public async Task<IActionResult> Update(UpdateMissionCommandRequest request)
         {
-            var result = await this.mediator.Send(request);
+            await this.mediator.Send(request);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.mediator.Send(new DeleteMissionCommandRequest(id));
+            await this.mediator.Send(new DeleteMissionCommandRequest(id));
             return NoContent();
         }
     }
