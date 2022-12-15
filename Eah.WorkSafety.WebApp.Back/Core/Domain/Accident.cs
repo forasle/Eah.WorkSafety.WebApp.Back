@@ -12,8 +12,6 @@
 
         public bool RootCauseAnalysis { get; set; }
 
-        public int LostDays { get; set; }
-
         public int CreatorUserId { get; set; }
 
         public User? User { get; set; }

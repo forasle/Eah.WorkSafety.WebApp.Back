@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221213024236_mig1")]
+    [Migration("20221215074018_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -41,9 +41,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LostDays")
-                        .HasColumnType("int");
 
                     b.Property<string>("ReferenceNumber")
                         .HasColumnType("nvarchar(max)");
@@ -176,6 +173,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("AccidentId")
                         .HasColumnType("int");
 
+                    b.Property<int>("LostDays")
+                        .HasColumnType("int");
+
                     b.HasKey("EmployeeId", "AccidentId");
 
                     b.HasIndex("AccidentId");
@@ -204,6 +204,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("NearMissId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LostDays")
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeId", "NearMissId");
@@ -311,9 +314,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LostDays")
-                        .HasColumnType("int");
 
                     b.Property<string>("NearMissInfo")
                         .HasColumnType("nvarchar(max)");

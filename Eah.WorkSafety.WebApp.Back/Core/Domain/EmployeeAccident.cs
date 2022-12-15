@@ -5,6 +5,8 @@
         public int EmployeeId { get; set; }
 
         public int AccidentId { get; set; }
+
+        public int LostDays { get; set; }
         public Employee? Employee { get; set; }
 
         public Accident? Accident { get; set; }

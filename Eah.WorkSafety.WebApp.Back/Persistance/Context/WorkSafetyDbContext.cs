@@ -15,6 +15,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Context
         public DbSet<Mission> Missions { get; set; }
         public DbSet<Accident> Accidents { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeAccident> EmployeeAccident { get; set; }
+
+        public DbSet<EmployeeNearMiss> EmployeeNearMiss { get; set; }
+        public DbSet<EmployeeChronicDisease> EmployeeChronicDisease { get; set; }
+        public DbSet<EmployeeOccupationDisease> EmployeeOccupationDisease { get; set; }
         public DbSet<ChronicDisease> ChronicDiseases { get; set; }
         public DbSet<ContingencyPlan> ContingencyPlans { get; set; }
         public DbSet<Inconsistency> Inconsistencies { get; set; }
