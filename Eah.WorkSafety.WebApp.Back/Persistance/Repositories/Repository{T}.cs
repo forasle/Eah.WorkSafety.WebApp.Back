@@ -4,6 +4,7 @@ using Eah.WorkSafety.WebApp.Back.Core.Domain;
 using Eah.WorkSafety.WebApp.Back.Persistance.Context;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.VisualBasic;
 using System.Linq;
@@ -118,6 +119,21 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         {
             //var data = await this.workSafetyContext.Accidents.AsNoTracking().Select(x => x.Employees.Select(x => x.LostDays)).ToListAsync();
             return await this.workSafetyContext.Set<T>().SumAsync(selector);
+        }
+
+        public async Task<int> GetAllCountAsync(Expression<Func<T, bool>> filter)
+        {
+            return await this.workSafetyContext.Set<T>().CountAsync(filter);
+        }
+
+        public async Task<int> GetCountByJoin()
+        {
+            var data = await this.workSafetyContext.Accidents.Join(workSafetyContext.EmployeeAccident, x => x.Id, y => y.AccidentId, (x, y) => new
+            {
+                x.MedicalIntervention,
+                y.LostDays
+            }).Where(x=>x.MedicalIntervention==true).CountAsync(x=>x.LostDays==0);
+            return data;
         }
     }
 }

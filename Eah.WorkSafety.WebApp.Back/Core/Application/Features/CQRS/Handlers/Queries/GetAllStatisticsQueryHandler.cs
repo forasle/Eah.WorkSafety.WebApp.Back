@@ -44,7 +44,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             var averageDayOfWork = await this.employeeRepository.GetAverageAsync(x=>x.StartDateOfEmployment!=null,x=>EF.Functions.DateDiffDay(x.StartDateOfEmployment,DateTime.Now));
             var totalLostDays = await this.employeeAccidentRepository.GetSumAsync(x => x.LostDays) + await this.employeeNearMissRepository.GetSumAsync(x => x.LostDays);
             var totalEmployeeAccident = await this.employeeAccidentRepository.GetAllCountAsync();
-            
+            var totalLostDaysAccident = await this.employeeAccidentRepository.GetAllCountAsync(x => x.LostDays>0);
+            var totalNeedFirstAidAccident = await this.accidentRepository.GetAllCountAsync(x => x.NeedFirstAid == true);
+            var totalNeedFirstAidButNoLostDaysAccident = await this.accidentRepository.GetCountByJoin();
             int numberOfChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCountAsync();
             int numberOfOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCountAsync();
             int numberOfAccident = await this.accidentRepository.GetAllCountAsync();
@@ -61,6 +63,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
                 NumberOfEmployee = numberOfEmployee,
                 AverageAgeOfEmployee = avarageAgeOfEmployee,
                 AverageDayOfWork = averageDayOfWork,
+                TotalEmployeeAccident = totalEmployeeAccident,
+                TotalLostDaysAccident = totalLostDaysAccident,
+                TotalLostDays = totalLostDays,
+                TotalNeedFirstAidAccident=totalNeedFirstAidAccident,
+                TotalNeedFirstAidButNoLostDaysAccident=totalNeedFirstAidButNoLostDaysAccident,
                 NumberOfChronicDisease = numberOfChronicDisease,
                 NumberOfOccupationDisease = numberOfOccupationDisease,
                 NumberOfAccidents = numberOfAccident,

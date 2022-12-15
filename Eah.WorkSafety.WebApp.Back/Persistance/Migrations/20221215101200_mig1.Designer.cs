@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221215074018_mig1")]
+    [Migration("20221215101200_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -36,17 +36,53 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("AccidentInfo")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool?>("BusinessStopped")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("CameraRecording")
+                        .HasColumnType("bit");
+
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<bool?>("DuringOperation")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("Eyewitnesses")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EyewitnessesName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EyewitnessesPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("MedicalIntervention")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("NeedFirstAid")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PerformedJob")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("PropertyDamage")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ReferenceNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RelatedDepartment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RootCauseAnalysis")
                         .HasColumnType("bit");
+
+                    b.Property<string>("WitnessStatement")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -309,11 +345,32 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<bool?>("BusinessStopped")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("CameraRecording")
+                        .HasColumnType("bit");
+
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool?>("DuringOperation")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("Eyewitnesses")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EyewitnessesName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EyewitnessesPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("MedicalIntervention")
+                        .HasColumnType("bit");
 
                     b.Property<string>("NearMissInfo")
                         .HasColumnType("nvarchar(max)");
@@ -321,11 +378,26 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("NearMissNumber")
                         .HasColumnType("int");
 
+                    b.Property<bool?>("NeedFirstAid")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PerformedJob")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("PropertyDamage")
+                        .HasColumnType("bit");
+
                     b.Property<string>("ReferenceNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RelatedDepartment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RootCauseAnalysis")
                         .HasColumnType("bit");
+
+                    b.Property<string>("WitnessStatement")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
