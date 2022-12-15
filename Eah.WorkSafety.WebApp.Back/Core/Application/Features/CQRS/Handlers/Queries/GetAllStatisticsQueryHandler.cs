@@ -42,7 +42,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfEmployee = await this.employeeRepository.GetAllCountAsync();
             var avarageAgeOfEmployee = await this.employeeRepository.GetAverageAsync(x=>x.Age !=null,x=> x.Age);
             var averageDayOfWork = await this.employeeRepository.GetAverageAsync(x=>x.StartDateOfEmployment!=null,x=>EF.Functions.DateDiffDay(x.StartDateOfEmployment,DateTime.Now));
-            var totalLostDays = await this.accidentRepository.GetSumAsync();
+            var totalLostDays = await this.employeeAccidentRepository.GetSumAsync(x => x.LostDays) + await this.employeeNearMissRepository.GetSumAsync(x => x.LostDays);
+            var totalEmployeeAccident = await this.employeeAccidentRepository.GetAllCountAsync();
+            
             int numberOfChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCountAsync();
             int numberOfOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCountAsync();
             int numberOfAccident = await this.accidentRepository.GetAllCountAsync();

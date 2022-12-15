@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20221214185817_mig1")]
+    [Migration("20221215074018_mig1")]
     partial class mig1
     {
         /// <inheritdoc />

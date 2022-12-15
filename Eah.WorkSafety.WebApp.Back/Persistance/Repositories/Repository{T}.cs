@@ -114,11 +114,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().AverageAsync(selector);
         }
 
-        public async Task<double> GetSumAsync()
+        public async Task<int> GetSumAsync(Expression<Func<T, int>> selector)
         {
-            var data = await this.workSafetyContext.Accidents.AsNoTracking().Select(x => x.Employees.Select(x => x.LostDays)).ToListAsync();
-            int? result = data.Sum();
-            return result;
+            //var data = await this.workSafetyContext.Accidents.AsNoTracking().Select(x => x.Employees.Select(x => x.LostDays)).ToListAsync();
+            return await this.workSafetyContext.Set<T>().SumAsync(selector);
         }
     }
 }
