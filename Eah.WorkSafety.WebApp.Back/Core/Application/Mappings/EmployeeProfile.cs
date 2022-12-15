@@ -12,11 +12,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
         {
             this.CreateMap<Employee, EmployeeDto>().ForMember(x=>x.Accidents,opts=>opts
             .MapFrom(x=>x.Accidents
-            .Select(x=>x.AccidentId)
-            .ToList())).ForMember(x => x.NearMisses, opts => opts
+            .ToDictionary(x=>x.AccidentId,x=>x.LostDays)))
+            .ForMember(x => x.NearMisses, opts => opts
             .MapFrom(x => x.NearMisses
-            .Select(x => x.NearMissId)
-            .ToList())).ForMember(x => x.ChronicDisease, opts => opts
+            .ToDictionary(x=>x.NearMissId,x=>x.LostDays)))
+            .ForMember(x => x.ChronicDisease, opts => opts
             .MapFrom(x => x.ChronicDiseases
             .Select(x => x.ChronicDiseaseId)
             .ToList())).ForMember(x => x.OccupationDisease, opts => opts

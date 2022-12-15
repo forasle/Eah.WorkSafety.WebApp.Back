@@ -1,8 +1,12 @@
 ﻿using Azure.Core;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
+using Eah.WorkSafety.WebApp.Back.Core.Domain;
 using Eah.WorkSafety.WebApp.Back.Persistance.Context;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.VisualBasic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
@@ -110,5 +114,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().AverageAsync(selector);
         }
 
+        public async Task<double> GetSumAsync()
+        {
+            var data = await this.workSafetyContext.Accidents.AsNoTracking().Select(x => x.Employees.Select(x => x.LostDays)).ToListAsync();
+            int? result = data.Sum();
+            return result;
+        }
     }
 }

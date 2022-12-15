@@ -25,16 +25,16 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 NearMissInfo = request.NearMissInfo,
                 Date = request.Date,
                 RootCauseAnalysis = request.RootCauseAnalysis,
-                LostDays = request.LostDays,
                 CreatorUserId = request.CreatorUserId,
             };
-            if (request.AffectedEmployeeIdList != null)
+            if (request.AffectedEmployeeIdWithLostDaysList != null)
             {
-                foreach (var item in request.AffectedEmployeeIdList)
+                foreach (var item in request.AffectedEmployeeIdWithLostDaysList)
                 {
                     nearMiss.Employees.Add(new EmployeeNearMiss()
                     {
-                        EmployeeId = item
+                        EmployeeId = item.Key,
+                        LostDays = item.Value
                     });
                 }
             }

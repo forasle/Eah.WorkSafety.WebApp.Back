@@ -14,11 +14,9 @@
 
         public bool RootCauseAnalysis { get; set; }
 
-        public int LostDays { get; set; }
-
         public int CreatorUserId { get; set; }
 
-        public List<int>? Employees { get; set; }
+        public Dictionary<int, int>? AffectedEmployeeIdWithLostDaysList { get; set; }
 
     }
 }

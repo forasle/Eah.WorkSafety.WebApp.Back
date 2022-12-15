@@ -203,6 +203,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("NearMissId")
                         .HasColumnType("int");
 
+                    b.Property<int>("LostDays")
+                        .HasColumnType("int");
+
                     b.HasKey("EmployeeId", "NearMissId");
 
                     b.HasIndex("NearMissId");
@@ -308,9 +311,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("LostDays")
-                        .HasColumnType("int");
 
                     b.Property<string>("NearMissInfo")
                         .HasColumnType("nvarchar(max)");

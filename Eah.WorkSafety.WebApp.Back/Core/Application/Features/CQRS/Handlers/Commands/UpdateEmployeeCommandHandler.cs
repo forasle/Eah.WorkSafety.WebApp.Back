@@ -25,6 +25,12 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.RegistrationNumber = request.RegistrationNumber;
                 updatedEntity.Name = request.Name;
                 updatedEntity.Surname = request.Surname;
+                updatedEntity.Age = request.Age;
+                updatedEntity.BirthPlace= request.BirthPlace;
+                updatedEntity.Nationality= request.Nationality;
+                updatedEntity.EducationStatus= request.EducationStatus;
+                updatedEntity.RiskGroup= request.RiskGroup;
+                updatedEntity.Title= request.Title;
                 updatedEntity.Position = request.Position;
                 updatedEntity.Department = request.Department;
                 updatedEntity.StartDateOfEmployment = request.StartDateOfEmployment;
@@ -37,7 +43,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                     {
                         accidents.Add(new EmployeeAccident()
                         {
-                            AccidentId = item
+                            AccidentId = item.Key,
+                            LostDays = item.Value,
                         });
 
                     }
@@ -51,7 +58,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                     {
                         nearMisses.Add(new EmployeeNearMiss()
                         {
-                            NearMissId = item
+                            NearMissId = item.Key,
+                            LostDays = item.Value
                         });
 
                     }

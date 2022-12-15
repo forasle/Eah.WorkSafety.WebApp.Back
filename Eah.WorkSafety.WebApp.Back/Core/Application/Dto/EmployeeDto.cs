@@ -12,6 +12,18 @@
 
         public string? Surname { get; set; }
 
+        public int? Age { get; set; }
+
+        public string? BirthPlace { get; set; }
+
+        public string? Nationality { get; set; }
+
+        public string? EducationStatus { get; set; }
+
+        public string? RiskGroup { get; set; }
+
+        public string? Title { get; set; }
+
         public string? Position { get; set; }
 
         public string? Department { get; set; }
@@ -20,8 +32,8 @@
 
         public string? Address { get; set; }
 
-        public List<int>? Accidents { get; set; }
-        public List<int>? NearMisses { get; set; }
+        public Dictionary<int,int>? Accidents { get; set; }
+        public Dictionary<int, int>? NearMisses { get; set; }
         public List<int>? ChronicDisease { get; set; }
         public List<int>? OccupationDisease { get; set; }
 
