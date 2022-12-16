@@ -1,5 +1,8 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
+﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Dto;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Filter;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Wrappers;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -29,10 +32,11 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List([FromQuery]PaginationFilter filter)
         {
-            var result = await this.mediator.Send(new GetAllAccidentQueryRequest());
-            return Ok(result);
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var result = await this.mediator.Send(new GetAllAccidentQueryRequest(filter));
+            return Ok(new PagedResponse<List<AccidentDto>>(result,validFilter.PageNumber,validFilter.PageSize));
         }
 
         [HttpGet("{id}")]
@@ -40,7 +44,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.mediator.Send(new GetAccidentQueryRequest(id));
-            return result == null ? NotFound() : Ok(result);
+            return result == null ? NotFound() : Ok(new Response<AccidentDto>(result));
         }
 
 

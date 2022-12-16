@@ -1,4 +1,5 @@
 ﻿using Azure.Core;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Filter;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
 using Eah.WorkSafety.WebApp.Back.Core.Domain;
 using Eah.WorkSafety.WebApp.Back.Persistance.Context;
@@ -141,19 +142,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             }).Where(x=>x.MedicalIntervention==true).AsNoTracking().CountAsync(x=>x.LostDays==0);
         }
 
-        public async Task<int> GetAllCountAsync(Expression<Func<T, bool>> filter)
+        public async Task<List<T>> GetAllByPropertyAsync2(PaginationFilter filter,params Expression<Func<T, object>>[] includeProperties)
         {
-            return await this.workSafetyContext.Set<T>().CountAsync(filter);
-        }
-
-        public async Task<int> GetCountByJoin()
-        {
-            var data = await this.workSafetyContext.Accidents.Join(workSafetyContext.EmployeeAccident, x => x.Id, y => y.AccidentId, (x, y) => new
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            IQueryable<T> set = this.workSafetyContext.Set<T>();
+            foreach (var includeProperty in includeProperties)
             {
-                x.MedicalIntervention,
-                y.LostDays
-            }).Where(x=>x.MedicalIntervention==true).CountAsync(x=>x.LostDays==0);
-            return data;
+                set = set.Include(includeProperty);
+            }
+            return await set.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize).ToListAsync();
         }
     }
 }

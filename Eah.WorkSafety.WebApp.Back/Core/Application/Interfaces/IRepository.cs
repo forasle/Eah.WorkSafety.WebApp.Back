@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Filter;
+using System.Linq.Expressions;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
 {
@@ -16,6 +17,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
         Task<int> GetSumAsync(Expression<Func<T, int>> selector);
         Task<double?> GetAverageAsync(Expression<Func<T, bool>> filter, Expression<Func<T, int?>> selector);
         Task<List<T>> GetAllByPropertyAsync(params Expression<Func<T, object>>[] includeProperties);
+        Task<List<T>> GetAllByPropertyAsync2(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties);
         Task<T?> GetByIdAsync(object id);
         //Task<T?> GetByIdAsync<TProperty>(Expression<Func<T, TProperty>> include, Expression<Func<T, bool>> filter);
         Task<T?> GetByIdAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);
