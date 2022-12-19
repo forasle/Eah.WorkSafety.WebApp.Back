@@ -4,6 +4,7 @@ using Eah.WorkSafety.WebApp.Back.Core.Application.Mappings;
 using Eah.WorkSafety.WebApp.Back.Infrastructure.Tools;
 using Eah.WorkSafety.WebApp.Back.Persistance.Context;
 using Eah.WorkSafety.WebApp.Back.Persistance.Repositories;
+using Eah.WorkSafety.WebApp.Back.Services;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -15,6 +16,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddSingleton<IUriService>(opt =>
+{
+    var accessor = opt.GetRequiredService<IHttpContextAccessor>();
+    var request = accessor.HttpContext!.Request;
+    var uri = string.Concat(request.Scheme, "://", request.Host.ToUriComponent());
+    return new UriService(uri);
+});
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +34,7 @@ builder.Services.AddDbContext<WorkSafetyDbContext>(opt =>
 {
     opt.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
 });
+
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
