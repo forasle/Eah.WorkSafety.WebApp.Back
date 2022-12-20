@@ -20,7 +20,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<List<RiskAssessmentDto>> Handle(GetAllRiskAssessmentQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await this.repository.GetAllAsync();
+            var data = await this.repository.GetAllWithPaginationAsync(request.Filter);
             return this.mapper.Map<List<RiskAssessmentDto>>(data);
         }
     }

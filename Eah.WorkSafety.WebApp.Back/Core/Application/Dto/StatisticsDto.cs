@@ -5,6 +5,8 @@
 
         public int? NumberOfEmployee { get; set; }
 
+        public int NumberOfUser { get; set; }
+
         public double? AverageAgeOfEmployee { get; set; }
 
         public double? AverageDayOfWork { get; set; }

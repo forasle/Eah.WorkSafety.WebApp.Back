@@ -1,5 +1,9 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
+﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Dto;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Filter;
+using Eah.WorkSafety.WebApp.Back.Helpers;
+using Eah.WorkSafety.WebApp.Back.Services;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +17,11 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     public class RiskAssessmentController : ControllerBase
     {
         private readonly IMediator mediator;
-
-        public RiskAssessmentController(IMediator meditor)
+        private readonly IUriService uriService;
+        public RiskAssessmentController(IMediator meditor, IUriService uriService)
         {
             this.mediator = meditor;
+            this.uriService = uriService;
         }
 
         [HttpPost]
@@ -27,12 +32,17 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Created("", request);
         }
 
-        [HttpGet]
 
-        public async Task<IActionResult> List()
+        [HttpGet]
+        public async Task<IActionResult> List([FromQuery] PaginationFilter filter)
         {
-            var result = await this.mediator.Send(new GetAllRiskAssessmentQueryRequest());
-            return Ok(result);
+            var route = Request.Path.Value;
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var result = await this.mediator.Send(new GetAllRiskAssessmentQueryRequest(filter));
+            StatisticsDto statistics = await this.mediator.Send(new GetAllStatisticsQueryRequest());
+            int? numberOfRiskAssessments = statistics.NumberOfRiskAssessments;
+            var pagedReponse = PaginationHelper.CreatePagedReponse<RiskAssessmentDto>(result, validFilter, (int)numberOfRiskAssessments!, uriService, route!);
+            return Ok(pagedReponse);
         }
 
         [HttpGet("{id}")]

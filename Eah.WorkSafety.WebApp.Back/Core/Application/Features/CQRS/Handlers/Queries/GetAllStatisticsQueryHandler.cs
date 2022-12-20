@@ -11,6 +11,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllStatisticsQueryHandler : IRequestHandler<GetAllStatisticsQueryRequest, StatisticsDto>
     {
         private readonly IRepository<Employee> employeeRepository;
+        private readonly IRepository<User> userRepository;
         private readonly IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository;
         private readonly IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository;
         private readonly IRepository<EmployeeAccident> employeeAccidentRepository;
@@ -24,9 +25,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         private readonly IRepository<Mission> misionRepository;
 
 
-        public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository, IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository, IRepository<EmployeeAccident> employeeAccidentRepository, IRepository<EmployeeNearMiss> employeeNearMissRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMissRepository, IRepository<RiskAssessment> riskAssessmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository, IRepository<Mission> misionRepository)
+        public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository, IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository, IRepository<EmployeeAccident> employeeAccidentRepository, IRepository<EmployeeNearMiss> employeeNearMissRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMissRepository, IRepository<RiskAssessment> riskAssessmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository, IRepository<Mission> misionRepository, IRepository<User> userRepository)
         {
             this.employeeRepository = employeeRepository;
+            this.userRepository = userRepository;
             this.employeeChronicDiseaseRepository = employeeChronicDiseaseRepository;
             this.employeeOccupationDiseaseRepository = employeeOccupationDiseaseRepository;
             this.employeeAccidentRepository = employeeAccidentRepository;
@@ -43,6 +45,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         public async Task<StatisticsDto> Handle(GetAllStatisticsQueryRequest request, CancellationToken cancellationToken)
         {
             int numberOfEmployee = await this.employeeRepository.GetAllCountAsync();
+            int numberOfUser = await this.userRepository.GetAllCountAsync();
             var avarageAgeOfEmployee = await this.employeeRepository.GetAverageAsync(x=>x.Age !=null,x=> x.Age);
             var averageDayOfWork = await this.employeeRepository.GetAverageAsync(x=>x.StartDateOfEmployment!=null,x=>EF.Functions.DateDiffDay(x.StartDateOfEmployment,DateTime.Now));
             var totalLostDays = await this.employeeAccidentRepository.GetSumAsync(x => x.LostDays) + await this.employeeNearMissRepository.GetSumAsync(x => x.LostDays);
@@ -65,6 +68,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             return new StatisticsDto
             {
                 NumberOfEmployee = numberOfEmployee,
+                NumberOfUser = numberOfUser,
                 AverageAgeOfEmployee = avarageAgeOfEmployee,
                 AverageDayOfWork = averageDayOfWork,
                 TotalEmployeeAccident = totalEmployeeAccident,

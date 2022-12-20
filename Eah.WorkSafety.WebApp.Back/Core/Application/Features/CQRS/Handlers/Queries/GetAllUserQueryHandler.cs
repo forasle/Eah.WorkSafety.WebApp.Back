@@ -20,7 +20,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<List<UserDto>> Handle(GetAllUserQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await this.repository.GetAllByPropertyAsync(x=>x.Missions,x=>x.Accidents,x=>x.NearMisses,x=>x.RiskAssessments,x=>x.ContingencyPlans,x=>x.Inconsistencies,x => x.PreventiveActivities);
+            var data = await this.repository.GetAllByPropertyWithPaginationAsync(request.Filter,x=>x.Missions,x=>x.Accidents,x=>x.NearMisses,x=>x.RiskAssessments,x=>x.ContingencyPlans,x=>x.Inconsistencies,x => x.PreventiveActivities);
             return this.mapper.Map<List<UserDto>>(data);
         }
     }
