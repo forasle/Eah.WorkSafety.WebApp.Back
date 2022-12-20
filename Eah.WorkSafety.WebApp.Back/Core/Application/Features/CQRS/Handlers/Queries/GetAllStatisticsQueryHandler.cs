@@ -21,8 +21,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         private readonly IRepository<Inconsistency> inconsistencyRepository;
         private readonly IRepository<ContingencyPlan> contingencyPlanRepository;
         private readonly IRepository<PreventiveActivity> preventiveActivityRepository;
+        private readonly IRepository<Mission> misionRepository;
 
-        public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository, IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository, IRepository<EmployeeAccident> employeeAccidentRepository, IRepository<EmployeeNearMiss> employeeNearMissRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMissRepository, IRepository<RiskAssessment> riskAssessmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository)
+
+        public GetAllStatisticsQueryHandler(IRepository<Employee> employeeRepository, IRepository<EmployeeChronicDisease> employeeChronicDiseaseRepository, IRepository<EmployeeOccupationDisease> employeeOccupationDiseaseRepository, IRepository<EmployeeAccident> employeeAccidentRepository, IRepository<EmployeeNearMiss> employeeNearMissRepository, IRepository<Accident> accidentRepository, IRepository<NearMiss> nearMissRepository, IRepository<RiskAssessment> riskAssessmentRepository, IRepository<Inconsistency> inconsistencyRepository, IRepository<ContingencyPlan> contingencyPlanRepository, IRepository<PreventiveActivity> preventiveActivityRepository, IRepository<Mission> misionRepository)
         {
             this.employeeRepository = employeeRepository;
             this.employeeChronicDiseaseRepository = employeeChronicDiseaseRepository;
@@ -35,6 +37,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             this.inconsistencyRepository = inconsistencyRepository;
             this.contingencyPlanRepository = contingencyPlanRepository;
             this.preventiveActivityRepository = preventiveActivityRepository;
+            this.misionRepository = misionRepository;
         }
 
         public async Task<StatisticsDto> Handle(GetAllStatisticsQueryRequest request, CancellationToken cancellationToken)
@@ -57,6 +60,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfInconsistencies = await this.inconsistencyRepository.GetAllCountAsync();
             int numberOfContingencyPlans = await this.contingencyPlanRepository.GetAllCountAsync();
             int numberOfPreventiveActivities = await this.preventiveActivityRepository.GetAllCountAsync();
+            int numberOfMissions = await this.misionRepository.GetAllCountAsync();
 
             return new StatisticsDto
             {
@@ -76,10 +80,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
                 NumberOfRiskAssessments = numberOfRiskAssessments,
                 NumberOfInconsistencies = numberOfInconsistencies,
                 NumberOfContingencyPlans = numberOfContingencyPlans,
-                NumberOfPreventiveActivities = numberOfPreventiveActivities
-
-
-
+                NumberOfPreventiveActivities = numberOfPreventiveActivities,
+                NumberOfMissions = numberOfMissions
             };
 
 

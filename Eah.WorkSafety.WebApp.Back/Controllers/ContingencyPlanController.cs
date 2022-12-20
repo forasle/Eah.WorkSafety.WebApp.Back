@@ -1,5 +1,9 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
+﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Dto;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Filter;
+using Eah.WorkSafety.WebApp.Back.Helpers;
+using Eah.WorkSafety.WebApp.Back.Services;
 using MediatR;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -13,10 +17,12 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     public class ContingencyPlanController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IUriService uriService;
 
-        public ContingencyPlanController(IMediator mediator)
+        public ContingencyPlanController(IMediator mediator, IUriService uriService)
         {
             this.mediator = mediator;
+            this.uriService = uriService;
         }
         [HttpPost]
         public async Task<IActionResult> Create(CreateContingencyPlanCommandRequest request)
@@ -26,10 +32,15 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> List()
+        public async Task<IActionResult> List([FromQuery] PaginationFilter filter)
         {
-            var result = await this.mediator.Send(new GetAllContingencyPlansQueryRequest());
-            return Ok(result);
+            var route = Request.Path.Value;
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var result = await this.mediator.Send(new GetAllContingencyPlansQueryRequest(filter));
+            StatisticsDto statistics = await this.mediator.Send(new GetAllStatisticsQueryRequest());
+            int? numberOfContingencyPlans = statistics.NumberOfContingencyPlans;
+            var pagedReponse = PaginationHelper.CreatePagedReponse<ContingencyPlanDto>(result, validFilter, (int)numberOfContingencyPlans!, uriService, route!);
+            return Ok(pagedReponse);
         }
 
         [HttpGet("{id}")]

@@ -32,6 +32,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         {
             return await this.workSafetyContext.Set<T>().AsNoTracking().ToListAsync();
         }
+
         public async Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter)
         {
             return await this.workSafetyContext.Set<T>().Where(filter).AsNoTracking().ToListAsync();
@@ -56,7 +57,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 set = set.Include(includeProperty);
             }
 
-            return await set.ToListAsync();
+            return await set.AsSplitQuery().AsNoTracking().ToListAsync();
         }
         //public Task<T?> GetByIdAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
         //{
@@ -90,7 +91,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 set = set.Include(includeProperty);
             }
 
-            return set.SingleOrDefaultAsync(filter);
+            return set.AsSplitQuery().AsNoTracking().SingleOrDefaultAsync(filter);
         }
 
         public async Task UpdateAsync(T updatedEntity)
@@ -142,7 +143,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             }).Where(x=>x.MedicalIntervention==true).AsNoTracking().CountAsync(x=>x.LostDays==0);
         }
 
-        public async Task<List<T>> GetAllByPropertyAsync2(PaginationFilter filter,params Expression<Func<T, object>>[] includeProperties)
+        public async Task<List<T>> GetAllByPropertyWithPaginationAsync(PaginationFilter filter,params Expression<Func<T, object>>[] includeProperties)
         {
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
             IQueryable<T> set = this.workSafetyContext.Set<T>();
@@ -151,7 +152,18 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 set = set.Include(includeProperty);
             }
             return await set.Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
-                .Take(validFilter.PageSize).ToListAsync();
+                .Take(validFilter.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
+        public async Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter)
+        {
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            return await this.workSafetyContext.Set<T>().Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }

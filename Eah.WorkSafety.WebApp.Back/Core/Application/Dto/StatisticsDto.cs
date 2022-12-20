@@ -32,5 +32,7 @@
         public int? NumberOfContingencyPlans { get; set; }
 
         public int? NumberOfPreventiveActivities { get; set; }
+
+        public int? NumberOfMissions { get; set; }
     }
 }
