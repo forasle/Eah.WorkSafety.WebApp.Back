@@ -43,6 +43,14 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Ok(pagedReponse);
         }
 
+        [HttpGet("{search}/{name}")]
+
+        public async Task<IActionResult> Search(string filter)
+        {
+            var result = await this.mediator.Send(new GetAllEmployeeByFilterQueryRequest(filter));
+            return Ok(result);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
