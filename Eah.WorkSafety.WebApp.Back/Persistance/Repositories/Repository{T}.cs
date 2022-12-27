@@ -165,5 +165,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
+
+        public async Task<List<T>> GetAllByKeyWithPaginationAsync(PaginationFilter filter, Expression<Func<T, bool>> key)
+        {
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            return await this.workSafetyContext.Set<T>().Where(key).Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
+        }
     }
 }
