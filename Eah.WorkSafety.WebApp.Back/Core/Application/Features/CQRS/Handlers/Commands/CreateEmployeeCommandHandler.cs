@@ -23,6 +23,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 Name = request.Name,
                 Surname = request.Surname,
                 Age = request.Age,
+                Gender = request.Gender,
                 BirthPlace= request.BirthPlace,
                 Nationality= request.Nationality,
                 EducationStatus= request.EducationStatus,

@@ -1,4 +1,5 @@
-﻿using Eah.WorkSafety.WebApp.Back.Core.Domain;
+﻿using Eah.WorkSafety.WebApp.Back.Core.Application.Enums;
+using Eah.WorkSafety.WebApp.Back.Core.Domain;
 using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
@@ -17,6 +18,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int? Age { get; set; }
 
+        public Gender Gender { get; set; }
+
         public string? BirthPlace { get; set; }
 
         public string? Nationality { get; set; }
@@ -29,7 +32,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? Position { get; set; }
 
-        public string? Department { get; set; }
+        public Department Department { get; set; }
 
         public DateTime? StartDateOfEmployment { get; set; }
 

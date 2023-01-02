@@ -26,6 +26,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.Name = request.Name;
                 updatedEntity.Surname = request.Surname;
                 updatedEntity.Age = request.Age;
+                updatedEntity.Gender = request.Gender;
                 updatedEntity.BirthPlace= request.BirthPlace;
                 updatedEntity.Nationality= request.Nationality;
                 updatedEntity.EducationStatus= request.EducationStatus;
