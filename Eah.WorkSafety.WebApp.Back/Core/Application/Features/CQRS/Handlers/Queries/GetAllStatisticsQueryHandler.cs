@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Dto;
+using Eah.WorkSafety.WebApp.Back.Core.Application.Enums;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries;
 using Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces;
 using Eah.WorkSafety.WebApp.Back.Core.Domain;
@@ -71,8 +72,20 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfEmployeeBetween26_45 = await this.employeeRepository.GetAllCountAsync(x => (x.Age > 25) && (x.Age < 46));
             int numberOfEmployeeBetween46_60 = await this.employeeRepository.GetAllCountAsync(x => (x.Age > 45) && (x.Age < 61));
             int numberOfEmployeeAbove60 = await this.employeeRepository.GetAllCountAsync(x => (x.Age > 60));
-            
-            
+
+            int numberOfEmployeeByDepartment = await this.employeeRepository.GetAllCountAsync(x => x.Department == Department.Acil);
+
+            int numberOfMaleEmployee = await this.employeeRepository.GetAllCountAsync(x => x.Gender == Gender.Male);
+            int numberOfFemaleEmployee = await this.employeeRepository.GetAllCountAsync(x => x.Gender == Gender.Female);
+            int numberOfUnspecifiedEmployee = await this.employeeRepository.GetAllCountAsync(x=>x.Gender == Gender.Unspecified);
+
+            int numberOfRootCouseAnalysisRequirementForAccident = await this.accidentRepository.GetAllCountAsync(x => x.RootCauseAnalysis == true);
+            int numberOfRootCouseAnalysisRequirementForNearMiss = await this.nearMissRepository.GetAllCountAsync(x => x.RootCauseAnalysis == true);
+
+            int numberOfEmployeeWhoHadAnAccident = await this.employeeAccidentRepository.GetAllCountAsync();
+
+            int numberOfAccidentWhichNeedsFirstAid = await this.accidentRepository.GetAllCountAsync(x=>x.NeedFirstAid == true);
+
             return new StatisticsDto
             {
                 NumberOfEmployee = numberOfEmployee,
