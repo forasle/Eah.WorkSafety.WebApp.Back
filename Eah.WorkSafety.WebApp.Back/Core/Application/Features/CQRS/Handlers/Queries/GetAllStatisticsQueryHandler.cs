@@ -79,6 +79,12 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfFemaleEmployee = await this.employeeRepository.GetAllCountAsync(x => x.Gender == Gender.Female);
             int numberOfUnspecifiedEmployee = await this.employeeRepository.GetAllCountAsync(x=>x.Gender == Gender.Unspecified);
 
+            int numberOfRootCouseAnalysisRequirementForAccident = await this.accidentRepository.GetAllCountAsync(x => x.RootCauseAnalysis == true);
+            int numberOfRootCouseAnalysisRequirementForNearMiss = await this.nearMissRepository.GetAllCountAsync(x => x.RootCauseAnalysis == true);
+
+            int numberOfEmployeeWhoHadAnAccident = await this.employeeAccidentRepository.GetAllCountAsync();
+
+            int numberOfAccidentWhichNeedsFirstAid = await this.accidentRepository.GetAllCountAsync(x=>x.NeedFirstAid == true);
 
             return new StatisticsDto
             {
