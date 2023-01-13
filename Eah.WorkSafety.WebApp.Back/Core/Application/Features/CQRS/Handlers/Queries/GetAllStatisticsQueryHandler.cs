@@ -83,8 +83,15 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfRootCouseAnalysisRequirementForNearMiss = await this.nearMissRepository.GetAllCountAsync(x => x.RootCauseAnalysis == true);
 
             int numberOfEmployeeWhoHadAnAccident = await this.employeeAccidentRepository.GetAllCountAsync();
-
             int numberOfAccidentWhichNeedsFirstAid = await this.accidentRepository.GetAllCountAsync(x=>x.NeedFirstAid == true);
+
+            int numberOfAccidentWhichHasGotLostDay = await this.employeeAccidentRepository.GetAllCountAsync(x => x.LostDays > 0);
+
+            int numberOfLostDays = await this.employeeAccidentRepository.GetSumAsync(x=>x.LostDays);
+
+
+
+
 
             return new StatisticsDto
             {
