@@ -11,6 +11,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
         public string? ReferenceNumber { get; set; }
 
         public string? AccidentInfo { get; set; }
+
         public string? PerformedJob { get; set; }
 
         public string? RelatedDepartment { get; set; }
@@ -20,6 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
         public bool? MedicalIntervention { get; set; }
 
         public bool? Eyewitnesses { get; set; }
+
         public string? EyewitnessesName { get; set; }
 
         public string? EyewitnessesPhoneNumber { get; set; }

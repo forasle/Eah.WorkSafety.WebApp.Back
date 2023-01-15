@@ -43,6 +43,18 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return Ok(pagedReponse);
         }
 
+        [HttpGet("{search}/{name}")]
+
+        public async Task<IActionResult> Search([FromQuery] PaginationFilter filter, string key)
+        {
+            var route = Request.Path.Value + "?key=" + key;
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var result = await this.mediator.Send(new GetAllInconsistencyByKeyQueryRequest(filter, key));
+            var count = await this.mediator.Send(new GetAllInconsistencyCountByKeyQueryRequest(key));
+            var pagedReponse = PaginationHelper.CreatePagedReponse<InconsistencyDto>(result, validFilter, count, uriService, route!);
+            return Ok(pagedReponse);
+        }
+
         [HttpGet("{id}")]
 
         public async Task<IActionResult> Get(int id)
