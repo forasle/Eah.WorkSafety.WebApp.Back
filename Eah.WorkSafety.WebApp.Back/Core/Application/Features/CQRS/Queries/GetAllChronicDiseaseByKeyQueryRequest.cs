@@ -4,14 +4,15 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Queries
 {
-    public class GetAllChronicDiseaseQueryRequest : IRequest<List<ChronicDiseaseDto>>
+    public class GetAllChronicDiseaseByKeyQueryRequest : IRequest<List<ChronicDiseaseDto>>
     {
-        public GetAllChronicDiseaseQueryRequest(PaginationFilter filter)
+        public GetAllChronicDiseaseByKeyQueryRequest(PaginationFilter filter, string key)
         {
             Filter = filter;
+            Key = key;
         }
 
         public PaginationFilter Filter { get; }
-
+        public string Key { get; set; }
     }
 }
