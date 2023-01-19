@@ -11,6 +11,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Configurations
             builder.HasKey(x => new { x.EmployeeId, x.AccidentId });
             builder.HasOne(x => x.Accident).WithMany(x => x.Employees).HasForeignKey(x => x.AccidentId);
             builder.HasOne(x => x.Employee).WithMany(x => x.Accidents).HasForeignKey(x => x.EmployeeId);
+            builder.HasOne(x => x.ThePrecautionsToBeTakenOfEmployeeAccident).WithOne(x => x.EmployeAccident).HasPrincipalKey<ThePrecautionsToBeTakenOfEmployeeAccident>(x=>x.id);
+            builder.HasOne(x => x.TheSubjectOfTheAccidentOfEmployeeAccident).WithOne(x => x.EmployeAccident).HasPrincipalKey<TheSubjectOfTheAccidentOfEmployeeAccident>(x => x.id);
+
 
         }
     }

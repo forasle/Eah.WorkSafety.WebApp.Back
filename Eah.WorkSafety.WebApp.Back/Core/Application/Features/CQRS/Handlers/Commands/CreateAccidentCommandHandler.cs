@@ -9,15 +9,18 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 {
     public class CreateAccidentCommandHandler : IRequestHandler<CreateAccidentCommandRequest>
     {
-        private readonly IRepository<Accident> repository;
+        private readonly IRepository<Accident> accidentRepository;
+        private readonly IRepository<EmployeeAccident> employeeAccidentRepository;
 
-        public CreateAccidentCommandHandler(IRepository<Accident> repository)
+        public CreateAccidentCommandHandler(IRepository<Accident> accidentRepository, IRepository<EmployeeAccident> employeeAccidentRepository)
         {
-            this.repository = repository;
+            this.accidentRepository = accidentRepository;
+            this.employeeAccidentRepository = employeeAccidentRepository;
         }
 
         public async Task<Unit> Handle(CreateAccidentCommandRequest request, CancellationToken cancellationToken)
         {
+            var thePrecautionToBeTaken = new ThePrecautionsToBeTakenOfEmployeeAccident { };
             var accident = new Accident
             {
                 ReferenceNumber = request.ReferenceNumber,
@@ -37,6 +40,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 Date = request.Date,
                 RootCauseAnalysis = request.RootCauseAnalysis,
                 CreatorUserId = request.CreatorUserId,
+
             };
             if (request.AffectedEmployeeIdWithLostDaysList != null)
             {
@@ -46,11 +50,35 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                     {
                         EmployeeId = item.Key,
                         LostDays = item.Value,
+
+                        
                     });
                 }
             }
 
-            await this.repository.CreateAsync(accident);
+            if (request.ThePrecautionsToBeTakenOfEmployeeAccident != null)
+            {
+                foreach (var item in request.ThePrecautionsToBeTakenOfEmployeeAccident)
+                {
+                    thePrecautionToBeTaken.WorkingWithoutAuthorization = item.Value[0];
+                    thePrecautionToBeTaken.GiveOrReceiveFalseWarnings = item.Value[1];
+                    thePrecautionToBeTaken.ErrorInSafety = item.Value[2];
+                    thePrecautionToBeTaken.ImproperSpeed = item.Value[3];
+                    thePrecautionToBeTaken.NotUsingEquipmentProtectors = item.Value[4];
+                    thePrecautionToBeTaken.NotUsingPersonalProtectiveEquipment = item.Value[5];
+                    thePrecautionToBeTaken.EquipmentUsageError = item.Value[6];
+                    thePrecautionToBeTaken.UsingFaultyEquipment = item.Value[7];
+                    thePrecautionToBeTaken.WorkingInAnUnfamiliarField = item.Value[8];
+                    thePrecautionToBeTaken.DisobeyingInstructions = item.Value[9];
+                    thePrecautionToBeTaken.TirednessOrInsomniaOrDrowsiness = item.Value[10];
+                    thePrecautionToBeTaken.WorkingWithoutDiscipline = item.Value[11];
+                    thePrecautionToBeTaken.InsufficientMachineEquipmentEnclosure = item.Value[12];
+                }
+            }
+
+
+            await this.thePrecautionsToBeTakenOfEmployeeAccidentReporsitory.CreateAsync(thePrecautionToBeTaken);
+            await this.accidentRepository.CreateAsync(accident);
 
             return Unit.Value;
         }
