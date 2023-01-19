@@ -11,6 +11,12 @@
 
         public Accident? Accident { get; set; }
 
+        public int ThePrecautionsToBeTakenOfEmployeeAccidentId { get; set; }
+
+        public int TheSubjectOfTheAccidentOfEmployeeAccidentId { get; set; }
+        public ThePrecautionsToBeTakenOfEmployeeAccident? ThePrecautionsToBeTakenOfEmployeeAccident { get; set; }
+
+        public TheSubjectOfTheAccidentOfEmployeeAccident? TheSubjectOfTheAccidentOfEmployeeAccident { get; set; }
         public EmployeeAccident()
         {
         }
