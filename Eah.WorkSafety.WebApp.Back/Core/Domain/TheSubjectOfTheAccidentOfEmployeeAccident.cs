@@ -2,7 +2,7 @@
 {
     public class TheSubjectOfTheAccidentOfEmployeeAccident
     {
-        public int EmployeeAccidentId { get; set; }
+        public int id { get; set; }
         public bool? ExposureToPhsicalViolence { get; set; }
         public bool? ExposureToVerbalViolence { get; set; }
         public bool? SharpObjectInjuries { get; set; }
