@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20230119102157_mig_1")]
+    [Migration("20230120075148_mig_1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -215,23 +215,21 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("LostDays")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ThePrecautionsToBeTakenOfEmployeeAccidentid")
+                    b.Property<int>("ThePrecautionsToBeTakenOfEmployeeAccidentId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TheSubjectOfTheAccidentOfEmployeeAccidentid")
+                    b.Property<int>("TheSubjectOfTheAccidentOfEmployeeAccidentId")
                         .HasColumnType("int");
 
                     b.HasKey("EmployeeId", "AccidentId");
 
                     b.HasIndex("AccidentId");
 
-                    b.HasIndex("ThePrecautionsToBeTakenOfEmployeeAccidentid")
-                        .IsUnique()
-                        .HasFilter("[ThePrecautionsToBeTakenOfEmployeeAccidentid] IS NOT NULL");
+                    b.HasIndex("ThePrecautionsToBeTakenOfEmployeeAccidentId")
+                        .IsUnique();
 
-                    b.HasIndex("TheSubjectOfTheAccidentOfEmployeeAccidentid")
-                        .IsUnique()
-                        .HasFilter("[TheSubjectOfTheAccidentOfEmployeeAccidentid] IS NOT NULL");
+                    b.HasIndex("TheSubjectOfTheAccidentOfEmployeeAccidentId")
+                        .IsUnique();
 
                     b.ToTable("EmployeeAccident");
                 });
@@ -717,11 +715,15 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.ThePrecautionsToBeTakenOfEmployeeAccident", "ThePrecautionsToBeTakenOfEmployeeAccident")
                         .WithOne("EmployeAccident")
-                        .HasForeignKey("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", "ThePrecautionsToBeTakenOfEmployeeAccidentid");
+                        .HasForeignKey("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", "ThePrecautionsToBeTakenOfEmployeeAccidentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.TheSubjectOfTheAccidentOfEmployeeAccident", "TheSubjectOfTheAccidentOfEmployeeAccident")
                         .WithOne("EmployeAccident")
-                        .HasForeignKey("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", "TheSubjectOfTheAccidentOfEmployeeAccidentid");
+                        .HasForeignKey("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", "TheSubjectOfTheAccidentOfEmployeeAccidentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Accident");
 

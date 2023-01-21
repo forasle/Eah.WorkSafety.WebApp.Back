@@ -421,8 +421,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     AccidentId = table.Column<int>(type: "int", nullable: false),
                     LostDays = table.Column<int>(type: "int", nullable: false),
-                    ThePrecautionsToBeTakenOfEmployeeAccidentid = table.Column<int>(type: "int", nullable: true),
-                    TheSubjectOfTheAccidentOfEmployeeAccidentid = table.Column<int>(type: "int", nullable: true)
+                    ThePrecautionsToBeTakenOfEmployeeAccidentId = table.Column<int>(type: "int", nullable: false),
+                    TheSubjectOfTheAccidentOfEmployeeAccidentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -440,15 +440,17 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccidentid",
-                        column: x => x.ThePrecautionsToBeTakenOfEmployeeAccidentid,
+                        name: "FK_EmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccidentId",
+                        column: x => x.ThePrecautionsToBeTakenOfEmployeeAccidentId,
                         principalTable: "ThePrecautionsToBeTakenOfEmployeeAccident",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_EmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccidentid",
-                        column: x => x.TheSubjectOfTheAccidentOfEmployeeAccidentid,
+                        name: "FK_EmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccidentId",
+                        column: x => x.TheSubjectOfTheAccidentOfEmployeeAccidentId,
                         principalTable: "TheSubjectOfTheAccidentOfEmployeeAccident",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -492,18 +494,16 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 column: "AccidentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccidentid",
+                name: "IX_EmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccidentId",
                 table: "EmployeeAccident",
-                column: "ThePrecautionsToBeTakenOfEmployeeAccidentid",
-                unique: true,
-                filter: "[ThePrecautionsToBeTakenOfEmployeeAccidentid] IS NOT NULL");
+                column: "ThePrecautionsToBeTakenOfEmployeeAccidentId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_EmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccidentid",
+                name: "IX_EmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccidentId",
                 table: "EmployeeAccident",
-                column: "TheSubjectOfTheAccidentOfEmployeeAccidentid",
-                unique: true,
-                filter: "[TheSubjectOfTheAccidentOfEmployeeAccidentid] IS NOT NULL");
+                column: "TheSubjectOfTheAccidentOfEmployeeAccidentId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeChronicDisease_ChronicDiseaseId",
