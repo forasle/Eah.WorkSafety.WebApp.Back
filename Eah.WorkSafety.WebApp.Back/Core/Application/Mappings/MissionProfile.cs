@@ -8,9 +8,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public MissionProfile()
         {
-            this.CreateMap<Mission, MissionDto>().ForMember(x=>x.AssignedUserIdList,opts=>opts
+            this.CreateMap<Mission, MissionDto>().ForMember(x=>x.AssignedUsers,opts=>opts
             .MapFrom(x=>x.Users
-            .Select(x=>x.UserId)
+            .Select(x=> new AssignedUser { UserId = x.UserId})
             .ToList()));
         }
     }

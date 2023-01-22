@@ -28,13 +28,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 mission.Status = request.Status;
 
                 var userMission = new List<UserMission>();
-                if (request.AssignedUserIdList != null)
+                if (request.UpdateAssignedUsers != null)
                 {
-                    foreach (var item in request.AssignedUserIdList)
+                    foreach (var item in request.UpdateAssignedUsers)
                     {
                         userMission.Add(new UserMission()
                         {
-                            UserId = item
+                            UserId = item.UserId
                         });
 
                     }

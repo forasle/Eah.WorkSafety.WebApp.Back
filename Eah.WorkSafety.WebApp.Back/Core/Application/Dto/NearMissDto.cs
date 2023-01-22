@@ -39,8 +39,13 @@
         public bool RootCauseAnalysis { get; set; }
 
         public int CreatorUserId { get; set; }
+        public List<AffectedEmployeeWithPropertyForNearMiss>? AffectedEmployeeWithPropertyForNearMiss { get; set; }
 
-        public Dictionary<int, int>? AffectedEmployeeIdWithLostDaysList { get; set; }
+    }
+    public class AffectedEmployeeWithPropertyForNearMiss
+    {
+        public int? EmployeeId { get; set; }
+        public int? LostDays { get; set; }
 
     }
 }

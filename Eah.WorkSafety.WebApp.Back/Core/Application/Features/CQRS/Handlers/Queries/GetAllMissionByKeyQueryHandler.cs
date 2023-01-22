@@ -22,7 +22,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
         public async Task<List<MissionDto>> Handle(GetAllMissionByKeyQueryRequest request, CancellationToken cancellationToken)
         {
             var count = await this.repository.GetAllCountAsync(x => x.Name!.Contains(request.Key));
-            var data = await this.repository.GetAllByKeyWithPaginationAsync(request.Filter, x => x.Name!.Contains(request.Key));
+            var data = await this.repository.GetAllByKeyWithPaginationAsync(request.Filter, x => x.Name!.Contains(request.Key),x=>x.Users);
 
             return this.mapper.Map<List<MissionDto>>(data);
         }

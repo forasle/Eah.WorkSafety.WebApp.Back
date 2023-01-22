@@ -3,7 +3,6 @@
     public class ThePrecautionsToBeTakenOfEmployeeAccident
     {
         public int id { get; set; }
-        public int EmployeeAccidentId { get; set; }
         public bool? WorkingWithoutAuthorization { get; set; }
         public bool? GiveOrReceiveFalseWarnings { get; set; }
         public bool? ErrorInSafety { get; set; }

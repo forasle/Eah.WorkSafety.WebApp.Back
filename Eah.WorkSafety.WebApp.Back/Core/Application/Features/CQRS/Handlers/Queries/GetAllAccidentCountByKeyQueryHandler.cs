@@ -10,12 +10,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllAccidentCountByKeyQueryHandler : IRequestHandler<GetAllAccidentCountByKeyQueryRequest, int>
     {
         private readonly IRepository<Accident> repository;
-        private readonly IMapper mapper;
 
-        public GetAllAccidentCountByKeyQueryHandler(IRepository<Accident> repository, IMapper mapper)
+
+        public GetAllAccidentCountByKeyQueryHandler(IRepository<Accident> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<int> Handle(GetAllAccidentCountByKeyQueryRequest request, CancellationToken cancellationToken)

@@ -10,28 +10,31 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public UserProfile()
         {
-            this.CreateMap<User, UserDto>().ForMember(x => x.Accidents, opts => opts
-            .MapFrom(x => x.Accidents
-            .Select(x=>x.Id)
-            .ToList()
-            )).ForMember(x => x.NearMisses, opts => opts
+            this.CreateMap<User, UserDto>().ForMember(x => x.UserAddedAccidents, opts => opts
+            .MapFrom(x => x.Accidents.Select(x=> new UserAddedAccident { AccidentId = x.Id})
+            .ToList())) 
+            .ForMember(x => x.UserAddedNearMisses, opts => opts
             .MapFrom(x => x.NearMisses
-            .Select(x => x.Id)
-            .ToList())).ForMember(x => x.RiskAssessments, opts => opts
+            .Select(x => new UserAddedNearMiss { NearMissId = x.Id})
+            .ToList()))
+            .ForMember(x => x.UserAddedRiskAssessments, opts => opts
             .MapFrom(x => x.RiskAssessments
-            .Select(x => x.Id)
-            .ToList())).ForMember(x => x.Inconsistencies, opts => opts
+            .Select(x => new UserAddedRiskAssessment { RiskAssessmentId = x.Id})
+            .ToList()))
+            .ForMember(x => x.UserAddedInconsistencies, opts => opts
             .MapFrom(x => x.Inconsistencies
-            .Select(x => x.Id)
-            .ToList())).ForMember(x => x.Missions, opts => opts
+            .Select(x => new UserAddedInconsistency { InconsistencyId = x.Id})
+            .ToList()))
+            .ForMember(x => x.UserAddedMissions, opts => opts
             .MapFrom(x => x.Missions
-            .Select(x => x.MissionId)
-            .ToList())).ForMember(x => x.ContingencyPlans, opts => opts
+            .Select(x => new UserAddedMission { MissionId = x.MissionId})
+            .ToList()))
+            .ForMember(x => x.UserAddedContingencyPlans, opts => opts
             .MapFrom(x => x.ContingencyPlans
-            .Select(x => x.Id)
-            .ToList())).ForMember(x => x.PreventiveActivities, opts => opts
+            .Select(x => new UserAddedContingencyPlan { ContingencyPlanId = x.Id})
+            .ToList())).ForMember(x => x.UserAddedPreventiveActivities, opts => opts
             .MapFrom(x => x.PreventiveActivities
-            .Select(x => x.Id)
+            .Select(x => new UserAddedPreventiveActivity { PreventiveActivityId = x.Id})
             .ToList()));
         }
 

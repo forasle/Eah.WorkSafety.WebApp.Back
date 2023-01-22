@@ -35,63 +35,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 Address = request.Address
                 
             };
-            var accidents = new List<EmployeeAccident>();
-            if (request.Accidents != null)
-            {
-                foreach (var item in request.Accidents)
-                {
-                    accidents.Add(new EmployeeAccident()
-                    {
-                        AccidentId = item.Key,
-                        LostDays=item.Value
-                    });
-
-                }
-                employee.Accidents = accidents;
-            }
-            
-            var nearMisses = new List<EmployeeNearMiss>();
-            if (request.NearMisses != null)
-            {
-                foreach (var item in request.NearMisses)
-                {
-                    nearMisses.Add(new EmployeeNearMiss()
-                    {
-                        NearMissId = item.Key,
-                        LostDays = item.Value
-                    });
-
-                }
-                employee.NearMisses = nearMisses;
-            }
-
-            var chronicDisease = new List<EmployeeChronicDisease>();
-            if (request.ChronicDiseases != null)
-            {
-                foreach (var item in request.ChronicDiseases)
-                {
-                    chronicDisease.Add(new EmployeeChronicDisease()
-                    {
-                        ChronicDiseaseId = item
-                    });
-
-                }
-                employee.ChronicDiseases = chronicDisease;
-            }
-
-            var occupationDisease = new List<EmployeeOccupationDisease>();
-            if (request.OccupationDiseases != null)
-            {
-                foreach (var item in request.OccupationDiseases)
-                {
-                    occupationDisease.Add(new EmployeeOccupationDisease()
-                    {
-                        OccupationDiseaseId = item
-                    });
-
-                }
-                employee.OccupationDiseases = occupationDisease;
-            }
+           
 
             await this.repository.CreateAsync(employee);
             return Unit.Value;

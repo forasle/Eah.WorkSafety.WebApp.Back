@@ -10,12 +10,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllMissionCountByKeyQueryHandler : IRequestHandler<GetAllMissionCountByKeyQueryRequest, int>
     {
         private readonly IRepository<Mission> repository;
-        private readonly IMapper mapper;
 
-        public GetAllMissionCountByKeyQueryHandler(IRepository<Mission> repository, IMapper mapper)
+        public GetAllMissionCountByKeyQueryHandler(IRepository<Mission> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<int> Handle(GetAllMissionCountByKeyQueryRequest request, CancellationToken cancellationToken)

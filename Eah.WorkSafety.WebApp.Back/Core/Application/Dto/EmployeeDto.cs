@@ -36,11 +36,32 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public string? Address { get; set; }
 
-        public Dictionary<int,int>? Accidents { get; set; }
-        public Dictionary<int, int>? NearMisses { get; set; }
-        public List<int>? ChronicDisease { get; set; }
-        public List<int>? OccupationDisease { get; set; }
+        public List<AffectedAccident>? AffectedAccident { get; set; }
 
+        public List<AffectedNearMisses>? AffectedNearMisses { get; set; }
 
+        public List<AffectedChronicDisease>? AffectedChronicDisease { get; set; }
+
+        public List<AffectedOccupationDisease>? AffectedOccupationDisease { get; set; }
+
+    }
+
+    public class AffectedOccupationDisease
+    {
+        public int OccupationDiseaseId { get; set; }
+    }
+
+    public class AffectedChronicDisease
+    {
+        public int ChronicDiseaseId { get; set; }
+    }
+
+    public class AffectedAccident
+    {
+        public int AccidentId { get; set; }
+    }
+    public class AffectedNearMisses 
+    {
+        public int NearMissId { get; set; }
     }
 }

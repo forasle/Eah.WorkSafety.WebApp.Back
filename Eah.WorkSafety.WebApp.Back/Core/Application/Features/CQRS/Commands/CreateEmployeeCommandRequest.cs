@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class CreateEmployeeCommandRequest:IRequest
+    public class CreateEmployeeCommandRequest : IRequest
     {
         public int Id { get; set; }
 
@@ -38,12 +38,5 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? Address { get; set; }
 
-        public Dictionary<int,int>? Accidents { get; set; }
-
-        public Dictionary<int, int>? NearMisses { get; set; }
-
-        public List<int>? OccupationDiseases { get; set; }
-
-        public List<int>? ChronicDiseases { get; set; }
     }
 }

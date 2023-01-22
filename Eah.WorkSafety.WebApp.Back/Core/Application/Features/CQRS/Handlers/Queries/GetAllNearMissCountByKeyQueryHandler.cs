@@ -10,12 +10,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllNearMissCountByKeyQueryHandler : IRequestHandler<GetAllNearMissCountByKeyQueryRequest, int>
     {
         private readonly IRepository<NearMiss> repository;
-        private readonly IMapper mapper;
 
-        public GetAllNearMissCountByKeyQueryHandler(IRepository<NearMiss> repository, IMapper mapper)
+        public GetAllNearMissCountByKeyQueryHandler(IRepository<NearMiss> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<int> Handle(GetAllNearMissCountByKeyQueryRequest request, CancellationToken cancellationToken)

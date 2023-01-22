@@ -11,8 +11,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int AssignerUserId { get; set; }
 
-        public List<int>? AssignedUserIdList { get; set; }
-
         public DateTime Date { get; set; }
 
         public DateTime Deadline { get; set; }
@@ -22,5 +20,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
         public CreateMissionCommandRequest()
         {
         }
+        public List<CreateAssignedUser>? CreateAssignedUsers { get; set; }
+    }
+    public class CreateAssignedUser
+    {
+        public int UserId { get; set; }
     }
 }

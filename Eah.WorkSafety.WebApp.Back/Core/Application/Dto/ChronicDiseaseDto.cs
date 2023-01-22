@@ -10,6 +10,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public string? Diagnosis { get; set; }
 
-        public List<int>? Employees { get; set; }
+        public List<AffectedEmployeeByChronicDisease>? AffectedEmployeeByChronicDisease { get; set; }
+    }
+    public class AffectedEmployeeByChronicDisease
+    {
+        public int EmployeeId { get; set; }
     }
 }

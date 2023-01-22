@@ -38,14 +38,14 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.Address = request.Address;
 
                 var accidents = new List<EmployeeAccident>();
-                if (request.Accidents != null)
+                if (request.UpdateAffectedOccupationDisease != null)
                 {
-                    foreach (var item in request.Accidents)
+                    foreach (var item in request.UpdateAffectedOccupationDisease)
                     {
                         accidents.Add(new EmployeeAccident()
                         {
-                            AccidentId = item.Key,
-                            LostDays = item.Value,
+                            AccidentId = item.UpdateOccupationDiseaseId,
+            
                         });
 
                     }
@@ -53,14 +53,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 }
 
                 var nearMisses = new List<EmployeeNearMiss>();
-                if (request.NearMisses != null)
+                if (request.UpdateAffectedNearMisses != null)
                 {
-                    foreach (var item in request.NearMisses)
+                    foreach (var item in request.UpdateAffectedNearMisses)
                     {
                         nearMisses.Add(new EmployeeNearMiss()
                         {
-                            NearMissId = item.Key,
-                            LostDays = item.Value
+                            NearMissId = item.NearMissId
                         });
 
                     }
@@ -68,13 +67,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 }
 
                 var chronicDisease = new List<EmployeeChronicDisease>();
-                if (request.ChronicDiseases != null)
+                if (request.UpdateAffectedChronicDisease != null)
                 {
-                    foreach (var item in request.ChronicDiseases)
+                    foreach (var item in request.UpdateAffectedChronicDisease)
                     {
                         chronicDisease.Add(new EmployeeChronicDisease()
                         {
-                            ChronicDiseaseId = item
+                            ChronicDiseaseId = item.ChronicDiseaseId
                         });
 
                     }
@@ -82,13 +81,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 }
 
                 var occupationDisease = new List<EmployeeOccupationDisease>();
-                if (request.OccupationDiseases != null)
+                if (request.UpdateAffectedOccupationDisease != null)
                 {
-                    foreach (var item in request.OccupationDiseases)
+                    foreach (var item in request.UpdateAffectedOccupationDisease)
                     {
                         occupationDisease.Add(new EmployeeOccupationDisease()
                         {
-                            OccupationDiseaseId = item
+                            OccupationDiseaseId = item.UpdateOccupationDiseaseId
                         });
 
                     }

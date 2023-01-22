@@ -42,7 +42,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int CreatorUserId { get; set; }
 
-        public Dictionary<int,int>? AffectedEmployeeIdWithLostDaysList { get; set; }
+        public List<UpdateAffectedEmployeeWithPropertyForNearMiss>? UpdateAffectedEmployeeWithPropertyForNearMiss { get; set; }
+
+    }
+    public class UpdateAffectedEmployeeWithPropertyForNearMiss
+    {
+        public int EmployeeId { get; set; }
+        public int LostDays { get; set; }
 
     }
 }

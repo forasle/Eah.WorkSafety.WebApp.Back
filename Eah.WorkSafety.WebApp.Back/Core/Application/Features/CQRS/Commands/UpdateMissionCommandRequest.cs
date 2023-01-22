@@ -12,16 +12,16 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int AssignerUserId { get; set; }
 
-        public List<int>? AssignedUserIdList { get; set; }
-
         public DateTime Date { get; set; }
 
         public DateTime Deadline { get; set; }
 
         public bool Status { get; set; }
 
-        public UpdateMissionCommandRequest()
-        {
-        }
+        public List<UpdateAssignedUser>? UpdateAssignedUsers { get; set; }
+    }
+    public class UpdateAssignedUser
+    {
+        public int UserId { get; set; }
     }
 }
