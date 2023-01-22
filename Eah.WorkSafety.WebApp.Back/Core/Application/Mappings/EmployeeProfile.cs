@@ -10,19 +10,18 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public EmployeeProfile()
         {
-            this.CreateMap<Employee, EmployeeDto>().ForMember(x=>x.Accidents,opts=>opts
-            .MapFrom(x=>x.Accidents
-            .ToDictionary(x=>x.AccidentId,x=>x.LostDays)))
-            .ForMember(x => x.NearMisses, opts => opts
-            .MapFrom(x => x.NearMisses
-            .ToDictionary(x=>x.NearMissId,x=>x.LostDays)))
-            .ForMember(x => x.ChronicDisease, opts => opts
-            .MapFrom(x => x.ChronicDiseases
-            .Select(x => x.ChronicDiseaseId)
-            .ToList())).ForMember(x => x.OccupationDisease, opts => opts
-            .MapFrom(x => x.OccupationDiseases
-            .Select(x => x.OccupationDiseaseId)
-            .ToList()));
+            this.CreateMap<Employee, EmployeeDto>().ForMember(x => x.AffectedAccident, opts => opts
+            .MapFrom(x => x.Accidents.Select(x => new AffectedAccident { AccidentId = x.AccidentId }
+            ).ToList()))
+            .ForMember(x => x.AffectedNearMisses, opts => opts
+            .MapFrom(x => x.NearMisses.Select(x => new AffectedNearMisses { NearMissId = x.NearMissId }
+            ).ToList()))
+            .ForMember(x => x.AffectedChronicDisease, opts => opts
+            .MapFrom(x => x.ChronicDiseases.Select(x => new AffectedChronicDisease { ChronicDiseaseId = x.ChronicDiseaseId }
+            ).ToList()))
+            .ForMember(x => x.AffectedOccupationDisease, opts => opts
+            .MapFrom(x => x.OccupationDiseases.Select(x => new AffectedOccupationDisease { OccupationDiseaseId = x.OccupationDiseaseId }
+            ).ToList()));
         }
 
     }

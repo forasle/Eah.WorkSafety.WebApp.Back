@@ -38,12 +38,33 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public string? Address { get; set; }
 
-        public Dictionary<int,int>? Accidents { get; set; }
+        public List<UpdateAffectedAccident>? UpdateAffectedAccident { get; set; }
 
-        public Dictionary<int, int>? NearMisses { get; set; }
+        public List<UpdateAffectedNearMisses>? UpdateAffectedNearMisses { get; set; }
 
-        public List<int>? OccupationDiseases { get; set; }
+        public List<UpdateAffectedChronicDisease>? UpdateAffectedChronicDisease { get; set; }
 
-        public List<int>? ChronicDiseases { get; set; }
+        public List<UpdateAffectedOccupationDisease>? UpdateAffectedOccupationDisease { get; set; }
+
+    }
+
+    public class UpdateAffectedOccupationDisease
+    {
+        public int UpdateOccupationDiseaseId { get; set; }
+    }
+
+    public class UpdateAffectedChronicDisease
+    {
+        public int ChronicDiseaseId { get; set; }
+    }
+
+    public class UpdateAffectedAccident
+    {
+        public int AccidentId { get; set; }
+    }
+    public class UpdateAffectedNearMisses
+    {
+        public int NearMissId { get; set; }
     }
 }
+

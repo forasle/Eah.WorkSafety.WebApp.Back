@@ -8,8 +8,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
     {
         public NearMissProfile()
         {
-            this.CreateMap<NearMiss, NearMissDto>().ForMember(x => x.AffectedEmployeeIdWithLostDaysList, opts => opts
-            .MapFrom(x => x.Employees.ToDictionary(x => x.EmployeeId, x => x.LostDays)));
+            this.CreateMap<NearMiss, NearMissDto>().ForMember(x => x.AffectedEmployeeWithPropertyForNearMiss, opts => opts
+            .MapFrom(x => x.Employees.Select(x=> new AffectedEmployeeWithPropertyForNearMiss
+            {
+                EmployeeId = x.EmployeeId,
+                LostDays = x.LostDays
+            }).ToList()
+            ));
 
         }
     }

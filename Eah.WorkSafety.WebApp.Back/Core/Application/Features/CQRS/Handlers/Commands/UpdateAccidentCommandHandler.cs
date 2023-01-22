@@ -37,11 +37,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.RootCauseAnalysis = request.RootCauseAnalysis;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
                 var employees = new List<EmployeeAccident>();
-                if (request.AffectedEmployeeIdWithLostDaysList != null)
+                if (request.UpdateAffectedEmployeeWithProperty != null)
                 {
-                    foreach (var item in request.AffectedEmployeeIdWithLostDaysList)
+                    foreach (var item in request.UpdateAffectedEmployeeWithProperty)
                     {
-                        employees.Add(new EmployeeAccident() { EmployeeId=item.Key,LostDays=item.Value});
+                        employees.Add(new EmployeeAccident() { EmployeeId=item.EmployeeId,LostDays=item.LostDays});
                     }
                 }
                 updatedEntity.Employees = employees;

@@ -10,12 +10,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllInconsistencyCountByKeyQueryHandler : IRequestHandler<GetAllInconsistencyCountByKeyQueryRequest, int>
     {
         private readonly IRepository<Inconsistency> repository;
-        private readonly IMapper mapper;
-
-        public GetAllInconsistencyCountByKeyQueryHandler(IRepository<Inconsistency> repository, IMapper mapper)
+        public GetAllInconsistencyCountByKeyQueryHandler(IRepository<Inconsistency> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<int> Handle(GetAllInconsistencyCountByKeyQueryRequest request, CancellationToken cancellationToken)

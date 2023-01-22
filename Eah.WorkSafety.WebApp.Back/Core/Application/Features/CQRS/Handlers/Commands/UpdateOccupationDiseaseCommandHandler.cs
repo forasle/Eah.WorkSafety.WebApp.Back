@@ -24,11 +24,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
              
                 var employees = new List<EmployeeOccupationDisease>();
-                if (request.OwnerEmployeeIdList != null)
+                if (request.UpdateAffectedEmployeeByOccupationDisease != null)
                 {
-                    foreach (var id in request.OwnerEmployeeIdList)
+                    foreach (var item in request.UpdateAffectedEmployeeByOccupationDisease)
                     {
-                        employees.Add(new EmployeeOccupationDisease() { EmployeeId = id });
+                        employees.Add(new EmployeeOccupationDisease() { EmployeeId = item.EmployeeId });
                     }
                 }
                 updatedEntity.Employees = employees;

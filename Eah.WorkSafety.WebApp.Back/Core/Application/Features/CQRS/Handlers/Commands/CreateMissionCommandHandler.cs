@@ -27,13 +27,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 Status = request.Status, 
                 
             };
-            if (request.AssignedUserIdList != null)
+            if (request.CreateAssignedUsers != null)
             {
-                foreach (var item in request.AssignedUserIdList)
+                foreach (var item in request.CreateAssignedUsers)
                 {
                     mission.Users.Add(new UserMission()
                     {
-                        UserId = item
+                        UserId = item.UserId
                     });
 
                 }

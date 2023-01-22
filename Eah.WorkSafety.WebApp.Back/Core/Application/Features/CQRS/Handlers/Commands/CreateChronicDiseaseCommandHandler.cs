@@ -22,13 +22,13 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 ReferenceNumber = request.ReferenceNumber,
 
             } ;
-            if (request.OwnerEmployeeIdList != null)
+            if (request.CreateAffectedEmployeeByChronicDiseaseId != null)
             {
-                foreach (var item in request.OwnerEmployeeIdList)
+                foreach (var item in request.CreateAffectedEmployeeByChronicDiseaseId)
                 {
                     chronicDisease.Employees.Add(new EmployeeChronicDisease()
                     {
-                        EmployeeId = item
+                        EmployeeId = item.EmployeeId
                     });
                 }
             }

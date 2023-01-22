@@ -39,14 +39,14 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 RootCauseAnalysis = request.RootCauseAnalysis,
                 CreatorUserId = request.CreatorUserId,
             };
-            if (request.AffectedEmployeeIdWithLostDaysList != null)
+            if (request.CreateAffectedEmployeeWithPropertyForNearMiss != null)
             {
-                foreach (var item in request.AffectedEmployeeIdWithLostDaysList)
+                foreach (var item in request.CreateAffectedEmployeeWithPropertyForNearMiss)
                 {
                     nearMiss.Employees.Add(new EmployeeNearMiss()
                     {
-                        EmployeeId = item.Key,
-                        LostDays = item.Value
+                        EmployeeId = item.EmployeeId,
+                        LostDays = item.LostDays
                     });
                 }
             }

@@ -11,12 +11,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
     public class GetAllEmployeeCountByKeyQueryHandler : IRequestHandler<GetAllEmployeeCountByKeyQueryRequest, int>
     {
         private readonly IRepository<Employee> repository;
-        private readonly IMapper mapper;
 
-        public GetAllEmployeeCountByKeyQueryHandler(IRepository<Employee> repository, IMapper mapper)
+        public GetAllEmployeeCountByKeyQueryHandler(IRepository<Employee> repository)
         {
             this.repository = repository;
-            this.mapper = mapper;
         }
 
         public async Task<int> Handle(GetAllEmployeeCountByKeyQueryRequest request, CancellationToken cancellationToken)

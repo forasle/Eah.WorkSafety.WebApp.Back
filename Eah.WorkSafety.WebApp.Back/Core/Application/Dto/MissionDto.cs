@@ -12,8 +12,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public int AssignerUserId { get; set; }
 
-        public List<int>? AssignedUserIdList { get; set; }
-
         public DateTime Date { get; set; }
 
         public DateTime Deadline { get; set; }
@@ -22,5 +20,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
         public MissionDto()
         {
         }
+        public List<AssignedUser>? AssignedUsers { get; set; }
+    }
+    public class AssignedUser
+    {
+        public int UserId { get; set; }
     }
 }
