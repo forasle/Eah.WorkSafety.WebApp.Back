@@ -19,7 +19,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<int> Handle(GetAllEmployeeCountByKeyQueryRequest request, CancellationToken cancellationToken)
         {
-            return await this.repository.GetAllCountAsync(x=>x.Name!.Contains(request.Key));
+            return await this.repository.GetAllCountAsync(x=>x.IdentificationNumber!.Contains(request.Key));
         }
     }
 }
