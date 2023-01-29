@@ -64,7 +64,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         public async Task<IActionResult> Get(int id)
         {
             var result = await this.mediator.Send(new GetAccidentQueryRequest(id));
-            return result == null ? NotFound() : Ok(new Response<AccidentDto>(result));
+            return Ok(result);
         }
 
 
