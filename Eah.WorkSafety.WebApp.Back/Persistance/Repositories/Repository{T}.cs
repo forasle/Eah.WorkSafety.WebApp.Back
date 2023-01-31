@@ -169,6 +169,30 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
 
             return set;
         }
+        public async Task<List<Accident>> GetAllByKeyWithPaginationAsync2(PaginationFilter filter, Expression<Func<Accident, bool>> key, params Expression<Func<T, object>>[] includeProperties)
+        {
+
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            return await this.workSafetyContext.Accidents
+                .AsNoTracking().Where(key)
+                .Include(x => x.Employees).ThenInclude(x => x.ThePrecautionsToBeTakenOfEmployeeAccident)
+                .Include(x => x.Employees).ThenInclude(x => x.TheSubjectOfTheAccidentOfEmployeeAccident)
+                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+        public async Task<Accident?> GetByIdAsync2(Expression<Func<Accident, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
+        {
+            var set = await this.workSafetyContext.Accidents
+
+                .AsNoTracking().Where(filter)
+                .Include(x => x.Employees).ThenInclude(x => x.ThePrecautionsToBeTakenOfEmployeeAccident)
+                .Include(x => x.Employees).ThenInclude(x => x.TheSubjectOfTheAccidentOfEmployeeAccident).SingleOrDefaultAsync();
+            
+          
+            return set;
+        }
 
         public async Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter)
         {

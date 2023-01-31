@@ -45,13 +45,13 @@
         public int? EmployeeId { get; set; }
         public int? LostDays { get; set; }
 
-        public int? ThePrecautionsToBeTakenOfEmployeeAccidentId { get; set; }
+       // public int? ThePrecautionsToBeTakenOfEmployeeAccidentId { get; set; }
 
-        public int? TheSubjectOfTheAccidentOfEmployeeAccidentId { get; set; }
+        //public int? TheSubjectOfTheAccidentOfEmployeeAccidentId { get; set; }
 
-        // public ThePrecautionsToBeTakenOfEmployeeAccident? ThePrecautionsToBeTakenOfEmployeeAccident { get; set; }
+         public ThePrecautionsToBeTakenOfEmployeeAccident? ThePrecautionsToBeTakenOfEmployeeAccident { get; set; }
 
-       // public TheSubjectOfTheAccidentOfEmployeeAccident? TheSubjectOfTheAccidentOfEmployeeAccident { get; set; }
+        public TheSubjectOfTheAccidentOfEmployeeAccident? TheSubjectOfTheAccidentOfEmployeeAccident { get; set; }
     }
 
     public class ThePrecautionsToBeTakenOfEmployeeAccident
