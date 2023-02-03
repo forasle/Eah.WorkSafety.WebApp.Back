@@ -17,8 +17,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         public async Task<Unit> Handle(UpdateNearmissCommandRequest request, CancellationToken cancellationToken)
         {
             var updatedEntity = await this.repository.GetByIdAsync(request.Id);
+            
             if (updatedEntity != null)
             {
+                updatedEntity!.Employees.Clear();
                 updatedEntity.NearMissNumber = request.NearMissNumber;
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
                 updatedEntity.NearMissInfo = request.NearMissInfo;

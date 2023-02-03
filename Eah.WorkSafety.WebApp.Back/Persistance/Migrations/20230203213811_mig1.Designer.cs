@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20230121113537_mig_1")]
+    [Migration("20230203213811_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -215,21 +215,81 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<int>("LostDays")
                         .HasColumnType("int");
 
-                    b.Property<int>("ThePrecautionsToBeTakenOfEmployeeAccidentId")
-                        .HasColumnType("int");
+                    b.Property<bool?>("ThePrecautionsDisobeyingInstructions")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("TheSubjectOfTheAccidentOfEmployeeAccidentId")
-                        .HasColumnType("int");
+                    b.Property<bool?>("ThePrecautionsEquipmentUsageError")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsErrorInSafety")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsGiveOrReceiveFalseWarnings")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsImproperSpeed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsInsufficientMachineEquipmentEnclosure")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsNotUsingEquipmentProtectors")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsNotUsingPersonalProtectiveEquipment")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsTirednessOrInsomniaOrDrowsiness")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsUsingFaultyEquipment")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsWorkingInAnUnfamiliarField")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsWorkingWithoutAuthorization")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsWorkingWithoutDiscipline")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectElectricalAccidents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToBiologicalAgents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToChemicals")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToFireAndBurn")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToPhsicalViolence")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToVerbalViolence")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectFallingImpactInjuries")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectInjuredTrafficAccident")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectMaterialDamagedTrafficAccident")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectOfficeAccidents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectSharpObjectInjuries")
+                        .HasColumnType("bit");
 
                     b.HasKey("EmployeeId", "AccidentId");
 
                     b.HasIndex("AccidentId");
-
-                    b.HasIndex("ThePrecautionsToBeTakenOfEmployeeAccidentId")
-                        .IsUnique();
-
-                    b.HasIndex("TheSubjectOfTheAccidentOfEmployeeAccidentId")
-                        .IsUnique();
 
                     b.ToTable("EmployeeAccident");
                 });
@@ -540,104 +600,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ThePrecautionsToBeTakenOfEmployeeAccident", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<bool?>("DisobeyingInstructions")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("EquipmentUsageError")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ErrorInSafety")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("GiveOrReceiveFalseWarnings")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ImproperSpeed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("InsufficientMachineEquipmentEnclosure")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("NotUsingEquipmentProtectors")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("NotUsingPersonalProtectiveEquipment")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("TirednessOrInsomniaOrDrowsiness")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("UsingFaultyEquipment")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("WorkingInAnUnfamiliarField")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("WorkingWithoutAuthorization")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("WorkingWithoutDiscipline")
-                        .HasColumnType("bit");
-
-                    b.HasKey("id");
-
-                    b.ToTable("ThePrecautionsToBeTakenOfEmployeeAccident");
-                });
-
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.TheSubjectOfTheAccidentOfEmployeeAccident", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<bool?>("ElectricalAccidents")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ExposureToBiologicalAgents")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ExposureToChemicals")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ExposureToFireAndBurn")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ExposureToPhsicalViolence")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("ExposureToVerbalViolence")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("FallingImpactInjuries")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("InjuredTrafficAccident")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("MaterialDamagedTrafficAccident")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("OfficeAccidents")
-                        .HasColumnType("bit");
-
-                    b.Property<bool?>("SharpObjectInjuries")
-                        .HasColumnType("bit");
-
-                    b.HasKey("id");
-
-                    b.ToTable("TheSubjectOfTheAccidentOfEmployeeAccident");
-                });
-
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>
                 {
                     b.Property<int>("Id")
@@ -713,25 +675,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.ThePrecautionsToBeTakenOfEmployeeAccident", "ThePrecautionsToBeTakenOfEmployeeAccident")
-                        .WithOne("EmployeAccident")
-                        .HasForeignKey("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", "ThePrecautionsToBeTakenOfEmployeeAccidentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Eah.WorkSafety.WebApp.Back.Core.Domain.TheSubjectOfTheAccidentOfEmployeeAccident", "TheSubjectOfTheAccidentOfEmployeeAccident")
-                        .WithOne("EmployeAccident")
-                        .HasForeignKey("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeAccident", "TheSubjectOfTheAccidentOfEmployeeAccidentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Accident");
 
                     b.Navigation("Employee");
-
-                    b.Navigation("ThePrecautionsToBeTakenOfEmployeeAccident");
-
-                    b.Navigation("TheSubjectOfTheAccidentOfEmployeeAccident");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.EmployeeChronicDisease", b =>
@@ -904,16 +850,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.Role", b =>
                 {
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.ThePrecautionsToBeTakenOfEmployeeAccident", b =>
-                {
-                    b.Navigation("EmployeAccident");
-                });
-
-            modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.TheSubjectOfTheAccidentOfEmployeeAccident", b =>
-                {
-                    b.Navigation("EmployeAccident");
                 });
 
             modelBuilder.Entity("Eah.WorkSafety.WebApp.Back.Core.Domain.User", b =>

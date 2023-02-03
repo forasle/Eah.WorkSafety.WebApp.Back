@@ -50,36 +50,33 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                         
                         EmployeeId = item.EmployeeId,
                         LostDays = item.LostDays,
-                        ThePrecautionsToBeTakenOfEmployeeAccident = new Domain.ThePrecautionsToBeTakenOfEmployeeAccident
-                        {
-                            WorkingWithoutAuthorization = item.ThePrecautionsToBeTakenOfEmployeeAccident!.WorkingWithoutAuthorization,
-                            GiveOrReceiveFalseWarnings = item.ThePrecautionsToBeTakenOfEmployeeAccident!.GiveOrReceiveFalseWarnings,
-                            ErrorInSafety = item.ThePrecautionsToBeTakenOfEmployeeAccident!.ErrorInSafety,
-                            ImproperSpeed = item.ThePrecautionsToBeTakenOfEmployeeAccident!.ImproperSpeed,
-                            NotUsingEquipmentProtectors = item.ThePrecautionsToBeTakenOfEmployeeAccident!.NotUsingEquipmentProtectors,
-                            NotUsingPersonalProtectiveEquipment = item.ThePrecautionsToBeTakenOfEmployeeAccident!.NotUsingPersonalProtectiveEquipment,
-                            EquipmentUsageError = item.ThePrecautionsToBeTakenOfEmployeeAccident!.EquipmentUsageError,
-                            UsingFaultyEquipment = item.ThePrecautionsToBeTakenOfEmployeeAccident!.UsingFaultyEquipment,
-                            WorkingInAnUnfamiliarField = item.ThePrecautionsToBeTakenOfEmployeeAccident!.WorkingInAnUnfamiliarField,
-                            DisobeyingInstructions = item.ThePrecautionsToBeTakenOfEmployeeAccident!.DisobeyingInstructions,
-                            TirednessOrInsomniaOrDrowsiness = item.ThePrecautionsToBeTakenOfEmployeeAccident!.TirednessOrInsomniaOrDrowsiness,
-                            WorkingWithoutDiscipline = item.ThePrecautionsToBeTakenOfEmployeeAccident!.WorkingWithoutDiscipline,
-                            InsufficientMachineEquipmentEnclosure = item.ThePrecautionsToBeTakenOfEmployeeAccident!.InsufficientMachineEquipmentEnclosure,
-                        },
-                       TheSubjectOfTheAccidentOfEmployeeAccident = new Domain.TheSubjectOfTheAccidentOfEmployeeAccident
-                       {
-                           ExposureToPhsicalViolence = item.TheSubjectOfTheAccidentOfEmployeeAccident!.ExposureToPhsicalViolence,
-                           ExposureToVerbalViolence = item.TheSubjectOfTheAccidentOfEmployeeAccident!.ExposureToVerbalViolence,
-                           SharpObjectInjuries = item.TheSubjectOfTheAccidentOfEmployeeAccident!.SharpObjectInjuries,
-                           ExposureToBiologicalAgents = item.TheSubjectOfTheAccidentOfEmployeeAccident!.ExposureToBiologicalAgents,
-                           FallingImpactInjuries = item.TheSubjectOfTheAccidentOfEmployeeAccident!.FallingImpactInjuries,
-                           MaterialDamagedTrafficAccident = item.TheSubjectOfTheAccidentOfEmployeeAccident!.MaterialDamagedTrafficAccident,
-                           InjuredTrafficAccident = item.TheSubjectOfTheAccidentOfEmployeeAccident!.InjuredTrafficAccident,
-                           ExposureToChemicals = item.TheSubjectOfTheAccidentOfEmployeeAccident!.ExposureToChemicals,
-                           ExposureToFireAndBurn = item.TheSubjectOfTheAccidentOfEmployeeAccident!.ExposureToFireAndBurn,
-                           OfficeAccidents = item.TheSubjectOfTheAccidentOfEmployeeAccident!.OfficeAccidents,
-                           ElectricalAccidents = item.TheSubjectOfTheAccidentOfEmployeeAccident!.ElectricalAccidents
-                       }
+                        TheSubjectExposureToFireAndBurn = item.TheSubjectExposureToFireAndBurn,
+                        TheSubjectExposureToChemicals = item.TheSubjectExposureToChemicals,
+                        TheSubjectSharpObjectInjuries = item.TheSubjectSharpObjectInjuries,
+                        TheSubjectOfficeAccidents = item.TheSubjectOfficeAccidents,
+                        TheSubjectMaterialDamagedTrafficAccident = item.TheSubjectMaterialDamagedTrafficAccident,
+                        TheSubjectInjuredTrafficAccident = item.TheSubjectInjuredTrafficAccident,
+                        TheSubjectFallingImpactInjuries = item.TheSubjectFallingImpactInjuries,
+                        TheSubjectElectricalAccidents = item.TheSubjectElectricalAccidents,
+                        TheSubjectExposureToBiologicalAgents = item.TheSubjectExposureToBiologicalAgents,
+                        TheSubjectExposureToPhsicalViolence = item.TheSubjectExposureToPhsicalViolence,
+                        TheSubjectExposureToVerbalViolence = item.TheSubjectExposureToVerbalViolence,
+                        
+                        ThePrecautionsErrorInSafety = item.ThePrecautionsErrorInSafety,
+                        ThePrecautionsDisobeyingInstructions = item.ThePrecautionsDisobeyingInstructions,
+                        ThePrecautionsEquipmentUsageError = item.ThePrecautionsEquipmentUsageError,
+                        ThePrecautionsGiveOrReceiveFalseWarnings = item.ThePrecautionsGiveOrReceiveFalseWarnings,
+                        ThePrecautionsImproperSpeed = item.ThePrecautionsImproperSpeed,
+                        ThePrecautionsInsufficientMachineEquipmentEnclosure = item.ThePrecautionsInsufficientMachineEquipmentEnclosure,
+                        ThePrecautionsNotUsingEquipmentProtectors = item.ThePrecautionsNotUsingEquipmentProtectors,
+                        ThePrecautionsNotUsingPersonalProtectiveEquipment = item.ThePrecautionsNotUsingPersonalProtectiveEquipment,
+                        ThePrecautionsTirednessOrInsomniaOrDrowsiness = item.ThePrecautionsTirednessOrInsomniaOrDrowsiness,
+                        ThePrecautionsUsingFaultyEquipment = item.ThePrecautionsUsingFaultyEquipment,
+                        ThePrecautionsWorkingInAnUnfamiliarField = item.ThePrecautionsWorkingInAnUnfamiliarField,
+                        ThePrecautionsWorkingWithoutAuthorization = item.ThePrecautionsWorkingWithoutAuthorization,
+                        ThePrecautionsWorkingWithoutDiscipline = item.ThePrecautionsWorkingWithoutDiscipline
+
+
                     }) ;
 
                 }

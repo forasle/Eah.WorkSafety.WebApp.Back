@@ -13,10 +13,31 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
         {
                 EmployeeId = x.EmployeeId,
                 LostDays = x.LostDays,
-                //ThePrecautionsToBeTakenOfEmployeeAccidentId = x.ThePrecautionsToBeTakenOfEmployeeAccidentId,
-                //TheSubjectOfTheAccidentOfEmployeeAccidentId = x.TheSubjectOfTheAccidentOfEmployeeAccidentId
-                ThePrecautionsToBeTakenOfEmployeeAccident = new Dto.ThePrecautionsToBeTakenOfEmployeeAccident { DisobeyingInstructions = x.ThePrecautionsToBeTakenOfEmployeeAccident!.DisobeyingInstructions, EquipmentUsageError = x.ThePrecautionsToBeTakenOfEmployeeAccident.EquipmentUsageError, ErrorInSafety = x.ThePrecautionsToBeTakenOfEmployeeAccident.ErrorInSafety, GiveOrReceiveFalseWarnings = x.ThePrecautionsToBeTakenOfEmployeeAccident.GiveOrReceiveFalseWarnings, ImproperSpeed = x.ThePrecautionsToBeTakenOfEmployeeAccident.ImproperSpeed, InsufficientMachineEquipmentEnclosure = x.ThePrecautionsToBeTakenOfEmployeeAccident.InsufficientMachineEquipmentEnclosure, NotUsingEquipmentProtectors = x.ThePrecautionsToBeTakenOfEmployeeAccident.NotUsingEquipmentProtectors, NotUsingPersonalProtectiveEquipment = x.ThePrecautionsToBeTakenOfEmployeeAccident.NotUsingPersonalProtectiveEquipment, TirednessOrInsomniaOrDrowsiness = x.ThePrecautionsToBeTakenOfEmployeeAccident.TirednessOrInsomniaOrDrowsiness, UsingFaultyEquipment = x.ThePrecautionsToBeTakenOfEmployeeAccident.UsingFaultyEquipment, WorkingInAnUnfamiliarField = x.ThePrecautionsToBeTakenOfEmployeeAccident.WorkingInAnUnfamiliarField, WorkingWithoutAuthorization = x.ThePrecautionsToBeTakenOfEmployeeAccident.WorkingWithoutAuthorization, WorkingWithoutDiscipline = x.ThePrecautionsToBeTakenOfEmployeeAccident.WorkingWithoutDiscipline },
-                TheSubjectOfTheAccidentOfEmployeeAccident = new Dto.TheSubjectOfTheAccidentOfEmployeeAccident { ElectricalAccidents = x.TheSubjectOfTheAccidentOfEmployeeAccident!.ElectricalAccidents, ExposureToBiologicalAgents = x.TheSubjectOfTheAccidentOfEmployeeAccident.ExposureToBiologicalAgents, ExposureToChemicals = x.TheSubjectOfTheAccidentOfEmployeeAccident.ExposureToChemicals, ExposureToFireAndBurn = x.TheSubjectOfTheAccidentOfEmployeeAccident.ExposureToFireAndBurn, ExposureToPhsicalViolence = x.TheSubjectOfTheAccidentOfEmployeeAccident.ExposureToPhsicalViolence, ExposureToVerbalViolence = x.TheSubjectOfTheAccidentOfEmployeeAccident.ExposureToVerbalViolence, FallingImpactInjuries = x.TheSubjectOfTheAccidentOfEmployeeAccident.FallingImpactInjuries, InjuredTrafficAccident = x.TheSubjectOfTheAccidentOfEmployeeAccident.InjuredTrafficAccident, MaterialDamagedTrafficAccident = x.TheSubjectOfTheAccidentOfEmployeeAccident.MaterialDamagedTrafficAccident, OfficeAccidents = x.TheSubjectOfTheAccidentOfEmployeeAccident.OfficeAccidents, SharpObjectInjuries = x.TheSubjectOfTheAccidentOfEmployeeAccident.SharpObjectInjuries }
+                ThePrecautionsDisobeyingInstructions = x.ThePrecautionsDisobeyingInstructions,
+                ThePrecautionsEquipmentUsageError = x.ThePrecautionsEquipmentUsageError,
+                ThePrecautionsErrorInSafety = x.ThePrecautionsErrorInSafety,
+                ThePrecautionsGiveOrReceiveFalseWarnings =x.ThePrecautionsGiveOrReceiveFalseWarnings,
+                ThePrecautionsImproperSpeed = x.ThePrecautionsImproperSpeed,
+                ThePrecautionsInsufficientMachineEquipmentEnclosure = x.ThePrecautionsInsufficientMachineEquipmentEnclosure,
+                ThePrecautionsNotUsingEquipmentProtectors = x.ThePrecautionsNotUsingEquipmentProtectors,
+                ThePrecautionsNotUsingPersonalProtectiveEquipment = x.ThePrecautionsNotUsingPersonalProtectiveEquipment,
+                ThePrecautionsTirednessOrInsomniaOrDrowsiness = x.ThePrecautionsTirednessOrInsomniaOrDrowsiness,
+                ThePrecautionsUsingFaultyEquipment = x.ThePrecautionsUsingFaultyEquipment,
+                ThePrecautionsWorkingInAnUnfamiliarField = x.ThePrecautionsWorkingInAnUnfamiliarField,
+                ThePrecautionsWorkingWithoutAuthorization = x.ThePrecautionsWorkingWithoutAuthorization,
+                ThePrecautionsWorkingWithoutDiscipline = x.ThePrecautionsWorkingWithoutDiscipline,
+                
+                TheSubjectElectricalAccidents = x.TheSubjectElectricalAccidents,
+                TheSubjectExposureToBiologicalAgents = x.TheSubjectExposureToBiologicalAgents,
+                TheSubjectExposureToChemicals = x.TheSubjectExposureToChemicals,
+                TheSubjectExposureToFireAndBurn = x.TheSubjectExposureToFireAndBurn,
+                TheSubjectExposureToPhsicalViolence = x.TheSubjectExposureToPhsicalViolence,
+                TheSubjectExposureToVerbalViolence = x.TheSubjectExposureToVerbalViolence,
+                TheSubjectFallingImpactInjuries = x.TheSubjectFallingImpactInjuries,
+                TheSubjectInjuredTrafficAccident = x.TheSubjectInjuredTrafficAccident,
+                TheSubjectMaterialDamagedTrafficAccident = x.TheSubjectMaterialDamagedTrafficAccident,
+                TheSubjectOfficeAccidents = x.TheSubjectOfficeAccidents,
+                TheSubjectSharpObjectInjuries = x.TheSubjectSharpObjectInjuries
             }).ToList()
             ));
             /*

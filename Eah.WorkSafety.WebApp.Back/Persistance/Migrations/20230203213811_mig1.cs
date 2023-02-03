@@ -98,54 +98,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ThePrecautionsToBeTakenOfEmployeeAccident",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    WorkingWithoutAuthorization = table.Column<bool>(type: "bit", nullable: true),
-                    GiveOrReceiveFalseWarnings = table.Column<bool>(type: "bit", nullable: true),
-                    ErrorInSafety = table.Column<bool>(type: "bit", nullable: true),
-                    ImproperSpeed = table.Column<bool>(type: "bit", nullable: true),
-                    NotUsingEquipmentProtectors = table.Column<bool>(type: "bit", nullable: true),
-                    NotUsingPersonalProtectiveEquipment = table.Column<bool>(type: "bit", nullable: true),
-                    EquipmentUsageError = table.Column<bool>(type: "bit", nullable: true),
-                    UsingFaultyEquipment = table.Column<bool>(type: "bit", nullable: true),
-                    WorkingInAnUnfamiliarField = table.Column<bool>(type: "bit", nullable: true),
-                    DisobeyingInstructions = table.Column<bool>(type: "bit", nullable: true),
-                    TirednessOrInsomniaOrDrowsiness = table.Column<bool>(type: "bit", nullable: true),
-                    WorkingWithoutDiscipline = table.Column<bool>(type: "bit", nullable: true),
-                    InsufficientMachineEquipmentEnclosure = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ThePrecautionsToBeTakenOfEmployeeAccident", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "TheSubjectOfTheAccidentOfEmployeeAccident",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ExposureToPhsicalViolence = table.Column<bool>(type: "bit", nullable: true),
-                    ExposureToVerbalViolence = table.Column<bool>(type: "bit", nullable: true),
-                    SharpObjectInjuries = table.Column<bool>(type: "bit", nullable: true),
-                    ExposureToBiologicalAgents = table.Column<bool>(type: "bit", nullable: true),
-                    FallingImpactInjuries = table.Column<bool>(type: "bit", nullable: true),
-                    MaterialDamagedTrafficAccident = table.Column<bool>(type: "bit", nullable: true),
-                    InjuredTrafficAccident = table.Column<bool>(type: "bit", nullable: true),
-                    ExposureToChemicals = table.Column<bool>(type: "bit", nullable: true),
-                    ExposureToFireAndBurn = table.Column<bool>(type: "bit", nullable: true),
-                    OfficeAccidents = table.Column<bool>(type: "bit", nullable: true),
-                    ElectricalAccidents = table.Column<bool>(type: "bit", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TheSubjectOfTheAccidentOfEmployeeAccident", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "EmployeeChronicDisease",
                 columns: table => new
                 {
@@ -421,8 +373,30 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     AccidentId = table.Column<int>(type: "int", nullable: false),
                     LostDays = table.Column<int>(type: "int", nullable: false),
-                    ThePrecautionsToBeTakenOfEmployeeAccidentId = table.Column<int>(type: "int", nullable: false),
-                    TheSubjectOfTheAccidentOfEmployeeAccidentId = table.Column<int>(type: "int", nullable: false)
+                    ThePrecautionsWorkingWithoutAuthorization = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsGiveOrReceiveFalseWarnings = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsErrorInSafety = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsImproperSpeed = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsNotUsingEquipmentProtectors = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsNotUsingPersonalProtectiveEquipment = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsEquipmentUsageError = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsUsingFaultyEquipment = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsWorkingInAnUnfamiliarField = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsDisobeyingInstructions = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsTirednessOrInsomniaOrDrowsiness = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsWorkingWithoutDiscipline = table.Column<bool>(type: "bit", nullable: true),
+                    ThePrecautionsInsufficientMachineEquipmentEnclosure = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectExposureToPhsicalViolence = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectExposureToVerbalViolence = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectSharpObjectInjuries = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectExposureToBiologicalAgents = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectFallingImpactInjuries = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectMaterialDamagedTrafficAccident = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectInjuredTrafficAccident = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectExposureToChemicals = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectExposureToFireAndBurn = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectOfficeAccidents = table.Column<bool>(type: "bit", nullable: true),
+                    TheSubjectElectricalAccidents = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -438,18 +412,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccidentId",
-                        column: x => x.ThePrecautionsToBeTakenOfEmployeeAccidentId,
-                        principalTable: "ThePrecautionsToBeTakenOfEmployeeAccident",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccidentId",
-                        column: x => x.TheSubjectOfTheAccidentOfEmployeeAccidentId,
-                        principalTable: "TheSubjectOfTheAccidentOfEmployeeAccident",
-                        principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -492,18 +454,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 name: "IX_EmployeeAccident_AccidentId",
                 table: "EmployeeAccident",
                 column: "AccidentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeAccident_ThePrecautionsToBeTakenOfEmployeeAccidentId",
-                table: "EmployeeAccident",
-                column: "ThePrecautionsToBeTakenOfEmployeeAccidentId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_EmployeeAccident_TheSubjectOfTheAccidentOfEmployeeAccidentId",
-                table: "EmployeeAccident",
-                column: "TheSubjectOfTheAccidentOfEmployeeAccidentId",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_EmployeeChronicDisease_ChronicDiseaseId",
@@ -583,12 +533,6 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
             migrationBuilder.DropTable(
                 name: "Accidents");
-
-            migrationBuilder.DropTable(
-                name: "ThePrecautionsToBeTakenOfEmployeeAccident");
-
-            migrationBuilder.DropTable(
-                name: "TheSubjectOfTheAccidentOfEmployeeAccident");
 
             migrationBuilder.DropTable(
                 name: "ChronicDiseases");
