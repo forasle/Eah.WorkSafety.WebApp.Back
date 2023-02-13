@@ -44,6 +44,9 @@
     {
         public int? EmployeeId { get; set; }
         public int? LostDays { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? IdentificationNumber { get; set; }
         public bool? TheSubjectExposureToPhsicalViolence { get; set; }
         public bool? TheSubjectExposureToVerbalViolence { get; set; }
         public bool? TheSubjectSharpObjectInjuries { get; set; }

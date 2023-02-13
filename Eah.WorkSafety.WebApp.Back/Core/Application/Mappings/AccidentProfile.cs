@@ -13,6 +13,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
         {
                 EmployeeId = x.EmployeeId,
                 LostDays = x.LostDays,
+                Name = x.Employee!.Name,
+                Surname = x.Employee!.Surname,
+                IdentificationNumber = x.Employee!.IdentificationNumber,
                 ThePrecautionsDisobeyingInstructions = x.ThePrecautionsDisobeyingInstructions,
                 ThePrecautionsEquipmentUsageError = x.ThePrecautionsEquipmentUsageError,
                 ThePrecautionsErrorInSafety = x.ThePrecautionsErrorInSafety,
