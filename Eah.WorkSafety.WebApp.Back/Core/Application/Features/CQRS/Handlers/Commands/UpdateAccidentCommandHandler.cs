@@ -62,7 +62,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                             TheSubjectFallingImpactInjuries = item.TheSubjectFallingImpactInjuries,
                             TheSubjectElectricalAccidents = item.TheSubjectElectricalAccidents,
                             TheSubjectExposureToBiologicalAgents = item.TheSubjectExposureToBiologicalAgents,
-                            TheSubjectExposureToPhsicalViolence = item.TheSubjectExposureToPhsicalViolence,
+                            TheSubjectExposureToPhysicalViolence = item.TheSubjectExposureToPhysicalViolence,
                             TheSubjectExposureToVerbalViolence = item.TheSubjectExposureToVerbalViolence,
 
                             ThePrecautionsErrorInSafety = item.ThePrecautionsErrorInSafety,

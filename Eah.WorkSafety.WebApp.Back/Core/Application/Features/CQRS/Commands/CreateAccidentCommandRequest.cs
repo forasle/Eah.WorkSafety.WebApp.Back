@@ -52,7 +52,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
         public int EmployeeId { get; set; }
         public int LostDays { get; set; }
 
-        public bool? TheSubjectExposureToPhsicalViolence { get; set; }
+        public bool? TheSubjectExposureToPhysicalViolence { get; set; }
         public bool? TheSubjectExposureToVerbalViolence { get; set; }
         public bool? TheSubjectSharpObjectInjuries { get; set; }
         public bool? TheSubjectExposureToBiologicalAgents { get; set; }

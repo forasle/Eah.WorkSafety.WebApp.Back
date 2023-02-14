@@ -69,5 +69,15 @@
 
         public int? NumberOfLostDays { get; set; }
 
+        public int? NumberOfEmployeeWhoHadANearMiss { get; set; }
+
+        public int? NumberOfNearMissWhichNeedsFirstAid { get; set; }
+
+        public int? NumberOfNearMissWhichHasGotLostDay { get; set; }
+
+        public int? TotalNeedFirstAidNearMiss { get; set; }
+
+        public int? TotalNeedFirstAidButNoLostDaysNearMiss { get; set; }
+
     }
 }

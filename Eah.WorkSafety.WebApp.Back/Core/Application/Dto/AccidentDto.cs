@@ -47,7 +47,7 @@
         public string? Name { get; set; }
         public string? Surname { get; set; }
         public string? IdentificationNumber { get; set; }
-        public bool? TheSubjectExposureToPhsicalViolence { get; set; }
+        public bool? TheSubjectExposureToPhysicalViolence { get; set; }
         public bool? TheSubjectExposureToVerbalViolence { get; set; }
         public bool? TheSubjectSharpObjectInjuries { get; set; }
         public bool? TheSubjectExposureToBiologicalAgents { get; set; }
@@ -58,7 +58,6 @@
         public bool? TheSubjectExposureToFireAndBurn { get; set; }
         public bool? TheSubjectOfficeAccidents { get; set; }
         public bool? TheSubjectElectricalAccidents { get; set; }
-
         public bool? ThePrecautionsWorkingWithoutAuthorization { get; set; }
         public bool? ThePrecautionsGiveOrReceiveFalseWarnings { get; set; }
         public bool? ThePrecautionsErrorInSafety { get; set; }

@@ -20,11 +20,14 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
         Task<int> GetAllCountAsync();
         Task<int> GetAllCountAsync(Expression<Func<T, bool>> filter);
         Task<int> GetCountByJoin();
+        Task<int> GetNearMissCountByJoin();
         Task<int> GetSumAsync(Expression<Func<T, int>> selector);
         Task<double?> GetAverageAsync(Expression<Func<T, bool>> filter, Expression<Func<T, int?>> selector);
         Task<List<T>> GetAllByPropertyAsync(params Expression<Func<T, object>>[] includeProperties);
         Task<List<T>> GetAllByPropertyWithPaginationAsync(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties);
         Task<List<Accident>> GetAllByPropertyWithPaginationAsync2(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties);
+        Task<List<NearMiss>> GetAllByPropertyWithPaginationAsync3(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties);
+
         Task<T?> GetByIdAsync(object id);
         //Task<T?> GetByIdAsync<TProperty>(Expression<Func<T, TProperty>> include, Expression<Func<T, bool>> filter);
         Task<T?> GetByIdAsync(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeProperties);

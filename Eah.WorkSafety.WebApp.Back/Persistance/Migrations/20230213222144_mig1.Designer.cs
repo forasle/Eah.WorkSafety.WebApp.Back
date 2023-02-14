@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20230203213811_mig1")]
+    [Migration("20230213222144_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -266,7 +266,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<bool?>("TheSubjectExposureToFireAndBurn")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("TheSubjectExposureToPhsicalViolence")
+                    b.Property<bool?>("TheSubjectExposureToPhysicalViolence")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("TheSubjectExposureToVerbalViolence")
@@ -319,6 +319,78 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<int>("LostDays")
                         .HasColumnType("int");
+
+                    b.Property<bool?>("ThePrecautionsDisobeyingInstructions")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsEquipmentUsageError")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsErrorInSafety")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsGiveOrReceiveFalseWarnings")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsImproperSpeed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsInsufficientMachineEquipmentEnclosure")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsNotUsingEquipmentProtectors")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsNotUsingPersonalProtectiveEquipment")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsTirednessOrInsomniaOrDrowsiness")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsUsingFaultyEquipment")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsWorkingInAnUnfamiliarField")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsWorkingWithoutAuthorization")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("ThePrecautionsWorkingWithoutDiscipline")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectElectricalAccidents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToBiologicalAgents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToChemicals")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToFireAndBurn")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToPhysicalViolence")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectExposureToVerbalViolence")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectFallingImpactInjuries")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectInjuredTrafficAccident")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectMaterialDamagedTrafficAccident")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectOfficeAccidents")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("TheSubjectSharpObjectInjuries")
+                        .HasColumnType("bit");
 
                     b.HasKey("EmployeeId", "NearMissId");
 

@@ -65,6 +65,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
     public class UpdateAffectedNearMisses
     {
         public int NearMissId { get; set; }
+
+
     }
 }
 

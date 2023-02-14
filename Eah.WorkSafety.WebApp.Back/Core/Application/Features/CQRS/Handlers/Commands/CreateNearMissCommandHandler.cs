@@ -46,7 +46,32 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                     nearMiss.Employees.Add(new EmployeeNearMiss()
                     {
                         EmployeeId = item.EmployeeId,
-                        LostDays = item.LostDays
+                        LostDays = item.LostDays,
+                        TheSubjectExposureToFireAndBurn = item.TheSubjectExposureToFireAndBurn,
+                        TheSubjectExposureToChemicals = item.TheSubjectExposureToChemicals,
+                        TheSubjectSharpObjectInjuries = item.TheSubjectSharpObjectInjuries,
+                        TheSubjectOfficeAccidents = item.TheSubjectOfficeAccidents,
+                        TheSubjectMaterialDamagedTrafficAccident = item.TheSubjectMaterialDamagedTrafficAccident,
+                        TheSubjectInjuredTrafficAccident = item.TheSubjectInjuredTrafficAccident,
+                        TheSubjectFallingImpactInjuries = item.TheSubjectFallingImpactInjuries,
+                        TheSubjectElectricalAccidents = item.TheSubjectElectricalAccidents,
+                        TheSubjectExposureToBiologicalAgents = item.TheSubjectExposureToBiologicalAgents,
+                        TheSubjectExposureToPhysicalViolence = item.TheSubjectExposureToPhysicalViolence,
+                        TheSubjectExposureToVerbalViolence = item.TheSubjectExposureToVerbalViolence,
+
+                        ThePrecautionsErrorInSafety = item.ThePrecautionsErrorInSafety,
+                        ThePrecautionsDisobeyingInstructions = item.ThePrecautionsDisobeyingInstructions,
+                        ThePrecautionsEquipmentUsageError = item.ThePrecautionsEquipmentUsageError,
+                        ThePrecautionsGiveOrReceiveFalseWarnings = item.ThePrecautionsGiveOrReceiveFalseWarnings,
+                        ThePrecautionsImproperSpeed = item.ThePrecautionsImproperSpeed,
+                        ThePrecautionsInsufficientMachineEquipmentEnclosure = item.ThePrecautionsInsufficientMachineEquipmentEnclosure,
+                        ThePrecautionsNotUsingEquipmentProtectors = item.ThePrecautionsNotUsingEquipmentProtectors,
+                        ThePrecautionsNotUsingPersonalProtectiveEquipment = item.ThePrecautionsNotUsingPersonalProtectiveEquipment,
+                        ThePrecautionsTirednessOrInsomniaOrDrowsiness = item.ThePrecautionsTirednessOrInsomniaOrDrowsiness,
+                        ThePrecautionsUsingFaultyEquipment = item.ThePrecautionsUsingFaultyEquipment,
+                        ThePrecautionsWorkingInAnUnfamiliarField = item.ThePrecautionsWorkingInAnUnfamiliarField,
+                        ThePrecautionsWorkingWithoutAuthorization = item.ThePrecautionsWorkingWithoutAuthorization,
+                        ThePrecautionsWorkingWithoutDiscipline = item.ThePrecautionsWorkingWithoutDiscipline
                     });
                 }
             }

@@ -60,6 +60,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                         nearMisses.Add(new EmployeeNearMiss()
                         {
                             NearMissId = item.NearMissId
+                            
                         });
 
                     }

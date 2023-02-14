@@ -22,7 +22,7 @@
         public bool? ThePrecautionsWorkingWithoutDiscipline { get; set; }
         public bool? ThePrecautionsInsufficientMachineEquipmentEnclosure { get; set; }
 
-        public bool? TheSubjectExposureToPhsicalViolence { get; set; }
+        public bool? TheSubjectExposureToPhysicalViolence { get; set; }
         public bool? TheSubjectExposureToVerbalViolence { get; set; }
         public bool? TheSubjectSharpObjectInjuries { get; set; }
         public bool? TheSubjectExposureToBiologicalAgents { get; set; }

@@ -83,11 +83,18 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfRootCauseAnalysisRequirementForNearMiss = await this.nearMissRepository.GetAllCountAsync(x => x.RootCauseAnalysis == true);
 
             int numberOfEmployeeWhoHadAnAccident = await this.employeeAccidentRepository.GetAllCountAsync();
+           
             int numberOfAccidentWhichNeedsFirstAid = await this.accidentRepository.GetAllCountAsync(x=>x.NeedFirstAid == true);
 
             int numberOfAccidentWhichHasGotLostDay = await this.employeeAccidentRepository.GetAllCountAsync(x => x.LostDays > 0);
-
             int numberOfLostDays = await this.employeeAccidentRepository.GetSumAsync(x=>x.LostDays);
+
+            int numberOfEmployeeWhoHadANearMiss = await this.employeeNearMissRepository.GetAllCountAsync();
+            int numberOfNearMissWhichNeedsFirstAid = await this.nearMissRepository.GetAllCountAsync(x => x.NeedFirstAid == true);
+            int numberOfNearMissWhichHasGotLostDay = await this.employeeNearMissRepository.GetAllCountAsync(x => x.LostDays > 0);
+            var totalNeedFirstAidNearMiss = await this.nearMissRepository.GetAllCountAsync(x => x.NeedFirstAid == true);
+            var totalNeedFirstAidButNoLostDaysNearMiss = await this.nearMissRepository.GetNearMissCountByJoin();
+            
 
 
 
@@ -129,7 +136,12 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
                 numberOfMaleEmployee = numberOfMaleEmployee,
                 NumberOfRootCauseAnalysisRequirementForAccident = numberOfRootCauseAnalysisRequirementForAccident,
                 NumberOfRootCauseAnalysisRequirementForNearMiss = numberOfRootCauseAnalysisRequirementForNearMiss,
-                NumberOfUnspecifiedEmployee = numberOfUnspecifiedEmployee
+                NumberOfUnspecifiedEmployee = numberOfUnspecifiedEmployee,
+                NumberOfEmployeeWhoHadANearMiss = numberOfEmployeeWhoHadANearMiss,
+                NumberOfNearMissWhichHasGotLostDay= numberOfNearMissWhichHasGotLostDay,
+                NumberOfNearMissWhichNeedsFirstAid= numberOfNearMissWhichNeedsFirstAid,
+                TotalNeedFirstAidButNoLostDaysNearMiss= totalNeedFirstAidButNoLostDaysNearMiss,
+                TotalNeedFirstAidNearMiss = totalNeedFirstAidNearMiss
                 
             };
 

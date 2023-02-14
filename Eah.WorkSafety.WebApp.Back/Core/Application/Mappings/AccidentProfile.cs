@@ -34,7 +34,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Mappings
                 TheSubjectExposureToBiologicalAgents = x.TheSubjectExposureToBiologicalAgents,
                 TheSubjectExposureToChemicals = x.TheSubjectExposureToChemicals,
                 TheSubjectExposureToFireAndBurn = x.TheSubjectExposureToFireAndBurn,
-                TheSubjectExposureToPhsicalViolence = x.TheSubjectExposureToPhsicalViolence,
+                TheSubjectExposureToPhysicalViolence = x.TheSubjectExposureToPhysicalViolence,
                 TheSubjectExposureToVerbalViolence = x.TheSubjectExposureToVerbalViolence,
                 TheSubjectFallingImpactInjuries = x.TheSubjectFallingImpactInjuries,
                 TheSubjectInjuredTrafficAccident = x.TheSubjectInjuredTrafficAccident,

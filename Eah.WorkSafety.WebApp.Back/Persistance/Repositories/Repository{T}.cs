@@ -142,6 +142,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 y.LostDays
             }).Where(x=>x.MedicalIntervention==true).AsNoTracking().CountAsync(x=>x.LostDays==0);
         }
+        public async Task<int> GetNearMissCountByJoin()
+        {
+            // var data = await this.workSafetyContext.Accidents.Join(workSafetyContext.EmployeeAccident, x => x.Id, y => y.AccidentId, (x, y) => new
+            // {
+            //    x.MedicalIntervention,
+            //     y.LostDays
+            // }).Where(x=>x.MedicalIntervention==true).AsNoTracking().CountAsync(x=>x.LostDays==0);
+            //  return data;
+            return await this.workSafetyContext.NearMisses.Include(x => x.Employees).SelectMany(x => x.Employees, (x, y) => new
+            {
+                x.MedicalIntervention,
+                y.LostDays
+            }).Where(x => x.MedicalIntervention == true).AsNoTracking().CountAsync(x => x.LostDays == 0);
+        }
 
         public async Task<List<T>> GetAllByPropertyWithPaginationAsync(PaginationFilter filter,params Expression<Func<T, object>>[] includeProperties)
         {
@@ -169,7 +183,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
 
             return set;
         }
-     
+        public async Task<List<NearMiss>> GetAllByPropertyWithPaginationAsync3(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties)
+        {
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            var set = await this.workSafetyContext.NearMisses
+                .Include(x => x.Employees).ThenInclude(x => x.Employee)
+                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
+
+            return set;
+        }
+
+
         public async Task<List<Accident>> GetAllByKeyWithPaginationAsync2(PaginationFilter filter, Expression<Func<Accident, bool>> key, params Expression<Func<T, object>>[] includeProperties)
         {
 
