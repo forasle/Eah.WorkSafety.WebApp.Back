@@ -5,23 +5,22 @@ using MediatR;
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Commands
 {
-    public class UpdateNearMissCommandHandler : IRequestHandler<UpdateNearmissCommandRequest>
+    public class UpdateNearMissCommandHandler : IRequestHandler<UpdateNearMissCommandRequest>
     {
-        private readonly IRepository<NearMiss> repository;
+        private readonly IRepository<NearMiss> nearMissRepository;
+        private readonly IRepository<EmployeeNearMiss> employeeNearMissRepository;
 
-        public UpdateNearMissCommandHandler(IRepository<NearMiss> repository)
+        public UpdateNearMissCommandHandler(IRepository<NearMiss> nearMissRepository, IRepository<EmployeeNearMiss> employeeNearMissRepository)
         {
-            this.repository = repository;
+            this.nearMissRepository = nearMissRepository;
+            this.employeeNearMissRepository = employeeNearMissRepository;
         }
 
-        public async Task<Unit> Handle(UpdateNearmissCommandRequest request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateNearMissCommandRequest request, CancellationToken cancellationToken)
         {
-            var updatedEntity = await this.repository.GetByIdAsync(request.Id);
-            
+            var updatedEntity = await this.nearMissRepository.GetByIdAsync(x => x.Id == request.Id, x => x.Employees);
             if (updatedEntity != null)
             {
-                updatedEntity!.Employees.Clear();
-                updatedEntity.NearMissNumber = request.NearMissNumber;
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
                 updatedEntity.NearMissInfo = request.NearMissInfo;
                 updatedEntity.PerformedJob = request.PerformedJob;
@@ -39,12 +38,19 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.Date = request.Date;
                 updatedEntity.RootCauseAnalysis = request.RootCauseAnalysis;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
-                var employees = new List<EmployeeNearMiss>();
+
+                for (int i = updatedEntity.Employees.Count(); i > 0; i--)
+                {
+                    await this.employeeNearMissRepository.DeleteAsync(updatedEntity.Employees[i - 1]);
+                }
+
                 if (request.UpdateAffectedEmployeeWithPropertyForNearMiss != null)
                 {
                     foreach (var item in request.UpdateAffectedEmployeeWithPropertyForNearMiss)
                     {
-                        employees.Add(new EmployeeNearMiss() {
+                        updatedEntity.Employees.Add(new EmployeeNearMiss()
+                        {
+
                             EmployeeId = item.EmployeeId,
                             LostDays = item.LostDays,
                             TheSubjectExposureToFireAndBurn = item.TheSubjectExposureToFireAndBurn,
@@ -73,13 +79,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                             ThePrecautionsWorkingWithoutAuthorization = item.ThePrecautionsWorkingWithoutAuthorization,
                             ThePrecautionsWorkingWithoutDiscipline = item.ThePrecautionsWorkingWithoutDiscipline
 
-
                         });
+
                     }
                 }
-                updatedEntity.Employees = employees;
-
-                await this.repository.UpdateAsync(updatedEntity);
+                await this.nearMissRepository.UpdateAsync(updatedEntity);
             }
             return Unit.Value;
 

@@ -66,7 +66,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
 
 
         [HttpPut]
-        public async Task<IActionResult> Update(UpdateNearmissCommandRequest request)
+        public async Task<IActionResult> Update(UpdateNearMissCommandRequest request)
         {
             await this.mediator.Send(request);
             return NoContent();

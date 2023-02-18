@@ -2,7 +2,7 @@
 
 namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 {
-    public class UpdateNearmissCommandRequest : IRequest
+    public class UpdateNearMissCommandRequest : IRequest
     {
         public int Id { get; set; }
 
