@@ -209,7 +209,20 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
-        
+
+        public async Task<List<NearMiss>> GetAllByKeyWithPaginationAsync3(PaginationFilter filter, Expression<Func<NearMiss, bool>> key, params Expression<Func<T, object>>[] includeProperties)
+        {
+
+            var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+            return await this.workSafetyContext.NearMisses
+                .AsNoTracking().Where(key)
+                .Include(x => x.Employees).ThenInclude(x => x.Employee)
+                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+                .Take(validFilter.PageSize)
+                .AsNoTracking()
+                .ToListAsync();
+        }
+
         public async Task<Accident?> GetByIdAsync2(Expression<Func<Accident, bool>> filter, params Expression<Func<T, object>>[] includeProperties)
         {
             var set = await this.workSafetyContext.Accidents

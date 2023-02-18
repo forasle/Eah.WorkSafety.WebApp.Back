@@ -15,6 +15,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
 
         Task<List<T>> GetAllByKeyWithPaginationAsync(PaginationFilter filter,Expression<Func<T, bool>> key, params Expression<Func<T, object>>[] includeProperties);
         Task<List<Accident>> GetAllByKeyWithPaginationAsync2(PaginationFilter filter, Expression<Func<Accident, bool>> key, params Expression<Func<T, object>>[] includeProperties);
+        Task<List<NearMiss>> GetAllByKeyWithPaginationAsync3(PaginationFilter filter, Expression<Func<NearMiss, bool>> key, params Expression<Func<T, object>>[] includeProperties);
+
         Task<T?> GetByFilterAsync(Expression<Func<T, object>> filter);
         //Task<List<T>> GetAllByPropertyAsync<TProperty>(Expression<Func<T, TProperty>> include);
         Task<int> GetAllCountAsync();
