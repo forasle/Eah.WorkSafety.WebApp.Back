@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<List<EmployeeDto>> Handle(GetAllEmployeeByKeyQueryRequest request, CancellationToken cancellationToken)
         {
-            var count = await this.repository.GetAllCountAsync(x=>x.IdentificationNumber!.Contains(request.Key));
+           // var count = await this.repository.GetAllCountAsync(x=>x.IdentificationNumber!.Contains(request.Key));
             var data = await this.repository.GetAllByKeyWithPaginationAsync(request.Filter,x=>x.IdentificationNumber!.Contains(request.Key), x => x.Accidents, x => x.NearMisses, x => x.ChronicDiseases, x => x.OccupationDiseases);
           
             return this.mapper.Map<List<EmployeeDto>>(data);
