@@ -72,7 +72,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await this.mediator.Send(new DeletePreventiveActivityCommandRequest(id));
