@@ -6,7 +6,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Domain
     {
         public int Id { get; set; }
 
-        public string? ReferenceNumber { get; set; }
+        public string? SceneOfAccident { get; set; }
 
         public string? AccidentInfo { get; set; }
 
@@ -33,8 +33,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Domain
         public bool? BusinessStopped { get; set; }
 
         public bool? CameraRecording { get; set; }
-        public DateTime? Date { get; set; }
+        public DateTime AccidentDate { get; set; }
 
+        public DateTime CreationDate { get; set; }
         public bool RootCauseAnalysis { get; set; }
 
         public int CreatorUserId { get; set; }

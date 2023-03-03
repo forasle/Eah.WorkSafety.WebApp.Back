@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             var updatedEntity = await this.accidentRepository.GetByIdAsync(x=>x.Id == request.Id, x=>x.Employees);
             if (updatedEntity != null)
             {
-                updatedEntity.ReferenceNumber = request.ReferenceNumber;
+                updatedEntity.SceneOfAccident = request.SceneOfAccident;
                 updatedEntity.AccidentInfo = request.AccidentInfo;
                 updatedEntity.PerformedJob = request.PerformedJob;
                 updatedEntity.RelatedDepartment = request.RelatedDepartment;
@@ -35,7 +35,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.PropertyDamage = request.PropertyDamage;
                 updatedEntity.BusinessStopped = request.BusinessStopped;
                 updatedEntity.CameraRecording = request.CameraRecording;
-                updatedEntity.Date = request.Date;
+                updatedEntity.AccidentDate = request.AccidentDate;
                 updatedEntity.RootCauseAnalysis = request.RootCauseAnalysis;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
 

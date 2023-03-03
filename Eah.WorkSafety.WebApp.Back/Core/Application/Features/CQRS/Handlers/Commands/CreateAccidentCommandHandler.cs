@@ -21,7 +21,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
 
             var accident = new Accident
             {
-                ReferenceNumber = request.ReferenceNumber,
+                SceneOfAccident = request.SceneOfAccident,
                 AccidentInfo = request.AccidentInfo,
                 PerformedJob = request.PerformedJob,
                 RelatedDepartment = request.RelatedDepartment,
@@ -35,7 +35,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 PropertyDamage = request.PropertyDamage,
                 BusinessStopped = request.BusinessStopped,
                 CameraRecording = request.CameraRecording,
-                Date = request.Date,
+                AccidentDate = request.AccidentDate,
+                CreationDate = request.CreationDate,
                 RootCauseAnalysis = request.RootCauseAnalysis,
                 CreatorUserId = request.CreatorUserId,
 

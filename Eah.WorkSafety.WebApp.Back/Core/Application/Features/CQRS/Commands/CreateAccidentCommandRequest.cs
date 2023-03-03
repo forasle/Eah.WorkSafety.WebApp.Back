@@ -9,7 +9,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int AccidentNumber { get; set; }
 
-        public string? ReferenceNumber { get; set; }
+        public string? SceneOfAccident { get; set; }
 
         public string? AccidentInfo { get; set; }
 
@@ -37,7 +37,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public bool? CameraRecording { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime AccidentDate { get; set; }
+
+        public DateTime CreationDate { get; set; }
 
         public bool RootCauseAnalysis { get; set; }
 

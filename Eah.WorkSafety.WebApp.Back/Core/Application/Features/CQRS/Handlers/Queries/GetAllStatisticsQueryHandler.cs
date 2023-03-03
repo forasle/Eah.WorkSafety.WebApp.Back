@@ -57,7 +57,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
             int numberOfChronicDisease = await this.employeeChronicDiseaseRepository.GetAllCountAsync();
             int numberOfOccupationDisease = await this.employeeOccupationDiseaseRepository.GetAllCountAsync();
             int numberOfAccident = await this.accidentRepository.GetAllCountAsync();
-            var lastAccident = await this.accidentRepository.GetByFilterAsync(x => x.Date!);
+            var lastAccident = await this.accidentRepository.GetByFilterAsync(x => x.AccidentDate!);
 
             int numberOfNearMisses = await this.nearMissRepository.GetAllCountAsync();
             int numberOfRiskAssessments = await this.riskAssessmentRepository.GetAllCountAsync();
@@ -115,7 +115,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
                 NumberOfOccupationDisease = numberOfOccupationDisease,
                 NumberOfAccidents = numberOfAccident,
                 NumberOfNearMisses = numberOfNearMisses,
-                DayOfLastAccident = lastAccident?.Date,
+                DayOfLastAccident = lastAccident?.AccidentDate,
                 NumberOfRiskAssessments = numberOfRiskAssessments,
                 NumberOfInconsistencies = numberOfInconsistencies,
                 NumberOfContingencyPlans = numberOfContingencyPlans,
