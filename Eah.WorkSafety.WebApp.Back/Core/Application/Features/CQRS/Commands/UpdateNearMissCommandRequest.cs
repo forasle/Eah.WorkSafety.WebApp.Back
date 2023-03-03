@@ -36,7 +36,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public bool? CameraRecording { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime NearMissDate { get; set; }
 
         public bool RootCauseAnalysis { get; set; }
 

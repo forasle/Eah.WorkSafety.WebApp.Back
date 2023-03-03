@@ -22,8 +22,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 updatedEntity.ReferenceNumber = request.ReferenceNumber;
                 updatedEntity.Information = request.Information;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
-                updatedEntity.Date = request.Date;
-                updatedEntity.CreationTime = request.CreationTime;
+                updatedEntity.RiskAssessmentDate = request.RiskAssessmentDate;
                 updatedEntity.Method = request.Method;
 
                 await this.repository.UpdateAsync(updatedEntity);

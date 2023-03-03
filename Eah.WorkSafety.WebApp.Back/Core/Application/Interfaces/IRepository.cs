@@ -10,7 +10,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Interfaces
         Task CreateAsync(T entity);
         Task<List<T>> GetAllAsync();
 
-        Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter);
+        Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter, Expression<Func<T, DateTime>> orderBy);
         Task<List<T>> GetAllByFilterAsync(Expression<Func<T, bool>> filter);
 
         Task<List<T>> GetAllByKeyWithPaginationAsync(PaginationFilter filter,Expression<Func<T, bool>> key, params Expression<Func<T, object>>[] includeProperties);

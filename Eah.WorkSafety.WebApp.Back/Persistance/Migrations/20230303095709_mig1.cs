@@ -172,7 +172,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SceneOfAccident = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccidentInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PerformedJob = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RelatedDepartment = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -186,7 +186,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     PropertyDamage = table.Column<bool>(type: "bit", nullable: true),
                     BusinessStopped = table.Column<bool>(type: "bit", nullable: true),
                     CameraRecording = table.Column<bool>(type: "bit", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AccidentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
                     CreatorUserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -212,8 +213,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorUserId = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ContingencyPlanDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -232,9 +233,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SceneOfInconsistency = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    InconsistencyDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RootCauseAnalysisRequirement = table.Column<bool>(type: "bit", nullable: false),
                     Department = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<bool>(type: "bit", nullable: false),
@@ -259,7 +261,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NearMissNumber = table.Column<int>(type: "int", nullable: false),
-                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SceneOfNearMiss = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NearMissInfo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PerformedJob = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RelatedDepartment = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -273,7 +275,8 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     PropertyDamage = table.Column<bool>(type: "bit", nullable: true),
                     BusinessStopped = table.Column<bool>(type: "bit", nullable: true),
                     CameraRecording = table.Column<bool>(type: "bit", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    NearMissDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
                     CreatorUserId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -296,13 +299,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SceneOfPreventiveActivity = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorUserId = table.Column<int>(type: "int", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     RootCauseAnalysis = table.Column<bool>(type: "bit", nullable: false),
-                    Deadline = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Deadline = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PreventiveActivityDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Method = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -326,9 +329,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     Information = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReferenceNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorUserId = table.Column<int>(type: "int", nullable: false),
-                    RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RevisionDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RiskAssessmentDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Method = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

@@ -8,7 +8,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int NearMissNumber { get; set; }
 
-        public string? ReferenceNumber { get; set; }
+        public string? SceneOfNearMiss { get; set; }
 
         public string? NearMissInfo { get; set; }
 
@@ -36,7 +36,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public bool? CameraRecording { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime NearMissDate { get; set; }
+
+        public DateTime CreationDate { get; set; }
 
         public bool RootCauseAnalysis { get; set; }
 

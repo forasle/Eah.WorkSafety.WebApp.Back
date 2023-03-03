@@ -24,8 +24,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                     ReferenceNumber = request.ReferenceNumber,
                     Information = request.Information,
                     CreatorUserId = request.CreatorUserId,
-                    Date = request.Date,
-                    CreationTime = request.CreationTime,
+                    CreationDate = request.CreationDate,
+                    ContingencyPlanDate = request.ContingencyPlanDate,
                 }
                 );
             return Unit.Value;

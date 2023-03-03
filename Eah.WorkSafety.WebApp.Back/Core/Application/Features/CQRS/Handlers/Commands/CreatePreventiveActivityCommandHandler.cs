@@ -21,10 +21,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
                 {
                     Name = request.Name,
                     Information = request.Information,
-                    ReferenceNumber = request.ReferenceNumber,
+                    SceneOfPreventiveActivity = request.SceneOfPreventiveActivity,
                     CreatorUserId = request.CreatorUserId,
-                    Date = request.Date,
-                    CreationTime = request.CreationTime,
+                    PreventiveActivityDate = request.PreventiveActivityDate,
+                    CreationDate = request.CreationDate,
                     Method = request.Method,
                     Deadline = request.Deadline,
                     RootCauseAnalysis = request.RootCauseAnalysis,

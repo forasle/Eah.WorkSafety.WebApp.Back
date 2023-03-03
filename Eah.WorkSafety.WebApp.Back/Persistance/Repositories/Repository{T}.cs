@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.VisualBasic;
+using System;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -174,7 +175,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         public async Task<List<Accident>> GetAllByPropertyWithPaginationAsync2(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties)
         {
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            var set = await this.workSafetyContext.Accidents
+            var set = await this.workSafetyContext.Accidents.OrderByDescending(x=>x.CreationDate)
                 .Include(x=>x.Employees).ThenInclude(x=>x.Employee)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
                 .Take(validFilter.PageSize)
@@ -186,7 +187,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         public async Task<List<NearMiss>> GetAllByPropertyWithPaginationAsync3(PaginationFilter filter, params Expression<Func<T, object>>[] includeProperties)
         {
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            var set = await this.workSafetyContext.NearMisses
+            var set = await this.workSafetyContext.NearMisses.OrderByDescending(x=>x.CreationDate)
                 .Include(x => x.Employees).ThenInclude(x => x.Employee)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
                 .Take(validFilter.PageSize)
@@ -201,7 +202,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         {
 
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            return await this.workSafetyContext.Accidents
+            return await this.workSafetyContext.Accidents.OrderByDescending(x=>x.CreationDate)
                 .AsNoTracking().Where(key)
                 .Include(x => x.Employees).ThenInclude(x => x.Employee)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
@@ -214,7 +215,7 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
         {
 
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            return await this.workSafetyContext.NearMisses
+            return await this.workSafetyContext.NearMisses.OrderByDescending(x => x.CreationDate)
                 .AsNoTracking().Where(key)
                 .Include(x => x.Employees).ThenInclude(x => x.Employee)
                 .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
@@ -232,10 +233,22 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
             return set;
         }
         
-        public async Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter)
+       // public async Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter)
+        //{
+         //   var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
+         //   return await this.workSafetyContext.Set<T>()
+        //        .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+         //       .Take(validFilter.PageSize)
+       //         .AsNoTracking()
+       //         .ToListAsync();
+       // }
+
+        public async Task<List<T>> GetAllWithPaginationAsync(PaginationFilter filter, Expression<Func<T, DateTime>> orderBy)
         {
             var validFilter = new PaginationFilter(filter.PageNumber, filter.PageSize);
-            return await this.workSafetyContext.Set<T>().Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
+            return await this.workSafetyContext.Set<T>()
+                .OrderByDescending(orderBy)
+                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
                 .Take(validFilter.PageSize)
                 .AsNoTracking()
                 .ToListAsync();
@@ -255,6 +268,5 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Repositories
                 .AsNoTracking()
                 .ToListAsync();
         }
-
     }
 }

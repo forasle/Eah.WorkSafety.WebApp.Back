@@ -20,7 +20,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<List<InconsistencyDto>> Handle(GetAllInconsistencyQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await this.repository.GetAllWithPaginationAsync(request.Filter);
+            var data = await this.repository.GetAllWithPaginationAsync(request.Filter,x=>x.CreationDate);
             return this.mapper.Map<List<InconsistencyDto>>(data);
         }
     }

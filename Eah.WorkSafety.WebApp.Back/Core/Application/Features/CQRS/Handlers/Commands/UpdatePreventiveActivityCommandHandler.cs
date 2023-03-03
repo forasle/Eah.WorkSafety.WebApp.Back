@@ -19,11 +19,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             var updatedEntity = await this.repository.GetByIdAsync(request.Id);
             if (updatedEntity != null)
             {
-                updatedEntity.ReferenceNumber = request.ReferenceNumber;
+                updatedEntity.SceneOfPreventiveActivity = request.SceneOfPreventiveActivity;
                 updatedEntity.Information = request.Information;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
-                updatedEntity.Date = request.Date;
-                updatedEntity.CreationTime = request.CreationTime;
+                updatedEntity.PreventiveActivityDate = request.PreventiveActivityDate;
                 updatedEntity.Method = request.Method;
                 updatedEntity.RootCauseAnalysis = request.RootCauseAnalysis;
                 

@@ -20,7 +20,7 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Que
 
         public async Task<List<ContingencyPlanDto>> Handle(GetAllContingencyPlansQueryRequest request, CancellationToken cancellationToken)
         {
-            var data = await this.repository.GetAllWithPaginationAsync(request.Filter);
+            var data = await this.repository.GetAllWithPaginationAsync(request.Filter,x=>x.CreationDate);
             return this.mapper.Map<List<ContingencyPlanDto>>(data);
         }
     }

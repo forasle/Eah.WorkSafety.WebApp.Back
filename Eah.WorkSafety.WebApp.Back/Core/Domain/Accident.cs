@@ -33,9 +33,11 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Domain
         public bool? BusinessStopped { get; set; }
 
         public bool? CameraRecording { get; set; }
+
         public DateTime AccidentDate { get; set; }
 
         public DateTime CreationDate { get; set; }
+
         public bool RootCauseAnalysis { get; set; }
 
         public int CreatorUserId { get; set; }

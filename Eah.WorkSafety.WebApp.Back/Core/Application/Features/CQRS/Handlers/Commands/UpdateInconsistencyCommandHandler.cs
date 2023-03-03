@@ -19,10 +19,10 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
             var updatedEntity = await this.repository.GetByIdAsync(request.Id);
             if (updatedEntity != null)
             {
-                updatedEntity.ReferenceNumber = request.ReferenceNumber;
+                updatedEntity.SceneOfInconsistency = request.SceneOfInconsistency;
                 updatedEntity.Information = request.Information;
                 updatedEntity.CreatorUserId = request.CreatorUserId;
-                updatedEntity.Date = request.Date;
+                updatedEntity.InconsistencyDate = request.InconsistencyDate;
                 updatedEntity.RootCauseAnalysisRequirement = request.RootCauseAnalysisRequirement;
                 updatedEntity.Department = request.Department;
                 updatedEntity.Status = request.Status;

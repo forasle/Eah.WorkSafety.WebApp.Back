@@ -16,8 +16,8 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
 
         public int CreatorUserId { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime CreationDate { get; set; }
 
-        public DateTime? CreationTime { get; set; }
+        public DateTime ContingencyPlanDate { get; set; }
     }
 }

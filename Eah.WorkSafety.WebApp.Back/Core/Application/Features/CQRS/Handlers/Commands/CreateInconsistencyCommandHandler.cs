@@ -18,9 +18,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         {
             await this.repository.CreateAsync(new Inconsistency
             {
-                ReferenceNumber = request.ReferenceNumber,
+                SceneOfInconsistency = request.SceneOfInconsistency,
                 Information = request.Information,
-                Date = request.Date,
+                InconsistencyDate = request.CreationDate,
                 RootCauseAnalysisRequirement = request.RootCauseAnalysisRequirement,
                 Department = request.Department,
                 Status = request.Status,

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 {
     [DbContext(typeof(WorkSafetyDbContext))]
-    [Migration("20230213222144_mig1")]
+    [Migration("20230303095709_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -33,6 +33,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("AccidentDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("AccidentInfo")
                         .HasColumnType("nvarchar(max)");
 
@@ -42,11 +45,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<bool?>("CameraRecording")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool?>("DuringOperation")
                         .HasColumnType("bit");
@@ -72,14 +75,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<bool?>("PropertyDamage")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ReferenceNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RelatedDepartment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RootCauseAnalysis")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SceneOfAccident")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WitnessStatement")
                         .HasColumnType("nvarchar(max)");
@@ -118,14 +121,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CreationTime")
+                    b.Property<DateTime>("ContingencyPlanDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
@@ -422,19 +425,19 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Department")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Information")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("InconsistencyDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<string>("ReferenceNumber")
+                    b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RiskScore")
@@ -442,6 +445,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     b.Property<bool>("RootCauseAnalysisRequirement")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SceneOfInconsistency")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -498,11 +504,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<bool?>("CameraRecording")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool?>("DuringOperation")
                         .HasColumnType("bit");
@@ -519,6 +525,9 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<bool?>("MedicalIntervention")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime>("NearMissDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("NearMissInfo")
                         .HasColumnType("nvarchar(max)");
 
@@ -534,14 +543,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<bool?>("PropertyDamage")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ReferenceNumber")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("RelatedDepartment")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("RootCauseAnalysis")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SceneOfNearMiss")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("WitnessStatement")
                         .HasColumnType("nvarchar(max)");
@@ -580,16 +589,13 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CreationTime")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Deadline")
+                    b.Property<DateTime>("Deadline")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Information")
@@ -601,11 +607,14 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ReferenceNumber")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("PreventiveActivityDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("RootCauseAnalysis")
                         .HasColumnType("bit");
+
+                    b.Property<string>("SceneOfPreventiveActivity")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -625,14 +634,11 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("CreationTime")
+                    b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CreatorUserId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Information")
                         .HasColumnType("nvarchar(max)");
@@ -646,7 +652,10 @@ namespace Eah.WorkSafety.WebApp.Back.Persistance.Migrations
                     b.Property<string>("ReferenceNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("RevisionDate")
+                    b.Property<DateTime>("RevisionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("RiskAssessmentDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
