@@ -16,9 +16,9 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Dto
 
         public DateTime? RevisionDate { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime? RiskAssessmentDate { get; set; }
 
-        public DateTime? CreationTime { get; set; }
+        public DateTime? CreationDate { get; set; }
 
         public string? Method { get; set; }
     }
