@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public string? ReferenceNumber { get; set; }
+        public string? SceneOfNearMiss { get; set; }
 
         public string? NearMissInfo { get; set; }
 
