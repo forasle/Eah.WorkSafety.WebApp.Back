@@ -6,8 +6,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Commands
     {
         public int Id { get; set; }
 
-        public int NearMissNumber { get; set; }
-
         public string? SceneOfNearMiss { get; set; }
 
         public string? NearMissInfo { get; set; }

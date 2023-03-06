@@ -20,7 +20,6 @@ namespace Eah.WorkSafety.WebApp.Back.Core.Application.Features.CQRS.Handlers.Com
         {
             var nearMiss = new NearMiss
             {
-                NearMissNumber = request.NearMissNumber,
                 SceneOfNearMiss = request.SceneOfNearMiss,
                 NearMissInfo = request.NearMissInfo,
                 PerformedJob = request.PerformedJob,
