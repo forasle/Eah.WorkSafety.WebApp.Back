@@ -32,7 +32,7 @@
 
         public bool? CameraRecording { get; set; }
 
-        public DateTime? Date { get; set; }
+        public DateTime? nearMissDate { get; set; }
 
         public bool RootCauseAnalysis { get; set; }
 
