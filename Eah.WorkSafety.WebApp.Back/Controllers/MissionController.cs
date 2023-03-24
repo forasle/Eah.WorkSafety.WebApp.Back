@@ -14,6 +14,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Developer,Admin,Member,Operator,User")]
     public class MissionController : ControllerBase
     {
         private readonly IMediator mediator;
