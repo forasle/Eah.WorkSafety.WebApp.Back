@@ -13,6 +13,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Developer,Admin,Member,Operator")]
     public class AuthController : ControllerBase
     {
         private readonly IMediator mediator;

@@ -5,6 +5,7 @@ using Eah.WorkSafety.WebApp.Back.Core.Application.Filter;
 using Eah.WorkSafety.WebApp.Back.Helpers;
 using Eah.WorkSafety.WebApp.Back.Services;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Developer,Admin,Member,Operator,User")]
     public class PreventiveActivityController : ControllerBase
     {
         private readonly IMediator mediator;
