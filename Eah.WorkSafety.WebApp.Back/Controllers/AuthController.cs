@@ -13,7 +13,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
     [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Developer,Admin,Member,Operator")]
+    //[Authorize(Roles = "Developer,Admin,Member,Operator")]
     public class AuthController : ControllerBase
     {
         private readonly IMediator mediator;
@@ -22,7 +22,7 @@ namespace Eah.WorkSafety.WebApp.Back.Controllers
         {
             this.mediator = mediator;
         }
-        //[Authorize(Roles = "Developer,Admin")]
+        [Authorize(Roles = "Developer,Admin")]
         [HttpPost("[action]")]
         public async Task<IActionResult> Register(RegisterUserCommandRequest request)
         {
